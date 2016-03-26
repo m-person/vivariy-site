@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{#{% load thumbnail %}#}
+
+{% block title %}{{ block.super }} | главная{% endblock %}
+
+
+{% block content %}
+    <h2>КАТАЛОГ ПРОДУКЦИИ</h2>
+    <div class="row">
+        {% for category in top_categories %}
+            <div class="col-lg-4 main-catalog-item">
+                <a href="{% url 'category' category.slug %}">
+                    <div class="main-catalog-item-container">
+                        <div class="main-catalog-item-img"
+                             style="background: url({{ category.image.image.crop.300x150 }});
+                                     background-repeat: no-repeat;
+                                     background-size:100% 100%"
+                        >
+{#                            <img src="{{ category.image.image.crop.300x150 }}" alt="category image">#}
+                        </div>
+                        <h5>{{ category.title_ru | upper }}</h5>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

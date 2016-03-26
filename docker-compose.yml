@@ -1,0 +1,18 @@
+# vivariy-site project
+web:
+  build: .
+#  volumes:
+#    - /mnt/hlam/__www__/vivariy_site/app/media:/www/app/media
+  ports:
+    - "8003:80"
+  links:
+    - db
+  restart: unless-stopped
+
+
+db:
+  image: postgres:9.4
+#  ports:
+#    - "5432:5432"
+  environment:
+    POSTGRES_PASSWORD: postgres

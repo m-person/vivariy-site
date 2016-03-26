@@ -1,0 +1,116 @@
+{% load staticfiles %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    {% block meta %}
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% endblock %}
+
+    <title>
+        {% block title %}Группа "Виварий"{% endblock %}
+    </title>
+    {% block fonts %}
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:700' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700&subset=latin,cyrillic'
+              rel='stylesheet' type='text/css'>
+    {% endblock %}
+
+    {% block css %}
+        <link rel="icon" type="image/png" href="{% static 'img/favicon-32x32.png' %}" sizes="32x32"/>
+        <link rel="icon" type="image/png" href="{% static 'img/favicon-16x16.png' %}" sizes="16x16"/>
+        <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/bootstrap-theme.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    {% endblock %}
+</head>
+
+<body>
+<header>
+    {% block header %}
+        <div class="container">
+            <div class="row">
+                <form action="{% url 'set_language' %}" method="post"
+                      class="lang_form col-lg-2 col-lg-offset-10">{% csrf_token %}
+                    {% get_current_language as LANGUAGE_CODE %}
+                    <button type="submit" name="language" value="en"
+                            {% if LANGUAGE_CODE == 'en' %}class="active"{% endif %}>ENG
+                    </button>
+                    <button type="submit" name="language" value="ru"
+                            {% if LANGUAGE_CODE == 'ru' %}class="active"{% endif %}>РУС
+                    </button>
+                </form>
+
+            </div>
+            <div class="row">
+                <a href="/" class="col-lg-5">
+                    <h1 class="header-logo">
+                        <img src="{% static 'img/logo_100x100.png' %}" alt="company logo">
+                        <div>ГРУППА КОМПАНИЙ</div>
+                        <div>&laquoВИВАРИЙ&raquo</div>
+                    </h1>
+                </a>
+                <form action="" class="search_form">{% csrf_token %}
+                    <div class="col-lg-offset-1 col-lg-4 search_form-input">
+                        <input type="text" name="search_text">
+                    </div>
+                    <div class="col-lg-2 search_form-submit">
+                        <input type="submit" value="ПОИСК">
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="menu-container">
+            <div class="container">
+                <div class="row">
+                    <ul class="nav navbar-nav main-menu">
+                        <li class="{% if menuitem == 'main' %}active{% endif %}"><a href="/">ГЛАВНАЯ</a></li>
+                        <li class="{% if menuitem == 'catalog' %}active{% endif %}"><a href="/catalog">КАТАЛОГ</a></li>
+                        <li class="{% if menuitem == 'articles' %}active{% endif %}"><a href="#">СТАТЬИ</a></li>
+                        <li class="{% if menuitem == 'partners' %}active{% endif %}"><a href="/partners">ПАРТНЕРЫ</a></li>
+                        <li class="{% if menuitem == 'contacts' %}active{% endif %}"><a href="#">КОНТАКТЫ</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+</header>
+
+<main class="container">
+    {% block content %}
+        <br><br><br>
+    {% endblock %}
+</main>
+
+<footer>
+    {% block footer %}
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5">
+                    <img src="{% static 'img/logo_footer.png' %}" alt="company logo">
+                    <p>© 2010-2016 Группа компаний «Виварий».<br> Все права защищены.</p>
+                </div>
+                <div class="col-lg-3">
+                    <p>КОНТАКТЫ:</p>
+                    <p>Тел.:(4722)37-29-38<br>37-29-40</p>
+                    <p>E-mail:<a href="mailto:info@vivariy.com">info@vivariy.com</a></p>
+                </div>
+                <div class="col-lg-2">
+                    <img src="{% static 'img/studio_logo.png' %}" alt="design studio logo">
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+</footer>
+
+{% block js %}
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/app.js' %}"></script>
+{% endblock %}
+</body>
+</html>
