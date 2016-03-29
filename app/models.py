@@ -1,10 +1,30 @@
 # coding=utf-8
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-# from django_resized import ResizedImageField
+from django.utils import timezone
 from ckeditor.fields import RichTextField
-# from sorl.thumbnail import ImageField
 from versatileimagefield.fields import (VersatileImageField, PPOIField, )
+
+
+class ArticleImage(models.Model):
+    """
+    Image to describe article.
+    """
+    desc = models.CharField(_('Image description'), blank=True, null=True, max_length=256,
+                            help_text=_('Just to distinguish one image from another. It isn`t necessary field.'
+                                        ' Doesn`t shown on site.'))
+    image = VersatileImageField(_('Image'), upload_to='article_images', width_field='width', height_field='height',
+                                ppoi_field='ppoi')
+    width = models.PositiveIntegerField(_('Image widht'), blank=True, null=True)
+    height = models.PositiveIntegerField(_('Image height'), blank=True, null=True)
+    ppoi = PPOIField(_('Image point of interest'), help_text=_('Select center point for cropped (resized) image'))
+
+    def __str__(self):
+        return self.desc
+
+    class Meta:
+        verbose_name = _('Image for articles')
+        verbose_name_plural = _('Images for articles')
 
 
 class CategoryImage(models.Model):
@@ -164,9 +184,9 @@ class Product(models.Model):
     options_ru = RichTextField(_('Options (ru)'), max_length=4096, default='', blank=True, null=True,
                                help_text=_('Delivery options in russian (4096 symbols max)'))
     mentions_en = RichTextField(_('Mentions (en)'), max_length=4096, default='', blank=True, null=True,
-                               help_text=_('Links to researches using this device in english (4096 symbols max)'))
+                                help_text=_('Links to researches using this device in english (4096 symbols max)'))
     mentions_ru = RichTextField(_('Mentions (ru)'), max_length=4096, default='', blank=True, null=True,
-                               help_text=_('Links to researches using this device in russian (4096 symbols max)'))
+                                help_text=_('Links to researches using this device in russian (4096 symbols max)'))
 
     def __str__(self):
         return self.title_ru
@@ -213,3 +233,30 @@ class YoutubeVideo(models.Model):
         verbose_name = _('Youtube video')
         verbose_name_plural = _('Youtube videos')
 
+
+class Article(models.Model):
+    """
+    An article (news item).
+    """
+    title_en = models.CharField(_('Title (en)'), max_length=512, help_text=_('Article title (in english)'))
+    title_ru = models.CharField(_('Title (ru)'), max_length=512, help_text=_('Article title (in russian)'))
+    slug = models.SlugField(_('Slug'), max_length=254, unique=True, db_index=True,
+                            help_text=_('URL representation (a..z, 0..9 and "-" symbols only)'))
+    cut_en = models.CharField(_('Cut text (en)'), default='', max_length=4096,
+                              help_text=_('Truncated article (in english)'))
+    cut_ru = models.CharField(_('Cut text (ru)'), default='', max_length=4096,
+                              help_text=_('Truncated article (in russian)'))
+    text_en = RichTextField(_('Article text (en)'), default='', help_text=(_('Full article text (in english)')))
+    text_ru = RichTextField(_('Article text (ru)'), default='', null=True,
+                            help_text=(_('Full article text (in russian)')))
+    date = models.DateTimeField(_('Date'), default=timezone.now, help_text=_('Article creation date'))
+    is_hidden = models.BooleanField(_('Don`t show it on site'), default=False)
+    source_url = models.URLField(_('Link to source'), max_length=1024, help_text=_('Source url'))
+    image = models.ForeignKey('ArticleImage', related_name='articles')
+
+    def __str__(self):
+        return self.title_ru
+
+    class Meta:
+        verbose_name = _('Article')
+        verbose_name_plural = _('Articles')

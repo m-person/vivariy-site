@@ -1,6 +1,7 @@
+# coding=utf-8
 from django.contrib import admin
 from app.models import (Category, TopCategory, Product, Manufacturer, ProductImage, CategoryImage, LogoImage,
-                        DocFile, YoutubeVideo, )
+                        DocFile, YoutubeVideo, Article, ArticleImage, )
 
 
 class ProductImageAdmin(admin.ModelAdmin):
@@ -42,6 +43,17 @@ class TopCategoryAdmin(admin.ModelAdmin):
     save_on_top = True
 
 
+class ArticleAdmin(admin.ModelAdmin):
+    fields = (
+    ('title_ru', 'title_en',), 'slug', 'date', 'image', 'source_url', ('cut_ru', 'cut_en',), ('text_en', 'text_ru',),
+    'is_hidden')
+    list_display = ('title_ru',)
+    prepopulated_fields = {
+        'slug': ('title_en',)
+    }
+    save_on_top = True
+
+
 class CategoryAdmin(admin.ModelAdmin):
     fields = ('title_ru', 'title_en', 'parent_category', 'products', 'is_hidden')
     list_display = ('title_ru', 'parent_category')
@@ -73,6 +85,12 @@ class CategoryImageAdmin(admin.ModelAdmin):
     save_on_top = True
 
 
+class ArticleImageAdmin(admin.ModelAdmin):
+    fields = ('desc', 'image',)
+    list_display = ('desc', )
+    save_on_top = True
+
+
 class DocFileAdmin(admin.ModelAdmin):
     fields = (('title_ru', 'title_en'), 'file', 'product', 'is_hidden')
     list_display = ('title_ru',)
@@ -93,3 +111,5 @@ admin.site.register(Product, ProductAdmin)
 admin.site.register(ProductImage, ProductImageAdmin)
 admin.site.register(DocFile, DocFileAdmin)
 admin.site.register(YoutubeVideo, YoutubeVideoAdmin)
+admin.site.register(Article, ArticleAdmin)
+admin.site.register(ArticleImage, ArticleImageAdmin)

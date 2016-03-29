@@ -29,62 +29,67 @@
 </head>
 
 <body>
-<header>
-    {% block header %}
-        <div class="container">
-            <div class="row">
-                <form action="{% url 'set_language' %}" method="post"
-                      class="lang_form col-lg-2 col-lg-offset-10">{% csrf_token %}
-                    {% get_current_language as LANGUAGE_CODE %}
-                    <button type="submit" name="language" value="en"
-                            {% if LANGUAGE_CODE == 'en' %}class="active"{% endif %}>ENG
-                    </button>
-                    <button type="submit" name="language" value="ru"
-                            {% if LANGUAGE_CODE == 'ru' %}class="active"{% endif %}>РУС
-                    </button>
-                </form>
-
-            </div>
-            <div class="row">
-                <a href="/" class="col-lg-5">
-                    <h1 class="header-logo">
-                        <img src="{% static 'img/logo_100x100.png' %}" alt="company logo">
-                        <div>ГРУППА КОМПАНИЙ</div>
-                        <div>&laquoВИВАРИЙ&raquo</div>
-                    </h1>
-                </a>
-                <form action="" class="search_form">{% csrf_token %}
-                    <div class="col-lg-offset-1 col-lg-4 search_form-input">
-                        <input type="text" name="search_text">
-                    </div>
-                    <div class="col-lg-2 search_form-submit">
-                        <input type="submit" value="ПОИСК">
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <div class="menu-container">
+<div class="content-wrapper">
+    <header>
+        {% block header %}
             <div class="container">
                 <div class="row">
-                    <ul class="nav navbar-nav main-menu">
-                        <li class="{% if menuitem == 'main' %}active{% endif %}"><a href="/">ГЛАВНАЯ</a></li>
-                        <li class="{% if menuitem == 'catalog' %}active{% endif %}"><a href="/catalog">КАТАЛОГ</a></li>
-                        <li class="{% if menuitem == 'articles' %}active{% endif %}"><a href="#">СТАТЬИ</a></li>
-                        <li class="{% if menuitem == 'partners' %}active{% endif %}"><a href="/partners">ПАРТНЕРЫ</a></li>
-                        <li class="{% if menuitem == 'contacts' %}active{% endif %}"><a href="#">КОНТАКТЫ</a></li>
-                    </ul>
+                    <form action="{% url 'set_language' %}" method="post"
+                          class="lang_form col-lg-2 col-lg-offset-10">{% csrf_token %}
+                        {% get_current_language as LANGUAGE_CODE %}
+                        <button type="submit" name="language" value="en"
+                                {% if LANGUAGE_CODE == 'en' %}class="active"{% endif %}>ENG
+                        </button>
+                        <button type="submit" name="language" value="ru"
+                                {% if LANGUAGE_CODE == 'ru' %}class="active"{% endif %}>РУС
+                        </button>
+                    </form>
+
+                </div>
+                <div class="row">
+                    <a href="/" class="col-lg-5">
+                        <h1 class="header-logo">
+                            <img src="{% static 'img/logo_100x100.png' %}" alt="company logo">
+                            <div>ГРУППА КОМПАНИЙ</div>
+                            <div>&laquoВИВАРИЙ&raquo</div>
+                        </h1>
+                    </a>
+                    <form action="" class="search_form">{% csrf_token %}
+                        <div class="col-lg-offset-1 col-lg-4 search_form-input">
+                            <input type="text" name="search_text">
+                        </div>
+                        <div class="col-lg-2 search_form-submit">
+                            <input type="submit" value="ПОИСК">
+                        </div>
+                    </form>
                 </div>
             </div>
-        </div>
-    {% endblock %}
-</header>
 
-<main class="container">
-    {% block content %}
-        <br><br><br>
-    {% endblock %}
-</main>
+            <div class="menu-container">
+                <div class="container">
+                    <div class="row">
+                        <ul class="nav navbar-nav main-menu">
+                            <li class="{% if menuitem == 'main' %}active{% endif %}"><a href="/">ГЛАВНАЯ</a></li>
+                            <li class="{% if menuitem == 'catalog' %}active{% endif %}"><a href="/catalog">КАТАЛОГ</a>
+                            </li>
+                            <li class="{% if menuitem == 'articles' %}active{% endif %}"><a href="/articles">СТАТЬИ</a></li>
+                            <li class="{% if menuitem == 'partners' %}active{% endif %}"><a
+                                    href="/partners">ПАРТНЕРЫ</a></li>
+                            <li class="{% if menuitem == 'contacts' %}active{% endif %}"><a href="#">КОНТАКТЫ</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+    </header>
+
+    <main class="container">
+        {% block content %}
+            <br><br><br>
+        {% endblock %}
+    </main>
+
+</div>
 
 <footer>
     {% block footer %}

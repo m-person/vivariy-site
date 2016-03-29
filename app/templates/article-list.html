@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}{{ block.super }} | статьи{% endblock %}
+
+{% block content %}
+    <div class="row breadcrumbs"><!-- breadcrumbs -->
+        <div class="pull-right">
+            <span><a href="/">Главная</a></span> |
+            <span>Статьи</span>
+        </div>
+    </div>
+
+    <div class="row article-list">
+
+        <section class="col-lg-10 article-content-panel">
+            {% for article in articles %}
+                <div class="media">
+                    <div class="media-left media-top">
+                        <a href="{% url 'article_details' article.slug %}">
+                            <img src="{{ article.image.image.crop.300x190 }}" alt="article image" class="media-object">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <a href="{% url 'article_details' article.slug %}">
+                            <h4 class="media-heading">{{ article.title_ru | upper }}</h4>
+                        </a>
+                        <div class="article-date">{{ article.date | date }}</div>
+                        <div class="article-cut">{{ article.cut_ru }}</div>
+                        <a href="{% url 'article_details' article.slug %}" class="btn">ПОДРОБНЕЕ</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </section>
+
+        <aside class="col-lg-2 article-tags-panel">
+            <p>there should be tags</p>
+        </aside>
+    </div>
+
+{% endblock %}

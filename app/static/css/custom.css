@@ -5,10 +5,11 @@ Myriad Pro regular
 
 */
 /* ---------- base template --------- */
+html,
 body {
     font-family: 'PT Sans', sans-serif;
+    height: 100vh;
 }
-
 
 h1, h2, h3, h4, h5 {
     font-family: 'Open Sans Condensed', sans-serif;
@@ -19,6 +20,30 @@ h2 {
     text-align: center;
     margin-bottom: 3rem;
     margin-top: 3rem;
+}
+
+footer {
+    background-color: #414141;
+    color: white;
+    padding-top: 3rem;
+    padding-bottom: 2rem;
+}
+
+/* flush footer to bottom on pages with small content amount: */
+footer {
+    position: relative;
+    height: 19rem;
+    margin-top: -19rem;
+    clear: both;
+}
+
+main {
+    overflow: auto;
+    padding-bottom: 19rem;
+}
+
+.content-wrapper {
+    min-height: 100%;
 }
 
 /* ----------- base template: header-logo ------------*/
@@ -102,14 +127,6 @@ header a:hover {
     color: #74b336;
     padding: .5rem 4rem;
     float: left;
-}
-
-/* ---------- base template: footer ----------------*/
-footer {
-    background-color: #414141;
-    color: white;
-    padding-top: 3rem;
-    padding-bottom: 2rem;
 }
 
 /* ----------- base template: main menu ------------*/
@@ -205,7 +222,6 @@ footer {
 .breadcrumbs span:last-of-type {
     font-weight: bolder;
 }
-
 
 /* ------- catalog page --------- */
 
@@ -311,6 +327,7 @@ footer {
     display: flex;
 }
 
+
 .catalog-container h1 {
     margin-bottom: 2.5rem;
     margin-top: 3rem;
@@ -411,4 +428,11 @@ footer {
 
 .product-container h3 {
     margin-top: 3rem;
+}
+
+
+/*-------- article: details ----------*/
+.article-tags-panel {
+    background-color: #e5e5e5;
+
 }

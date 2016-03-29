@@ -1,6 +1,7 @@
+# coding=utf-8
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import TemplateView, RedirectView
-from app.models import (Category, Product, TopCategory, Manufacturer, )
+from app.models import (Category, Product, TopCategory, Manufacturer, Article)
 from django.core.urlresolvers import reverse
 
 
@@ -67,4 +68,24 @@ class ManufacturersView(TemplateView):
         ctx = super(ManufacturersView, self).get_context_data(**kwargs)
         ctx['menuitem'] = 'partners'
         ctx['partner_list'] = Manufacturer.objects.filter(is_hidden=False)
+        return ctx
+
+
+class ArticleListView(TemplateView):
+    template_name = 'article-list.html'
+
+    def get_context_data(self, **kwargs):
+        ctx = super(ArticleListView, self).get_context_data(**kwargs)
+        ctx['menuitem'] = 'articles'
+        ctx['articles'] = Article.objects.filter(is_hidden=False)  # todo: add pagination
+        return ctx
+
+
+class ArticleDetailView(TemplateView):
+    template_name = 'article-details.html'
+
+    def get_context_data(self, **kwargs):
+        ctx = super(ArticleDetailView, self).get_context_data(**kwargs)
+        ctx['menuitem'] = 'articles'
+        ctx['article'] = get_object_or_404(Article, slug=kwargs['slug'])
         return ctx

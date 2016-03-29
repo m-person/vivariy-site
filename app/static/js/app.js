@@ -6,9 +6,9 @@ $(document).ready(
     function () {
 
         // init image gallery on product page
-        var product_gallery = $("#product-gallery");
-        if (product_gallery.length) {
-            product_gallery.lightSlider({
+        var productGallery = $("#product-gallery");
+        if (productGallery.length) {
+            productGallery.lightSlider({
                 gallery: true,
                 item: 1,
                 loop: true,
@@ -26,16 +26,7 @@ $(document).ready(
 
         }
 
-
-        //init tabbed navigation on product page
-        //var product_tabs = $(".product_tabs a");
-        //if (product_tabs.length) {
-        //    product_tabs.click(function(evt) {
-        //        alert('OO');
-        //        evt.preventDefault();
-        //        $(this).tab('show');
-        //    });
-        //}
     }
 );
+
 
