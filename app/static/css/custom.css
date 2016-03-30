@@ -225,6 +225,14 @@ header a:hover {
 
 /* ------- catalog page --------- */
 
+.catalog-aside-bkg {
+    background-color: #e5e5e5;
+    left: 0;
+    width: 30%;
+    height: 100vh; /* todo: adjust it to 100% */
+    position: absolute;
+}
+
 .catalog-aside {
     background-color: #e5e5e5;
     text-align: right;
@@ -432,6 +440,15 @@ header a:hover {
 
 
 /*-------- article: details ----------*/
+
+.article-aside-bkg {
+    width: 20%;
+    height: 100vh; /* todo: adjust height to 100% */
+    background-color: #e5e5e5;
+    position: absolute;
+    right: 0;
+}
+
 .article-tags-panel {
     background-color: #e5e5e5;
 

@@ -12,6 +12,7 @@ class MainView(TemplateView):
         ctx = super(MainView, self).get_context_data(**kwargs)
         ctx['menuitem'] = 'main'
         ctx['top_categories'] = TopCategory.objects.filter(is_hidden=False)
+        ctx['articles'] = Article.objects.filter(is_hidden=False).order_by('-date')[:3]
         return ctx
 
 

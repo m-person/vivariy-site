@@ -5,28 +5,35 @@
 {% block title %}{{ block.super }} | статьи | {{ article.title_ru | truncatechars:20 }}{% endblock %}
 
 {% block content %}
-    <div class="row breadcrumbs"><!-- breadcrumbs -->
-        <div class="pull-right">
-            <span><a href="/">Главная</a></span> |
-            <span>Статьи</span>
+    <div class="container">
+
+        <div class="article-aside-bkg"></div>
+
+        <div class="row article-details">
+
+            <section class="col-lg-10 article-content-panel"><!--- article block -->
+
+                <div class="row breadcrumbs"><!-- breadcrumbs -->
+                    <div class="pull-right">
+                        <span><a href="/">Главная</a></span> |
+                        <span>Статьи</span>
+                    </div>
+                </div>
+
+                <h2>{{ article.title_ru | upper }}</h2>
+                <img src="{{ article.image.image.crop.300x190 }}" alt="article description image">
+                <div class="article-date">{{ article.date | date }}</div>
+                <div class="article-content">{{ article.text_ru | safe }}</div>
+                <p>Источник: <a href="{{ article.source_url }}">{{ article.source_url | domain_from_url }}</a></p>
+                <div class="row">
+                    <a href="/articles" class="btn">ДРУГИЕ НОВОСТИ</a>
+                </div>
+            </section>
+
+            <aside class="col-lg-2 article-tags-panel"><!-- tags block -->
+                <p>there should be tags</p>
+            </aside>
         </div>
+
     </div>
-
-    <div class="row article-details">
-        <section class="col-lg-10 article-content-panel"><!--- article block -->
-            <h2>{{ article.title_ru | upper }}</h2>
-            <img src="{{ article.image.image.crop.300x190 }}" alt="article description image">
-            <div class="article-date">{{ article.date | date }}</div>
-            <div class="article-content">{{ article.text_ru | safe }}</div>
-            <p>Источник: <a href="{{ article.source_url }}">{{ article.source_url | domain_from_url }}</a></p>
-            <div class="row">
-                <a href="/articles" class="btn">ДРУГИЕ НОВОСТИ</a>
-            </div>
-        </section>
-
-        <aside class="col-lg-2 article-tags-panel"><!-- tags block -->
-            <p>there should be tags</p>
-        </aside>
-    </div>
-
 {% endblock %}

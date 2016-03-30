@@ -4,71 +4,76 @@
 {% block title %}{{ block.super }} | каталог | {{ category.title_ru }} {% endblock %}
 
 {% block content %}
-    <div class="row catalog-container">
+    <div class="catalog-aside-bkg"></div>
+    <div class="container">
+        <div class="row catalog-container">
 
-        <!-- left menu -->
-        <aside class="catalog-aside col-lg-4">
-            <ul>
-                {% for top_category in top_categories %}
-                    <li><a href="{% url 'category' top_category.slug %}">{{ top_category.title_ru }}</a></li>
-                {% endfor %}
-            </ul>
-        </aside>
-        <section class="catalog-category col-lg-8">
+            <!-- left menu -->
+            <aside class="catalog-aside col-lg-4">
+                <ul>
+                    {% for top_category in top_categories %}
+                        <li><a href="{% url 'category' top_category.slug %}">{{ top_category.title_ru }}</a></li>
+                    {% endfor %}
+                </ul>
+            </aside>
+            <section class="catalog-category col-lg-8">
 
-            <!-- breadcrumbs -->
-            <div class="row breadcrumbs">
-                <div class="pull-right">
-                    <span><a href="/">Главная</a></span> |
-                    <span><a href="/catalog">Каталог</a></span> |
-                    <span>{{ current_top_category.title_ru | lower | capfirst }}</span>
-                </div>
-            </div>
-
-            <h1>{{ current_top_category.title_ru | upper }}</h1>
-
-            <!-- list of subcategories -->
-            {% for category in categories %}
-                <div class="panel-group" role="tablist">
-                    <div class="panel">
-
-                        <div class="panel-heading" role="tab" id="collapse-heading-{{ category.id }}">
-                            <a class="collapsed" role="button" data-toggle="collapse"
-                               href="#collapse-{{ category.id }}"
-                               aria-expanded="false" aria-controls="collapse-{{ category.id }}">
-                                <h4 class="panel-title">
-                                    <span class="glyphicon glyphicon-plus-sign"></span>
-                                    <span>{{ category.title_ru | upper }}</span>
-                                </h4>
-                            </a>
-                        </div>
-
-                        <div id="collapse-{{ category.id }}" class="panel-collapse collapse" role="tabpanel"
-                             aria-labelledby="collapse-heading-{{ category.id }}" aria-expanded="false">
-
-                            <ul class="list-group">
-                                {% for product in category.product_set.all %}
-                                    <li class="list-group-item">
-                                        {% default_image product as product_image %}
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <img src="{{ product_image.image.crop.140x140 }}" alt="product image">
-                                            </div>
-                                            <div class="media-body">
-                                                <a href="{% url 'product' product.slug %}">
-                                                    <h5 class="media-heading">{{ product.title_ru }}</h5>
-                                                </a>
-                                                <a href="{% url 'product' product.slug %}" class="btn" role="button">ПОДРОБНЕЕ</a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                {% endfor %}
-                            </ul>
-
-                        </div>
+                <!-- breadcrumbs -->
+                <div class="row breadcrumbs">
+                    <div class="pull-right">
+                        <span><a href="/">Главная</a></span> |
+                        <span><a href="/catalog">Каталог</a></span> |
+                        <span>{{ current_top_category.title_ru | lower | capfirst }}</span>
                     </div>
                 </div>
-            {% endfor %}
-        </section>
+
+                <h1>{{ current_top_category.title_ru | upper }}</h1>
+
+                <!-- list of subcategories -->
+                {% for category in categories %}
+                    <div class="panel-group" role="tablist">
+                        <div class="panel">
+
+                            <div class="panel-heading" role="tab" id="collapse-heading-{{ category.id }}">
+                                <a class="collapsed" role="button" data-toggle="collapse"
+                                   href="#collapse-{{ category.id }}"
+                                   aria-expanded="false" aria-controls="collapse-{{ category.id }}">
+                                    <h4 class="panel-title">
+                                        <span class="glyphicon glyphicon-plus-sign"></span>
+                                        <span>{{ category.title_ru | upper }}</span>
+                                    </h4>
+                                </a>
+                            </div>
+
+                            <div id="collapse-{{ category.id }}" class="panel-collapse collapse" role="tabpanel"
+                                 aria-labelledby="collapse-heading-{{ category.id }}" aria-expanded="false">
+
+                                <ul class="list-group">
+                                    {% for product in category.product_set.all %}
+                                        <li class="list-group-item">
+                                            {% default_image product as product_image %}
+                                            <div class="media">
+                                                <div class="media-left">
+                                                    <img src="{{ product_image.image.crop.140x140 }}"
+                                                         alt="product image">
+                                                </div>
+                                                <div class="media-body">
+                                                    <a href="{% url 'product' product.slug %}">
+                                                        <h5 class="media-heading">{{ product.title_ru }}</h5>
+                                                    </a>
+                                                    <a href="{% url 'product' product.slug %}" class="btn"
+                                                       role="button">ПОДРОБНЕЕ</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </section>
+        </div>
     </div>
 {% endblock %}

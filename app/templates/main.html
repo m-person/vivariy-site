@@ -6,23 +6,38 @@
 
 
 {% block content %}
-    <h2>КАТАЛОГ ПРОДУКЦИИ</h2>
-    <div class="row">
-        {% for category in top_categories %}
-            <div class="col-lg-4 main-catalog-item">
-                <a href="{% url 'category' category.slug %}">
-                    <div class="main-catalog-item-container">
-                        <div class="main-catalog-item-img"
-                             style="background: url({{ category.image.image.crop.300x150 }});
-                                     background-repeat: no-repeat;
-                                     background-size:100% 100%"
-                        >
-{#                            <img src="{{ category.image.image.crop.300x150 }}" alt="category image">#}
+    <div class="container">
+        <h2>КАТАЛОГ ПРОДУКЦИИ</h2>
+        <div class="row">
+            {% for category in top_categories %}
+                <div class="col-lg-4 main-catalog-item">
+                    <a href="{% url 'category' category.slug %}">
+                        <div class="main-catalog-item-container">
+                            <div class="main-catalog-item-img"
+                                 style="background: url({{ category.image.image.crop.300x150 }});
+                                         background-repeat: no-repeat;
+                                         background-size:100% 100%"
+                            >
+                                {#                            <img src="{{ category.image.image.crop.300x150 }}" alt="category image">#}
+                            </div>
+                            <h5>{{ category.title_ru | upper }}</h5>
                         </div>
-                        <h5>{{ category.title_ru | upper }}</h5>
-                    </div>
-                </a>
-            </div>
-        {% endfor %}
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+
+        <h2>НОВОСТИ</h2>
+        <div class="row">
+            {% for article in articles %}
+                <div class="col-lg-4 main-article-item">
+                    <img src="{{ article.image.image.crop.300x190 }}" alt="article image">
+                    <h5>{{ article.title_ru }}</h5>
+                    <div>{{ article.cut_ru | truncatewords:15 }}...</div>
+                    <a href="{% url 'article_details' article.slug %}" class="btn">ПОДРОБНЕЕ</a>
+                    <div>{{ article.date | date }}</div>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}
