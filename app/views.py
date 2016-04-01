@@ -3,6 +3,24 @@ from django.shortcuts import render, get_object_or_404
 from django.views.generic import TemplateView, RedirectView
 from app.models import (Category, Product, TopCategory, Manufacturer, Article)
 from django.core.urlresolvers import reverse
+from django.core.paginator import PageNotAnInteger, Paginator, EmptyPage
+
+
+class MyPaginator(Paginator):
+    """
+    Created just to avoid too many "if" tags in template.
+    """
+
+    def shortened_page_range(self, count=3):
+        """
+        shortens to long list of pages: replaces excess elements in middle of the list by "..."
+        for example: list [1,2,3,4,5,6,7,8,9] with count=3 will be converted to [1,2,3,"...",9]
+        :param count: how many first items don't skip
+        """
+        page_range = list(self.page_range)
+        if len(page_range) <= count+2:
+            return page_range
+        return page_range[:count] + ['...'] + page_range[-1:]
 
 
 class MainView(TemplateView):
@@ -78,7 +96,18 @@ class ArticleListView(TemplateView):
     def get_context_data(self, **kwargs):
         ctx = super(ArticleListView, self).get_context_data(**kwargs)
         ctx['menuitem'] = 'articles'
-        ctx['articles'] = Article.objects.filter(is_hidden=False)  # todo: add pagination
+
+        # articles = Article.objects.filter(is_hidden=False)
+        # ctx['articles'] = articles
+
+        paginator = MyPaginator(Article.objects.filter(is_hidden=False), 2)  # todo: change items count after debug
+        page = self.request.GET.get('page')
+        try:
+            ctx['articles'] = paginator.page(page)
+        except PageNotAnInteger:
+            ctx['articles'] = paginator.page(1)
+        except EmptyPage:
+            ctx['articles'] = paginator.page(paginator.num_pages)
         return ctx
 
 

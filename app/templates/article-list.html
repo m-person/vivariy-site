@@ -16,7 +16,7 @@
                         <span><a href="/">Главная</a></span> |
                         <span>Статьи</span>
                     </div>
-                </div>
+                </div><!-- end breadcrumbs -->
 
                 {% for article in articles %}
                     <div class="media">
@@ -36,6 +36,50 @@
                         </div>
                     </div>
                 {% endfor %}
+
+                {% if articles.paginator.num_pages > 1 %}
+                    <nav><!-- paginagion -->
+                        <ul class="pagination">
+                            {% if articles.has_previous %}
+                                <li>
+                                    <a href="/articles?page={{ articles.previous_page_number }}">
+                                        <span class="glyphicon glyphicon-chevron-left"></span>
+                                    </a>
+                                </li>
+                            {% else %}
+                                <li class="disabled">
+                                    <span class="glyphicon-chevron-left glyphicon"></span>
+                                </li>
+                            {% endif %}
+
+                            {% for page in articles.paginator.shortened_page_range %}
+                                {% if page == '...' %}
+                                    <li class="disabled">
+                                        <a href="#"><span aria-hidden="true">...</span></a>
+                                    </li>
+                                {% else %}
+                                    <li {% if page == articles.number %}class="active" {% endif %}>
+                                        {{ paginator.page.number }}
+                                        <a href="/articles?page={{ page }}">{{ page }}</a>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+
+                            {% if articles.has_next %}
+                                <li>
+                                    <a href="/articles?page={{ articles.next_page_number }}">
+                                        <span class="glyphicon glyphicon-chevron-right"></span>
+                                    </a>
+                                </li>
+                            {% else %}
+                                <li class="disabled">
+                                    <span class="glyphicon-chevron-right glyphicon"></span>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </nav><!-- end pagination -->
+                {% endif %}
+
             </section>
 
             <aside class="col-lg-2 article-tags-panel">
