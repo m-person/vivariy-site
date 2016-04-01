@@ -4,6 +4,7 @@ from django.views.generic import TemplateView, RedirectView
 from app.models import (Category, Product, TopCategory, Manufacturer, Article)
 from django.core.urlresolvers import reverse
 from django.core.paginator import PageNotAnInteger, Paginator, EmptyPage
+from tagging.models import Tag, TaggedItem
 
 
 class MyPaginator(Paginator):
@@ -18,7 +19,7 @@ class MyPaginator(Paginator):
         :param count: how many first items don't skip
         """
         page_range = list(self.page_range)
-        if len(page_range) <= count+2:
+        if len(page_range) <= count + 2:
             return page_range
         return page_range[:count] + ['...'] + page_range[-1:]
 
@@ -94,14 +95,31 @@ class ArticleListView(TemplateView):
     template_name = 'article-list.html'
 
     def get_context_data(self, **kwargs):
+        items_on_page = 2  # todo: change it after debug
         ctx = super(ArticleListView, self).get_context_data(**kwargs)
         ctx['menuitem'] = 'articles'
+        ctx['tags'] = Tag.objects.all()
 
-        # articles = Article.objects.filter(is_hidden=False)
-        # ctx['articles'] = articles
-
-        paginator = MyPaginator(Article.objects.filter(is_hidden=False), 2)  # todo: change items count after debug
         page = self.request.GET.get('page')
+        tag = self.request.GET.get('filter')
+
+        # construct url, otherwise it'll too much logic in template considering filtering by tag and pagination
+        if tag:
+            ctx['current_url'] = '/articles/?filter=' + tag + '&'
+            ctx['current_tag'] = tag
+        else:
+            ctx['current_url'] = '/articles/?'
+
+        if tag:
+            try:
+                curr_tag = Tag.objects.get(name=tag)
+                paginator = MyPaginator(TaggedItem.objects.get_by_model(Article, curr_tag).filter(is_hidden=False),
+                                        items_on_page)
+            except Tag.DoesNotExist:
+                paginator = MyPaginator(Article.objects.filter(is_hidden=False), items_on_page)
+        else:
+            paginator = MyPaginator(Article.objects.filter(is_hidden=False), items_on_page)
+
         try:
             ctx['articles'] = paginator.page(page)
         except PageNotAnInteger:

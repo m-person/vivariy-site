@@ -17,6 +17,7 @@ urlpatterns = [
     url(r'^i18n/', include('django.conf.urls.i18n')),
     url(r'^articles/$', ArticleListView.as_view(), name='article_list'),
     url(r'^articles/(?P<slug>[-_\w]*)$', ArticleDetailView.as_view(), name='article_details'),
+    url(r'^tagging_autocomplete/', include('tagging_autocomplete.urls')),
 ]
 
 # access to uploaded files

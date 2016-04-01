@@ -18,22 +18,30 @@
                     </div>
                 </div><!-- end breadcrumbs -->
 
+                <h1>СТАТЬИ</h1>
+
+                {% if current_tag %}
+                    <div>
+                        фильтр по тэгу {{ current_tag }}
+                        <a href="/articles/">[очистить]</a>
+                        {#<a href="/articles/"><span class="glyphicon glyphicon-remove"></span></a>#}
+                    </div>
+                {% endif %}
+
                 {% for article in articles %}
                     <div class="media">
-                        <div class="media-left media-top">
-                            <a href="{% url 'article_details' article.slug %}">
+                        <div class="article-date">{{ article.date | date }}</div>
+                        <a href="{% url 'article_details' article.slug %}">
+                            <div class="media-left media-top">
                                 <img src="{{ article.image.image.crop.300x190 }}" alt="article image"
                                      class="media-object">
-                            </a>
-                        </div>
-                        <div class="media-body">
-                            <a href="{% url 'article_details' article.slug %}">
+                            </div>
+                            <div class="media-body">
                                 <h4 class="media-heading">{{ article.title_ru | upper }}</h4>
-                            </a>
-                            <div class="article-date">{{ article.date | date }}</div>
-                            <div class="article-cut">{{ article.cut_ru }}</div>
-                            <a href="{% url 'article_details' article.slug %}" class="btn">ПОДРОБНЕЕ</a>
-                        </div>
+                                <div class="article-cut">{{ article.cut_ru }}</div>
+
+                            </div>
+                        </a>
                     </div>
                 {% endfor %}
 
@@ -42,7 +50,7 @@
                         <ul class="pagination">
                             {% if articles.has_previous %}
                                 <li>
-                                    <a href="/articles?page={{ articles.previous_page_number }}">
+                                    <a href="{{ current_url }}page={{ articles.previous_page_number }}">
                                         <span class="glyphicon glyphicon-chevron-left"></span>
                                     </a>
                                 </li>
@@ -60,14 +68,14 @@
                                 {% else %}
                                     <li {% if page == articles.number %}class="active" {% endif %}>
                                         {{ paginator.page.number }}
-                                        <a href="/articles?page={{ page }}">{{ page }}</a>
+                                        <a href="{{ current_url }}page={{ page }}">{{ page }}</a>
                                     </li>
                                 {% endif %}
                             {% endfor %}
 
                             {% if articles.has_next %}
                                 <li>
-                                    <a href="/articles?page={{ articles.next_page_number }}">
+                                    <a href="{{ current_url }}page={{ articles.next_page_number }}">
                                         <span class="glyphicon glyphicon-chevron-right"></span>
                                     </a>
                                 </li>
@@ -83,7 +91,11 @@
             </section>
 
             <aside class="col-lg-2 article-tags-panel">
-                <p>there should be tags</p>
+                <ul>
+                    {% for tag in tags %}
+                        <li><a href="/articles?filter={{ tag }}">{{ tag }}</a></li>
+                    {% endfor %}
+                </ul>
             </aside>
         </div>
 

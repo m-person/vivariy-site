@@ -45,8 +45,8 @@ class TopCategoryAdmin(admin.ModelAdmin):
 
 class ArticleAdmin(admin.ModelAdmin):
     fields = (
-    ('title_ru', 'title_en',), 'slug', 'date', 'image', 'source_url', ('cut_ru', 'cut_en',), ('text_en', 'text_ru',),
-    'is_hidden')
+        ('title_ru', 'title_en',), 'slug', 'date', 'image', 'source_url', ('cut_ru', 'cut_en',),
+        ('text_en', 'text_ru',), 'tags', 'is_hidden')
     list_display = ('title_ru',)
     prepopulated_fields = {
         'slug': ('title_en',)
@@ -87,7 +87,7 @@ class CategoryImageAdmin(admin.ModelAdmin):
 
 class ArticleImageAdmin(admin.ModelAdmin):
     fields = ('desc', 'image',)
-    list_display = ('desc', )
+    list_display = ('desc',)
     save_on_top = True
 
 

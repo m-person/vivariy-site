@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'ckeditor',
     'versatileimagefield',
+    'tagging',
+    'tagging_autocomplete',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -196,6 +198,13 @@ VERSATILEIMAGEFIELD_RENDITION_KEY_SETS = {
         ('headshot_small', 'crop__150x175'),
     ]
 }
+
+
+# django-tagging settings:
+FORCE_LOWERCASE_TAGS = True
+
+# django-tagging-autocomplete settings:
+TAGGING_AUTOCOMPLETE_SEARCH_CONTAINS = True
 
 
 # Deployment: import local_settings file to override

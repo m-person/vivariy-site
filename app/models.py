@@ -4,6 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.utils import timezone
 from ckeditor.fields import RichTextField
 from versatileimagefield.fields import (VersatileImageField, PPOIField, )
+from tagging_autocomplete.models import TagAutocompleteField
 
 
 class ArticleImage(models.Model):
@@ -253,6 +254,7 @@ class Article(models.Model):
     is_hidden = models.BooleanField(_('Don`t show it on site'), default=False)
     source_url = models.URLField(_('Link to source'), max_length=1024, help_text=_('Source url'))
     image = models.ForeignKey('ArticleImage', related_name='articles')
+    tags = TagAutocompleteField(_('Artilcle tags'), help_text=_('Add list of article tags separated by commas'))
 
     def __str__(self):
         return self.title_ru
