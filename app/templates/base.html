@@ -72,10 +72,12 @@
                             <li class="{% if menuitem == 'main' %}active{% endif %}"><a href="/">ГЛАВНАЯ</a></li>
                             <li class="{% if menuitem == 'catalog' %}active{% endif %}"><a href="/catalog">КАТАЛОГ</a>
                             </li>
-                            <li class="{% if menuitem == 'articles' %}active{% endif %}"><a href="/articles">СТАТЬИ</a></li>
+                            <li class="{% if menuitem == 'articles' %}active{% endif %}"><a href="/articles">СТАТЬИ</a>
+                            </li>
                             <li class="{% if menuitem == 'partners' %}active{% endif %}"><a
                                     href="/partners">ПАРТНЕРЫ</a></li>
-                            <li class="{% if menuitem == 'contacts' %}active{% endif %}"><a href="#">КОНТАКТЫ</a></li>
+                            <li class="{% if menuitem == 'contacts' %}active{% endif %}"><a
+                                    href="/contacts">КОНТАКТЫ</a></li>
                         </ul>
                     </div>
                 </div>
@@ -83,7 +85,7 @@
         {% endblock %}
     </header>
 
-{#    <main class="container">#}
+    {#    <main class="container">#}
     <main>
         {% block content %}
             <br><br><br>

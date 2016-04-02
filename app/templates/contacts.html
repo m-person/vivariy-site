@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{#{% load my_tags %}#}
+
+{% block title %}{{ block.super }} | контакты {% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="contacts-aside-bkg"></div>
+
+            <div class="row breadcrumbs"><!-- breadcrumbs -->
+                <div class="pull-right">
+                    <span><a href="/">Главная</a></span> |
+                    <span>Контакты</span>
+                </div>
+            </div><!-- end breadcrumbs -->
+
+            <div class="contacts col-lg-6 vcard">
+                <h2>КОНТАКТЫ</h2>
+
+                <img src="{% static 'img/contacts-map.png' %}" alt="map">
+
+
+                <div class="vcard">
+                    <div class="adr">
+                        <h3 class="org fn">ГРУППА КОМПАНИЙ "ВИВАРИЙ"</h3>
+                        <div>
+                            <span><strong>Адрес:</strong></span>
+                            <span class="postal-code">308024</span>
+                            {#<span class="country-name">Россия</span>#}
+                            <span class="locality">г.Белгород</span>
+                            <span class="street-address">ул.Костюкова, 13Б</span>
+                        </div>
+                        <div>
+                            <span><strong>Тел.:</strong></span>
+                            <span class="tel">+7(4722)37-29-38</span>
+                            <div class="tel">+7(4722)37-29-40</div>
+                            <div class="tel">+7(4722)40-21-42</div>
+                        </div>
+                        <div>
+                            <span><strong>e-mail:</strong></span>
+                            <span class="email">info@vivariy.com</span>
+                            <div class="email">vet_prod@mail.ru</div>
+                        </div>
+                    </div>
+                    <div class="adr">
+                        <h3 class="org fn">ПРЕДСТАВИТЕЛЬСТВО В УКРАИНЕ</h3>
+                        {#<span class="country-name">Украина</span>#}
+                        <div>
+                            <span><strong>Тел.:</strong></span>
+                            <span class="tel">+38(057)762-73-28</span>
+                        </div>
+                        <div>
+                            <span><strong>e-mail:</strong></span>
+                            <span class="email">ukraine@vivariy.com</span>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="request-form col-lg-6">
+                <h2>КОРЗИНА</h2>
+
+                <div class="basket-list">
+                    {#  todo: placeholder                  #}
+                </div>
+
+                <form action="">
+                    {# todo: placeholder                   #}
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

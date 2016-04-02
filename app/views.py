@@ -9,12 +9,12 @@ from tagging.models import Tag, TaggedItem
 
 class MyPaginator(Paginator):
     """
-    Created just to avoid too many "if" tags in template.
+    Purpose: just to avoid too many "if" tags in template.
     """
 
     def shortened_page_range(self, count=3):
         """
-        shortens to long list of pages: replaces excess elements in middle of the list by "..."
+        shortens too long list of pages: replaces excess elements in middle of the list by "..."
         for example: list [1,2,3,4,5,6,7,8,9] with count=3 will be converted to [1,2,3,"...",9]
         :param count: how many first items don't skip
         """
@@ -136,4 +136,13 @@ class ArticleDetailView(TemplateView):
         ctx = super(ArticleDetailView, self).get_context_data(**kwargs)
         ctx['menuitem'] = 'articles'
         ctx['article'] = get_object_or_404(Article, slug=kwargs['slug'])
+        return ctx
+
+
+class ContactsView(TemplateView):
+    template_name = 'contacts.html'
+
+    def get_context_data(self, **kwargs):
+        ctx = super(ContactsView, self).get_context_data(**kwargs)
+        ctx['menuitem'] = 'contacts'
         return ctx
