@@ -4,6 +4,30 @@ Adobe.invis.font (adobe blank) ???
 Myriad Pro regular
 
 */
+/*----------- fonts --------------*/
+/*todo: use local fonts only in development. Delete this block in production*/
+@font-face {
+    font-family: "Open Sans Condensed";
+    src: url('/static/fonts/OpenSans-CondBold.ttf');
+}
+
+@font-face {
+    font-family: "PT Sans";
+    src: url('/static/fonts/PT_Sans-Web-Regular.ttf');
+}
+
+@font-face {
+    font-family: "PT Sans";
+    src: url('/static/fonts/PT_Sans-Web-Bold.ttf');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: "PT Sans";
+    src: url('/static/fonts/PT_Sans-Web-Italic.ttf');
+    font-style: italic;
+}
+
 /* ---------- base template --------- */
 html,
 body {
@@ -335,7 +359,6 @@ header a:hover {
     display: flex;
 }
 
-
 .catalog-container h1 {
     margin-bottom: 2.5rem;
     margin-top: 3rem;
@@ -438,7 +461,6 @@ header a:hover {
     margin-top: 3rem;
 }
 
-
 /*-------- article: details ----------*/
 
 .article-aside-bkg {
@@ -452,4 +474,11 @@ header a:hover {
 .article-tags-panel {
     background-color: #e5e5e5;
 
+}
+
+/*------- notifications-------*/
+.alert {
+    position: fixed;
+    top: 5px;
+    right: 5px;
 }
