@@ -1,10 +1,12 @@
 # coding=utf-8
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import TemplateView, RedirectView
+from django.views.generic import TemplateView, RedirectView, View
+from django.views.generic.edit import BaseUpdateView
 from app.models import (Category, Product, TopCategory, Manufacturer, Article)
 from django.core.urlresolvers import reverse
 from django.core.paginator import PageNotAnInteger, Paginator, EmptyPage
 from tagging.models import Tag, TaggedItem
+from django.http import JsonResponse
 
 
 class MyPaginator(Paginator):
@@ -80,6 +82,23 @@ class ProductView(TemplateView):
         ctx['product'] = product
         return ctx
 
+    def post(self, request, *args, **kwargs):
+        # add product to cart (list of products for future request)
+        item = kwargs.get('slug')
+        if item:
+            if not 'cart' in request.session.keys():
+                request.session['cart'] = {}
+            request.session['cart'][item] = None
+        return JsonResponse({'result': 'ok'})
+
+    def delete(self, request, *args, **kwargs):
+        # remove product form cart (list of products for mail request)
+        item = kwargs.get('slug')
+        if item and 'cart' in request.session.keys():
+            request.session['cart'].pop(item)
+            return JsonResponse({'result': 'ok'})
+        return JsonResponse({'result': 'error'})
+
 
 class ManufacturersView(TemplateView):
     template_name = 'manufacturers.html'
@@ -145,4 +164,14 @@ class ContactsView(TemplateView):
     def get_context_data(self, **kwargs):
         ctx = super(ContactsView, self).get_context_data(**kwargs)
         ctx['menuitem'] = 'contacts'
+
+        # get from session product items for request
+        ctx['product'] = Product.objects.all()[0]  # todo: just for autocomplete in template. delete it.
+        if self.request.session['cart']:
+            ctx['cart'] = []
+            for product_slug in self.request.session['cart'].keys():
+                try:
+                    ctx['cart'].append(Product.objects.get(slug=product_slug))
+                except Product.DoesNotExist:
+                    pass
         return ctx

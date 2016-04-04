@@ -482,3 +482,8 @@ header a:hover {
     top: 5px;
     right: 5px;
 }
+
+/*-------- request cart --------*/
+.cart-item-remove-btn {
+    cursor: pointer;
+}

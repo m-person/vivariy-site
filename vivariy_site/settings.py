@@ -148,10 +148,8 @@ MEDIA_URL = '/media/'
 #     }
 # }
 
-# error handling for sorl-thumbnail
-# THUMBNAIL_DEBUG = DEBUG
-# THUMBNAIL_CACHE_TIMEOUT = 3600 * 24 * 365
-# THUMBNAIL_KVSTORE = 'sorl.thumbnail.kvstores.cached_db_kvstore.KVStore'
+
+SESSION_SAVE_EVERY_REQUEST = True
 
 # versatile image section
 VERSATILEIMAGEFIELD_SETTINGS = {

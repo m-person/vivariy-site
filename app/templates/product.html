@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load staticfiles %}
+{% csrf_token %}
 
 
 {% block title %}{{ block.super }} | каталог | {{ category.title_ru }} {% endblock %}
@@ -75,10 +76,10 @@
 
     <div class="row">
         <div class="pull-right">
-            <a href="#" class="btn product-ask-btn">
+            <button class="btn product-ask-btn">
                 <span class="glyphicon glyphicon-shopping-cart"></span>
-                &nbspЗАПРОСИТЬ ЦЕНУ
-            </a>
+                &nbspДОБАВИТЬ В ЗАПРОС
+            </button>
         </div>
     </div>
 

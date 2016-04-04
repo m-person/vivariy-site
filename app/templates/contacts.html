@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load staticfiles %}
-{#{% load my_tags %}#}
+{% load my_tags %}
+{% csrf_token %}
+
 
 {% block title %}{{ block.super }} | контакты {% endblock %}
 
@@ -65,7 +67,35 @@
                 <h2>КОРЗИНА</h2>
 
                 <div class="basket-list">
-                    {#  todo: placeholder                  #}
+                    <div class="cart-placeholder">
+                        {% if cart %}
+                            <ul>
+                                {% for item in cart %}
+                                    {% default_image item as product_image %}
+                                    <li class="media cart-item">
+                                        <div class="media-left media-top">
+                                            <a href="{% url 'product' product.slug %}">
+                                                <img class="media-object" src="{{ product_image.image.crop.60x60 }}"
+                                                     alt="product image">
+                                            </a>
+                                        </div>
+                                        <div class="media-body">
+                                            {{ item.categories.all | first }}
+                                            <a href="{% url 'product' product.slug %}">
+                                                <h4 class="media-heading">{{ item.title_ru }}</h4>
+                                            </a>
+                                    <span class="glyphicon glyphicon-remove-sign cart-item-remove-btn"
+                                          data-slug="{{ item.slug }}"></span>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <div class="cart-empty-msg">Список пуст.<br>Добавить товар к запросу можно на странице
+                                товара в каталоге.
+                            </div>
+                        {% endif %}
+                    </div>
                 </div>
 
                 <form action="">

@@ -5,7 +5,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 # from django.conf.urls.i18n import i18n_patterns
 from app.views import (MainView, CatalogView, CategoryView, ProductView, ManufacturersView, ArticleListView,
-                       ArticleDetailView, ContactsView, )
+                       ArticleDetailView, ContactsView,)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
