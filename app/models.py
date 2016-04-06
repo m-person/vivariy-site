@@ -5,6 +5,7 @@ from django.utils import timezone
 from ckeditor.fields import RichTextField
 from versatileimagefield.fields import (VersatileImageField, PPOIField, )
 from tagging_autocomplete.models import TagAutocompleteField
+from django.contrib.auth.models import User
 
 
 class ArticleImage(models.Model):
@@ -262,3 +263,32 @@ class Article(models.Model):
     class Meta:
         verbose_name = _('Article')
         verbose_name_plural = _('Articles')
+
+
+class UserRequest(models.Model):
+    """
+    User request for additional info
+    """
+    org_title = models.CharField(_('Organization title'), max_length=512, blank=True, null=True)
+    name = models.CharField(_('Your name*'), max_length=512)
+    email = models.EmailField(_('Your contact e-mail*'))
+    phone = models.CharField(_('Your contact phone*'), max_length=128)
+    message = models.TextField(_('Additional information'), max_length=4096, blank=True, null=True)
+    timestamp = models.DateTimeField(_('Message time'), auto_now_add=True)
+    cart = models.CharField(_('List of products to ask'), max_length=4096, default='')
+
+    def __str__(self):
+        return "{} ({})".format(self.name, self.email, )
+
+
+class Employee(models.Model):
+    """
+    extend default user
+    """
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    is_mail_recipient = models.BooleanField(_('Receive requests mail?'), default=False, help_text=_(
+        'Check it if this user will receive emails with customer requests.'))
+
+    def __str__(self):
+        return self.user.username
+

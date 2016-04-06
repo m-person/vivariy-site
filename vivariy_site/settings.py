@@ -26,6 +26,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
+ADMINS = [('Andrey, andrey@localhost')]
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -135,6 +137,23 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'app', 'media')
 
 MEDIA_URL = '/media/'
 
+# email settings:
+if DEBUG:
+    # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+    EMAIL_HOST = '127.0.0.1'
+    EMAIL_PORT = 2525
+    DEFAULT_FROM_EMAIL = 'django-dev@localhost'
+# EMAIL_HOST_PASSWORD
+# EMAIL_HOST_USER
+# EMAIL_SUBJECT_PREFIX
+# EMAIL_USE_TLS
+# EMAIL_USE_SSL
+# EMAIL_SSL_CERTFILE
+# EMAIL_SSL_KEYFILE
+# EMAIL_TIMEOUT
+
+
+
 # django-resized defaults:
 # DJANGORESIZED_DEFAULT_QUALITY = 99
 # DJANGORESIZED_DEFAULT_KEEP_META = False
@@ -153,9 +172,9 @@ SESSION_SAVE_EVERY_REQUEST = True
 
 # versatile image section
 VERSATILEIMAGEFIELD_SETTINGS = {
-     # The amount of time, in seconds, that references to created images
-     # should be stored in the cache. Defaults to `2592000` (30 days)
-    'cache_length': 3600*24*365,
+    # The amount of time, in seconds, that references to created images
+    # should be stored in the cache. Defaults to `2592000` (30 days)
+    'cache_length': 3600 * 24 * 365,
     # The name of the cache you'd like `django-versatileimagefield` to use.
     # Defaults to 'versatileimagefield_cache'. If no cache exists with the name
     # provided, the 'default' cache will be used instead.
@@ -197,13 +216,11 @@ VERSATILEIMAGEFIELD_RENDITION_KEY_SETS = {
     ]
 }
 
-
 # django-tagging settings:
 FORCE_LOWERCASE_TAGS = True
 
 # django-tagging-autocomplete settings:
 TAGGING_AUTOCOMPLETE_SEARCH_CONTAINS = True
-
 
 # Deployment: import local_settings file to override
 try:
@@ -211,8 +228,8 @@ try:
 except ImportError:
     pass
 
-# try:
-#     INSTALLED_APPS += LOCAL_INSTALLED_APPS
-#     ALLOWED_HOSTS += LOCAL_ALLOWED_HOSTS
-# except:
-#     pass
+    # try:
+    #     INSTALLED_APPS += LOCAL_INSTALLED_APPS
+    #     ALLOWED_HOSTS += LOCAL_ALLOWED_HOSTS
+    # except:
+    #     pass

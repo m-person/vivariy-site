@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}{{ block.super }} | подтверждение {% endblock %}
+
+
+{% block content %}
+    <div>
+        <h1>Ваш запрос был отправлен</h1>
+
+        <a href="/contacts/">вернуться</a>
+    </div>
+{% endblock %}

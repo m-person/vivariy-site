@@ -22,7 +22,6 @@ $(document).ready(
         }
 
 
-
         var csrftoken = getCookie('csrftoken');
         $.ajaxSetup({
             beforeSend: function (xhr, settings) {
@@ -33,7 +32,6 @@ $(document).ready(
         });
 
 
-
         $('.product-ask-btn').on('click', addToCart);
         $('.cart-item-remove-btn').on('click', delFromCart);
     }
@@ -42,8 +40,8 @@ $(document).ready(
 
 /**
  * dynamically create notification popup with autohiding in 5sec.
- * param: msg: message to show
- * param: type=success|info|warning|error: message type
+ * @param: msg: message to show
+ * @param: type=success|info|warning|error: message type
  */
 function popup(msg, type) {
     var alert_type = type || 'error';
@@ -62,7 +60,8 @@ function popup(msg, type) {
  * product identifier is taken from current page url
  */
 function addToCart() {
-    $.post(window.location.pathname, {},
+    $.post(window.location.pathname,
+        {},
         function (data, textStatus) {
             if (data['result'] != 'ok') {
                 popup('Ошибка добавления товара в запрос.', 'error');
@@ -131,4 +130,5 @@ function getCookie(name) {
 function csrfSafeMethod(method) {
     return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
 }
+
 

@@ -1,7 +1,13 @@
 # -*- coding: utf-8 -*-
 from django.forms import ModelForm
-from versatileimagefield.fields import SizedImageCenterpointClickDjangoAdminField
-from app.models import TopCategory
+from app.models import UserRequest
+from simplemathcaptcha.fields import MathCaptchaField
 
 
-# class TopCategory
+class UserRequestForm(ModelForm):
+    captcha = MathCaptchaField()
+
+    class Meta:
+        model = UserRequest
+        fields = '__all__'
+        exclude = ('timestamp', 'cart',)

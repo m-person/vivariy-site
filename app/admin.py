@@ -1,13 +1,20 @@
 # coding=utf-8
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+from django.contrib.auth.models import User
 from app.models import (Category, TopCategory, Product, Manufacturer, ProductImage, CategoryImage, LogoImage,
-                        DocFile, YoutubeVideo, Article, ArticleImage, )
+                        DocFile, YoutubeVideo, Article, ArticleImage, UserRequest, Employee, )
 
 
 class ProductImageAdmin(admin.ModelAdmin):
     fields = ('desc', 'image', 'product', 'is_default',)
     list_display = ('desc', 'product',)
     save_on_top = True
+
+
+class EmployeeInline(admin.StackedInline):
+    model = Employee
+    can_delete = True
 
 
 class ProductImageInline(admin.StackedInline):
@@ -103,6 +110,16 @@ class YoutubeVideoAdmin(admin.ModelAdmin):
     save_on_top = True
 
 
+class UserRequestAdmin(admin.ModelAdmin):
+    readonly_fields = ('org_title', 'name', 'email', 'phone', 'cart', 'message', 'timestamp')
+    list_display = ('timestamp', 'name', 'email',)
+    save_on_top = True
+
+
+class UserAdmin(BaseUserAdmin):
+    inlines = (EmployeeInline,)
+
+
 admin.site.register(CategoryImage, CategoryImageAdmin)
 admin.site.register(TopCategory, TopCategoryAdmin)
 admin.site.register(Category, CategoryAdmin)
@@ -113,3 +130,7 @@ admin.site.register(DocFile, DocFileAdmin)
 admin.site.register(YoutubeVideo, YoutubeVideoAdmin)
 admin.site.register(Article, ArticleAdmin)
 admin.site.register(ArticleImage, ArticleImageAdmin)
+admin.site.register(UserRequest, UserRequestAdmin)
+
+admin.site.unregister(User)
+admin.site.register(User, UserAdmin)

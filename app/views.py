@@ -1,12 +1,17 @@
 # coding=utf-8
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import TemplateView, RedirectView, View
-from django.views.generic.edit import BaseUpdateView
-from app.models import (Category, Product, TopCategory, Manufacturer, Article)
+from django.views.generic import TemplateView, RedirectView, FormView
+from app.models import (Category, Product, TopCategory, Manufacturer, Article, Employee, )
 from django.core.urlresolvers import reverse
 from django.core.paginator import PageNotAnInteger, Paginator, EmptyPage
 from tagging.models import Tag, TaggedItem
 from django.http import JsonResponse
+from app.forms import UserRequestForm
+import json
+from django.core.mail import send_mail
+from smtplib import SMTPException
+from django.template.loader import render_to_string
+from copy import copy
 
 
 class MyPaginator(Paginator):
@@ -158,16 +163,21 @@ class ArticleDetailView(TemplateView):
         return ctx
 
 
-class ContactsView(TemplateView):
+class RequestSuccess(TemplateView):
+    template_name = 'request_success.html'
+
+
+class ContactsView(FormView):
     template_name = 'contacts.html'
+    form_class = UserRequestForm
+    success_url = '/request_success/'
 
     def get_context_data(self, **kwargs):
         ctx = super(ContactsView, self).get_context_data(**kwargs)
         ctx['menuitem'] = 'contacts'
 
-        # get from session product items for request
-        ctx['product'] = Product.objects.all()[0]  # todo: just for autocomplete in template. delete it.
-        if self.request.session['cart']:
+        # get the product items for request from session
+        if 'cart' in self.request.session:
             ctx['cart'] = []
             for product_slug in self.request.session['cart'].keys():
                 try:
@@ -175,3 +185,47 @@ class ContactsView(TemplateView):
                 except Product.DoesNotExist:
                     pass
         return ctx
+
+    def form_valid(self, form):
+        data = form.cleaned_data
+        data.pop('captcha')
+        data['cart'] = self.hrefs_from_cart()
+        recipients = [empl.user.email for empl in Employee.objects.filter(is_mail_recipient=True)]
+        try:
+            if send_mail(subject='User request', message=self.email_as_text(data), recipient_list=recipients,
+                         from_email=None, html_message=self.email_as_html(data)
+                         ):
+                self.request.session.pop('cart')
+        except SMTPException:
+            pass
+        # UserRequest.objects.create(**data)
+        return super(ContactsView, self).form_valid(form)
+
+    def hrefs_from_cart(self):
+        # extracts list of products from cart, and return them as list of http links (in json format)
+        if not self.request.session['cart']:
+            return '[]'
+        host = self.request.get_host()
+        return json.dumps(
+            ["http://{}/products/{}".format(host, slug, ) for slug in self.request.session['cart'].keys()]
+        )
+
+    @staticmethod
+    def email_as_html(ctx):
+        """
+        renders email body in html format
+        """
+        ctx2 = copy(ctx)  # preserve original context from changing
+        if 'cart' in ctx:
+            ctx2['products'] = json.loads(ctx['cart'])
+        return render_to_string('mail_request.html', context=ctx2)
+
+    @staticmethod
+    def email_as_text(ctx):
+        """
+        renders email body in txt format
+        """
+        res = ''
+        for k, v in ctx.items():
+            res += "{}: {}\n".format(k, v)
+        return res

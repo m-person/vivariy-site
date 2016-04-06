@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Запрос дополнительной информации</title>
+</head>
+<body>
+{% if cart %}
+    <h4>Запрашиваемые товары:</h4>
+    <ul>
+        {% for url in products %}
+            <li><a href="{{ url }}">{{ url }}</a></li>
+        {% endfor %}
+    </ul>
+{% endif %}
+<table>
+    <tr>
+        <td>Организация</td>
+        <td>{{ org_title }}</td>
+    </tr>
+    <tr>
+        <td>Имя</td>
+        <td>{{ name }}</td>
+    </tr>
+    <tr>
+        <td>email</td>
+        <td>{{ email }}</td>
+    </tr>
+    <tr>
+        <td>телефон</td>
+        <td>{{ phone }}</td>
+    </tr>
+    {#    <tr>#}
+    {#        <td>сообщение</td>#}
+    {#        <td>{{ message }}</td>#}
+    {#    </tr>#}
+</table>
+<h3>сообщение</h3>
+    <pre>
+        {{ message }}
+    </pre>
+</body>
+</html>
