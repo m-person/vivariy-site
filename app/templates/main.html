@@ -97,7 +97,10 @@
                     <h5>{{ article.title_ru }}</h5>
                     <div>{{ article.cut_ru | truncatewords:15 }}...</div>
                     <a href="{% url 'article_details' article.slug %}" class="btn">ПОДРОБНЕЕ</a>
-                    <div>{{ article.date | date }}</div>
+                    <div>
+                        <time class="article-date"
+                              datetime="{{ article.date | date:'c' }}">{{ article.date | date:"j E Y" }}</time>
+                    </div>
                 </div>
             {% endfor %}
         </div>

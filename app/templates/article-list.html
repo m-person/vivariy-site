@@ -30,7 +30,8 @@
 
                 {% for article in articles %}
                     <div class="media">
-                        <div class="article-date">{{ article.date | date }}</div>
+                        <time class="article-date"
+                              datetime="{{ article.date | date:'c' }}">{{ article.date | date:"j E Y" }}</time>
                         <a href="{% url 'article_details' article.slug %}">
                             <div class="media-left media-top">
                                 <img src="{{ article.image.image.crop.300x190 }}" alt="article image"

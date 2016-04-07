@@ -11,7 +11,7 @@
 
         <div class="row article-details">
 
-            <section class="col-lg-10 article-content-panel"><!--- article block -->
+            <article class="col-lg-10 article-content-panel"><!--- article block -->
 
                 <div class="row breadcrumbs"><!-- breadcrumbs -->
                     <div class="pull-right">
@@ -22,13 +22,13 @@
 
                 <h2>{{ article.title_ru | upper }}</h2>
                 <img src="{{ article.image.image.crop.300x190 }}" alt="article description image">
-                <div class="article-date">{{ article.date | date }}</div>
+                <time class="article-date" datetime="{{ article.date | date:'c'}}">{{ article.date | date:"j E Y" }}</time>
                 <div class="article-content">{{ article.text_ru | safe }}</div>
                 <p>Источник: <a href="{{ article.source_url }}">{{ article.source_url | domain_from_url }}</a></p>
                 <div class="row">
                     <a href="/articles" class="btn">ДРУГИЕ НОВОСТИ</a>
                 </div>
-            </section>
+            </article>
 
             <aside class="col-lg-2 article-tags-panel"><!-- tags block -->
                 <p>there should be tags</p>
