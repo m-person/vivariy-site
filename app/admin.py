@@ -23,46 +23,38 @@ class ProductImageInline(admin.StackedInline):
     fields = (('desc', 'is_default'), 'image')
 
 
-# class LogoImageInline(admin.StackedInline):
-#     model = LogoImage
-#     extra = 1
-#     fields = (('desc', 'image',),)
-
-
 class DocFileInline(admin.StackedInline):
     model = DocFile
     extra = 1
-    fields = (('title_ru', 'title_en'), 'file', ('product', 'is_hidden'),)
+    fields = ('title_ru', 'file', ('product', 'is_hidden'),)
 
 
 class YoutubeVideoInline(admin.StackedInline):
     model = YoutubeVideo
     extra = 1
-    fields = (('title_ru', 'title_en'), 'video', ('product', 'is_hidden',),)
+    fields = ('title_ru', 'video', ('product', 'is_hidden',),)
 
 
 class TopCategoryAdmin(admin.ModelAdmin):
-    fields = ('title_ru', 'title_en', 'slug', 'image', 'is_hidden')
+    fields = ('title_ru', 'slug', 'image', 'is_hidden')
     list_display = ('title_ru',)
     prepopulated_fields = {
-        'slug': ('title_en',)
+        'slug': ('title_ru',)
     }
     save_on_top = True
 
 
 class ArticleAdmin(admin.ModelAdmin):
-    fields = (
-        ('title_ru', 'title_en',), 'slug', 'date', 'image', 'source_url', ('cut_ru', 'cut_en',),
-        ('text_en', 'text_ru',), 'tags', 'is_hidden')
+    fields = ('title_ru', 'slug', 'date', 'image', 'source_url', 'cut_ru', 'text_ru', 'tags', 'is_hidden')
     list_display = ('title_ru',)
     prepopulated_fields = {
-        'slug': ('title_en',)
+        'slug': ('title_ru',)
     }
     save_on_top = True
 
 
 class CategoryAdmin(admin.ModelAdmin):
-    fields = ('title_ru', 'title_en', 'parent_category', 'products', 'is_hidden')
+    fields = ('title_ru', 'parent_category', 'products', 'is_hidden')
     list_display = ('title_ru', 'parent_category')
     save_on_top = True
 
@@ -74,12 +66,10 @@ class PartnerAdmin(admin.ModelAdmin):
 
 
 class ProductAdmin(admin.ModelAdmin):
-    fields = (('title_ru', 'title_en'), 'slug', 'manufacturer', 'categories', ('desc_short_ru', 'desc_short_en'),
-              ('desc_full_ru', 'desc_full_en'), ('specifications_ru', 'specifications_en'),
-              ('options_ru', 'options_en'), ('mentions_ru', 'mentions_en'), 'is_hidden')
+    fields = ('title_ru', 'slug', 'manufacturer', 'categories', 'desc_short_ru', 'desc_full_ru', 'specifications_ru', 'options_ru', 'mentions_ru', 'is_hidden')
     list_display = ('title_ru', 'manufacturer')
     prepopulated_fields = {
-        'slug': ('title_en',)
+        'slug': ('title_ru',)
     }
     inlines = (ProductImageInline, DocFileInline, YoutubeVideoInline,)
     save_on_top = True
@@ -98,13 +88,13 @@ class ArticleImageAdmin(admin.ModelAdmin):
 
 
 class DocFileAdmin(admin.ModelAdmin):
-    fields = (('title_ru', 'title_en'), 'file', 'product', 'is_hidden')
+    fields = ('title_ru', 'file', 'product', 'is_hidden')
     list_display = ('title_ru',)
     save_on_top = True
 
 
 class YoutubeVideoAdmin(admin.ModelAdmin):
-    fields = (('title_ru', 'title_en',), 'video', 'product', 'is_hidden')
+    fields = ('title_ru', 'video', 'product', 'is_hidden')
     list_display = ('title_ru',)
     save_on_top = True
 

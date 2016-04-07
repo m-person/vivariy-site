@@ -80,7 +80,6 @@ class TopCategory(models.Model):
     """
     Top-level category. It's just a parent for subcategories.
     """
-    title_en = models.CharField(_('Title (en)'), max_length=254, help_text=_('Top category title (in english).'))
     title_ru = models.CharField(_('Title (ru)'), max_length=254, help_text=_('Top category title (in russian).'))
     slug = models.SlugField(_('Slug'), max_length=254, unique=True, db_index=True,
                             help_text=_('URL representation (a..z, 0..9 and "-" symbols only)'))
@@ -99,7 +98,6 @@ class Category(models.Model):
     """
     Product category (second level, container for products).
     """
-    title_en = models.CharField(_('Title (en)'), max_length=254, help_text=_('Category title (in english).'))
     title_ru = models.CharField(_('Title (ru)'), max_length=254, help_text=_('Category title (in russian).'))
     is_hidden = models.BooleanField(_('Don`t show this entry on site'), default=False)
     parent_category = models.ForeignKey('TopCategory', related_name='categories',
@@ -140,31 +138,20 @@ class Product(models.Model):
     """
     Product item
     """
-    title_en = models.CharField(_('Title (en)'), max_length=1024, default='', help_text=_('Product title (in english)'))
     title_ru = models.CharField(_('Title (ru)'), max_length=1024, default='', help_text=_('Product title (in russian)'))
     slug = models.SlugField(_('Slug'), max_length=1024, unique=True, default='', db_index=True,
                             help_text=_('URL representation (a..z, 0..9 and "-" symbols only)'))
     manufacturer = models.ForeignKey('Partner', related_name='products', blank=True, null=True)
     is_hidden = models.BooleanField(_('Don`t show in catalog'), default=False)
     categories = models.ManyToManyField('Category', help_text=_('Subcategories containing this product'))
-    desc_short_en = RichTextField(_('Short description (en)'), max_length=4096, default='', blank=True, null=True,
-                                  help_text=_('Short device description in english (4096 symbols max)'))
-    desc_full_en = RichTextField(_('Full description (en)'), max_length=10240, default='', blank=True, null=True,
-                                 help_text=_('Full device description in english (10240 symbols max)'))
     desc_short_ru = RichTextField(_('Short description (ru)'), max_length=4096, default='', blank=True, null=True,
                                   help_text=_('Short device description in russian (4096 symbols max)'))
     desc_full_ru = RichTextField(_('Full description (ru)'), max_length=10240, default='', blank=True, null=True,
                                  help_text=_('Full device description in russian (10240 symbols max)'))
-    specifications_en = RichTextField(_('Specifications (en)'), max_length=10240, default='', blank=True, null=True,
-                                      help_text=_('Technical characteristics in english (10240 symbols max)'))
     specifications_ru = RichTextField(_('Specifications (ru)'), max_length=10240, default='', blank=True, null=True,
                                       help_text=_('Technical characteristics in russian (10240 symbols max)'))
-    options_en = RichTextField(_('Options (en)'), max_length=4096, default='', blank=True, null=True,
-                               help_text=_('Delivery options in english (4096 symbols max)'))
     options_ru = RichTextField(_('Options (ru)'), max_length=4096, default='', blank=True, null=True,
                                help_text=_('Delivery options in russian (4096 symbols max)'))
-    mentions_en = RichTextField(_('Mentions (en)'), max_length=4096, default='', blank=True, null=True,
-                                help_text=_('Links to researches using this device in english (4096 symbols max)'))
     mentions_ru = RichTextField(_('Mentions (ru)'), max_length=4096, default='', blank=True, null=True,
                                 help_text=_('Links to researches using this device in russian (4096 symbols max)'))
 
@@ -180,7 +167,6 @@ class DocFile(models.Model):
     """
     File with additional information for product. For downloads.
     """
-    title_en = models.CharField(_('Title (en)'), max_length=128, help_text=_('File title (in english)'))
     title_ru = models.CharField(_('Title (ru)'), max_length=128, help_text=_('File title (in russian)'))
     product = models.ForeignKey(Product, related_name='doc_files')
     is_hidden = models.BooleanField(_('Don`t show it on site'), default=False)
@@ -198,7 +184,6 @@ class YoutubeVideo(models.Model):
     """
     Embedded youtube video for product
     """
-    title_en = models.CharField(_('Title (en)'), max_length=128, help_text=_('Video title (in english)'))
     title_ru = models.CharField(_('Title (ru)'), max_length=128, help_text=_('Video title (in russian)'))
     product = models.ForeignKey(Product, related_name='videos')
     is_hidden = models.BooleanField(_('Don`t show it on site'), default=False)
@@ -218,15 +203,11 @@ class Article(models.Model):
     """
     An article (news item).
     """
-    title_en = models.CharField(_('Title (en)'), max_length=512, help_text=_('Article title (in english)'))
     title_ru = models.CharField(_('Title (ru)'), max_length=512, help_text=_('Article title (in russian)'))
     slug = models.SlugField(_('Slug'), max_length=254, unique=True, db_index=True,
                             help_text=_('URL representation (a..z, 0..9 and "-" symbols only)'))
-    cut_en = models.CharField(_('Cut text (en)'), default='', max_length=4096,
-                              help_text=_('Truncated article (in english)'))
     cut_ru = models.CharField(_('Cut text (ru)'), default='', max_length=4096,
                               help_text=_('Truncated article (in russian)'))
-    text_en = RichTextField(_('Article text (en)'), default='', help_text=(_('Full article text (in english)')))
     text_ru = RichTextField(_('Article text (ru)'), default='', null=True,
                             help_text=(_('Full article text (in russian)')))
     date = models.DateTimeField(_('Date'), default=timezone.now, help_text=_('Article creation date'))

@@ -198,23 +198,22 @@ VERSATILEIMAGEFIELD_SETTINGS = {
     'create_images_on_demand': True
 }
 
-# todo: change to your values:
-VERSATILEIMAGEFIELD_RENDITION_KEY_SETS = {
-    'image_gallery': [
-        ('gallery_large', 'crop__800x450'),
-        ('gallery_square_small', 'crop__50x50')
-    ],
-    'primary_image_detail': [
-        ('hero', 'crop__600x283'),
-        ('social', 'thumbnail__800x800')
-    ],
-    'primary_image_list': [
-        ('list', 'crop__400x225'),
-    ],
-    'headshot': [
-        ('headshot_small', 'crop__150x175'),
-    ]
-}
+# VERSATILEIMAGEFIELD_RENDITION_KEY_SETS = {
+#     'image_gallery': [
+#         ('gallery_large', 'crop__800x450'),
+#         ('gallery_square_small', 'crop__50x50')
+#     ],
+#     'primary_image_detail': [
+#         ('hero', 'crop__600x283'),
+#         ('social', 'thumbnail__800x800')
+#     ],
+#     'primary_image_list': [
+#         ('list', 'crop__400x225'),
+#     ],
+#     'headshot': [
+#         ('headshot_small', 'crop__150x175'),
+#     ]
+# }
 
 # django-tagging settings:
 FORCE_LOWERCASE_TAGS = True
