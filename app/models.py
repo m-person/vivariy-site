@@ -76,28 +76,6 @@ class ProductImage(models.Model):
         unique_together = (('id', 'is_default',),)
 
 
-class LogoImage(models.Model):
-    """
-    Manufacturer logo.
-    """
-    desc = models.CharField(_('Image description'), blank=True, null=True, max_length=256,
-                            help_text=_('Just to distinguish one image from another. It isn`t necessary field.'
-                                        ' Doesn`t shown on site.'))
-    image = VersatileImageField(_('Image'), upload_to='logos', width_field='width', height_field='height',
-                                ppoi_field='ppoi')
-    width = models.PositiveIntegerField(_('Image widht'), blank=True, null=True)
-    height = models.PositiveIntegerField(_('Image height'), blank=True, null=True)
-    ppoi = PPOIField(_('Image point of interest'), help_text=_('Select center point for cropped (resized) image'))
-    manufacturer = models.OneToOneField('Manufacturer', related_name='logo', blank=True, null=True)
-
-    def __str__(self):
-        return self.desc
-
-    class Meta:
-        verbose_name = _('Manufacturer logo')
-        verbose_name_plural = _('Manufacturers logos')
-
-
 class TopCategory(models.Model):
     """
     Top-level category. It's just a parent for subcategories.
@@ -136,26 +114,26 @@ class Category(models.Model):
         verbose_name_plural = _('Product categories')
 
 
-class Manufacturer(models.Model):
+class Partner(models.Model):
     """
-    Partner (manufacturer) company
+    Partner company
     """
-    title_en = models.CharField(_('Title (en)'), max_length=512, help_text=_('Manufacturer title (in english)'))
-    title_ru = models.CharField(_('Title (ru)'), max_length=512, help_text=_('Manufacturer title (in russian)'))
-    url = models.URLField(_('Site url'), max_length=1024, help_text=_('Link to company site'), blank=True, null=True)
-    desc = models.TextField(_('About'), max_length=4096, blank=True, null=True,
+    title = models.CharField(_('Name'), max_length=512, help_text=_('Company`s name'))
+    desc = models.TextField(_('Description'), max_length=4096, blank=True, null=True,
                             help_text=_('Company description (4096 symbols max)'))
-    contacts = models.TextField(_('Contacts'), max_length=2048, blank=True, null=True,
-                                help_text=_('Contacts information'))
-    # logo = models.OneToOneField('LogoImage', related_name='manufacturers', null=True, blank=True)
     is_hidden = models.BooleanField(_('Don`t show this entry on site'), default=False)
+    image = VersatileImageField(_('Image'), upload_to='partners', blank=True, null=True,
+                                width_field='width', height_field='height', ppoi_field='ppoi')
+    width = models.PositiveIntegerField(_('Image widht'), blank=True, null=True)
+    height = models.PositiveIntegerField(_('Image height'), blank=True, null=True)
+    ppoi = PPOIField(_('Image point of interest'), help_text=_('Select center point for cropped (resized) image'))
 
     def __str__(self):
-        return self.title_ru
+        return self.title
 
     class Meta:
-        verbose_name = _('Manufacturer')
-        verbose_name_plural = _('Manufacturers')
+        verbose_name = _('Partner')
+        verbose_name_plural = _('Partners')
 
 
 class Product(models.Model):
@@ -166,7 +144,7 @@ class Product(models.Model):
     title_ru = models.CharField(_('Title (ru)'), max_length=1024, default='', help_text=_('Product title (in russian)'))
     slug = models.SlugField(_('Slug'), max_length=1024, unique=True, default='', db_index=True,
                             help_text=_('URL representation (a..z, 0..9 and "-" symbols only)'))
-    manufacturer = models.ForeignKey('Manufacturer', related_name='products', blank=True, null=True)
+    manufacturer = models.ForeignKey('Partner', related_name='products', blank=True, null=True)
     is_hidden = models.BooleanField(_('Don`t show in catalog'), default=False)
     categories = models.ManyToManyField('Category', help_text=_('Subcategories containing this product'))
     desc_short_en = RichTextField(_('Short description (en)'), max_length=4096, default='', blank=True, null=True,

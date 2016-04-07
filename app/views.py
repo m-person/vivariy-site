@@ -1,7 +1,7 @@
 # coding=utf-8
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import TemplateView, RedirectView, FormView
-from app.models import (Category, Product, TopCategory, Manufacturer, Article, Employee, CarouselItem, )
+from app.models import (Category, Product, TopCategory, Partner, Article, Employee, CarouselItem, )
 from django.core.urlresolvers import reverse
 from django.core.paginator import PageNotAnInteger, Paginator, EmptyPage
 from tagging.models import Tag, TaggedItem
@@ -108,13 +108,13 @@ class ProductView(TemplateView):
         return JsonResponse({'result': 'error'})
 
 
-class ManufacturersView(TemplateView):
-    template_name = 'manufacturers.html'
+class PartnersView(TemplateView):
+    template_name = 'partners.html'
 
     def get_context_data(self, **kwargs):
-        ctx = super(ManufacturersView, self).get_context_data(**kwargs)
+        ctx = super(PartnersView, self).get_context_data(**kwargs)
         ctx['menuitem'] = 'partners'
-        ctx['partner_list'] = Manufacturer.objects.filter(is_hidden=False)
+        ctx['partner_list'] = Partner.objects.filter(is_hidden=False)
         return ctx
 
 

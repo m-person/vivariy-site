@@ -50,11 +50,11 @@
             <!-- short product description  -->
             <h2>{{ product.title_ru }}</h2>
             <p>
-                Производитель: <a href="{% url 'manufacturers' %}?id={{ product.id }}">
-                {{ product.manufacturer.title_ru }}
+                Производитель: <a href="{% url 'partners' %}#pt_{{ product.manufacturer.id }}">
+                {{ product.manufacturer.title }}
             </a>
             </p>
-            <p><img src="{{ product.manufacturer.logo.image.thumbnail.200x100 }}" alt="manufacturer logo"></p>
+            <p><img src="{{ product.manufacturer.image.thumbnail.200x100 }}" alt="manufacturer logo"></p>
 
             {{ product.desc_short_ru | safe }}
             <!-- end short product description  -->

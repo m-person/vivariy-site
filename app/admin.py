@@ -2,8 +2,8 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import User
-from app.models import (Category, TopCategory, Product, Manufacturer, ProductImage, CategoryImage, LogoImage,
-                        DocFile, YoutubeVideo, Article, ArticleImage, UserRequest, Employee, CarouselItem, )
+from app.models import (Category, TopCategory, Product, Partner, ProductImage, CategoryImage, DocFile, YoutubeVideo,
+                        Article, ArticleImage, UserRequest, Employee, CarouselItem, )
 
 
 class ProductImageAdmin(admin.ModelAdmin):
@@ -23,10 +23,10 @@ class ProductImageInline(admin.StackedInline):
     fields = (('desc', 'is_default'), 'image')
 
 
-class LogoImageInline(admin.StackedInline):
-    model = LogoImage
-    extra = 1
-    fields = (('desc', 'image',),)
+# class LogoImageInline(admin.StackedInline):
+#     model = LogoImage
+#     extra = 1
+#     fields = (('desc', 'image',),)
 
 
 class DocFileInline(admin.StackedInline):
@@ -67,10 +67,9 @@ class CategoryAdmin(admin.ModelAdmin):
     save_on_top = True
 
 
-class ManufacturerAdmin(admin.ModelAdmin):
-    fields = (('title_ru', 'title_en'), 'desc', 'contacts', 'url', 'is_hidden')
-    list_display = ('title_ru',)
-    inlines = (LogoImageInline,)
+class PartnerAdmin(admin.ModelAdmin):
+    fields = ('title', 'desc', 'image', 'is_hidden')
+    list_display = ('title',)
     save_on_top = True
 
 
@@ -130,7 +129,7 @@ admin.site.register(CarouselItem, CarouselItemAdmin)
 admin.site.register(CategoryImage, CategoryImageAdmin)
 admin.site.register(TopCategory, TopCategoryAdmin)
 admin.site.register(Category, CategoryAdmin)
-admin.site.register(Manufacturer, ManufacturerAdmin)
+admin.site.register(Partner, PartnerAdmin)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(ProductImage, ProductImageAdmin)
 admin.site.register(DocFile, DocFileAdmin)
