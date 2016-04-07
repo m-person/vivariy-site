@@ -1,7 +1,7 @@
 # coding=utf-8
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import TemplateView, RedirectView, FormView
-from app.models import (Category, Product, TopCategory, Manufacturer, Article, Employee, )
+from app.models import (Category, Product, TopCategory, Manufacturer, Article, Employee, CarouselItem, )
 from django.core.urlresolvers import reverse
 from django.core.paginator import PageNotAnInteger, Paginator, EmptyPage
 from tagging.models import Tag, TaggedItem
@@ -12,6 +12,7 @@ from django.core.mail import send_mail
 from smtplib import SMTPException
 from django.template.loader import render_to_string
 from copy import copy
+from random import randint
 
 
 class MyPaginator(Paginator):
@@ -39,6 +40,8 @@ class MainView(TemplateView):
         ctx['menuitem'] = 'main'
         ctx['top_categories'] = TopCategory.objects.filter(is_hidden=False)
         ctx['articles'] = Article.objects.filter(is_hidden=False).order_by('-date')[:3]
+        ctx['slides'] = CarouselItem.objects.filter(is_hidden=False)
+        ctx['slide_initial'] = randint(0,ctx['slides'].count()-1)
         return ctx
 
 

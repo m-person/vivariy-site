@@ -6,6 +6,43 @@
 
 
 {% block content %}
+    <div class="carousel-bkg">
+        <div class="container">
+            <div id="carousel-main" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    {% for slide in slides %}
+                        <li data-target="#carousel-main" data-slide-to="{{ forloop.counter0 }}"
+                            {% if forloop.counter0 == slide_initial %}class="active" {% endif %}></li>
+                    {% endfor %}
+                </ol>
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox">
+                    {% for slide in slides %}
+                        <div class="item {% if forloop.counter0 == slide_initial %} active{% endif %}">
+                            <div class="media">
+                                <div class="media-left media-middle">
+                                    <img src="{{ slide.image.crop.200x200 }}" alt="slide image">
+                                    <a href="{{ slide.url }}" class="btn">ПОДРОБНЕЕ</a>
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading slide-title">{{ slide.title }}</h4>
+                                    <div class="slide-desc">{{ slide.desc }}</div>
+                                    <div>slide #{{ forloop.counter }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                    <div class="item active">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <h2>КАТАЛОГ ПРОДУКЦИИ</h2>
         <div class="row">
@@ -17,8 +54,9 @@
                                  style="background: url({{ category.image.image.crop.300x150 }});
                                          background-repeat: no-repeat;
                                          background-size:100% 100%"
+                                    {# Note: style rule "background: url(...)" is necessary for inner shadows. #}
+                                    {# But I dunno easy way to combine template tags and css, so I'm using inline styles #}
                             >
-                                {#                            <img src="{{ category.image.image.crop.300x150 }}" alt="category image">#}
                             </div>
                             <h5>{{ category.title_ru | upper }}</h5>
                         </div>

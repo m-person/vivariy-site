@@ -292,3 +292,24 @@ class Employee(models.Model):
     def __str__(self):
         return self.user.username
 
+
+class CarouselItem(models.Model):
+    """
+    slide content for carousel on main page
+    """
+    title = models.CharField(_('Title'), max_length=128, help_text=_('Slide header'))
+    desc = models.TextField(_('Description'), max_length=512, help_text=_('Description text'))
+    url = models.URLField(_('URL'), max_length=1024, help_text=_('Links to details page.'))
+    is_hidden = models.BooleanField(_('Hide this slide'), default=False)
+    image = VersatileImageField(_('Image'), upload_to='slides', width_field='width', height_field='height',
+                                ppoi_field='ppoi')
+    width = models.PositiveIntegerField(_('Image widht'), blank=True, null=True)
+    height = models.PositiveIntegerField(_('Image height'), blank=True, null=True)
+    ppoi = PPOIField(_('Image point of interest'), help_text=_('Select center point for cropped (resized) image'))
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = _('Slide')
+        verbose_name_plural = _('Slides')

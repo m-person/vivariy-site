@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import User
 from app.models import (Category, TopCategory, Product, Manufacturer, ProductImage, CategoryImage, LogoImage,
-                        DocFile, YoutubeVideo, Article, ArticleImage, UserRequest, Employee, )
+                        DocFile, YoutubeVideo, Article, ArticleImage, UserRequest, Employee, CarouselItem, )
 
 
 class ProductImageAdmin(admin.ModelAdmin):
@@ -120,6 +120,13 @@ class UserAdmin(BaseUserAdmin):
     inlines = (EmployeeInline,)
 
 
+class CarouselItemAdmin(admin.ModelAdmin):
+    fields = ('title', 'desc', 'url', 'image', 'is_hidden')
+    list_display = ('title', )
+    save_on_top = True
+
+
+admin.site.register(CarouselItem, CarouselItemAdmin)
 admin.site.register(CategoryImage, CategoryImageAdmin)
 admin.site.register(TopCategory, TopCategoryAdmin)
 admin.site.register(Category, CategoryAdmin)

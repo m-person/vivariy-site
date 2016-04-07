@@ -187,6 +187,11 @@ header a:hover {
     border-bottom: .3rem solid #74b336;
 }
 
+/* -------- main page: carousel ----------*/
+.carousel-bkg {
+    background-color: #e5e5e5;
+}
+
 /* --------- main page: product catalog -------- */
 
 .main-catalog-item {
