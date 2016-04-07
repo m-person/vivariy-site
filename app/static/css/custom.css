@@ -192,6 +192,21 @@ header a:hover {
     background-color: #e5e5e5;
 }
 
+/* --------- main page: about us -----------*/
+.about-us {
+    background-image: url("/static/img/about-us-bkg.png");
+    background-color: #414141;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% auto;
+    /*-webkit-filter: brightness(50%);*/
+    /*filter: brightness(50%);*/
+    color: white;
+    height: 30rem;
+    text-align: center;
+}
+
+
 /* --------- main page: product catalog -------- */
 
 .main-catalog-item {
