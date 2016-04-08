@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'versatileimagefield',
     'tagging',
     'tagging_autocomplete',
+    'smuggler',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -136,6 +137,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'app', 'media')
 
 MEDIA_URL = '/media/'
+
+# django-smuggler setup (db backups)
+SMUGGLER_FIXTURE_DIR = os.path.join(BASE_DIR, 'db_dumps')
 
 # email settings:
 if DEBUG:

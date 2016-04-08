@@ -10,6 +10,7 @@ class ProductImageAdmin(admin.ModelAdmin):
     fields = ('desc', 'image', 'product', 'is_default',)
     list_display = ('desc', 'product',)
     save_on_top = True
+    change_list_template = 'smuggler/change_list.html'
 
 
 class EmployeeInline(admin.StackedInline):
@@ -42,6 +43,7 @@ class TopCategoryAdmin(admin.ModelAdmin):
         'slug': ('title_ru',)
     }
     save_on_top = True
+    change_list_template = 'smuggler/change_list.html'
 
 
 class ArticleAdmin(admin.ModelAdmin):
@@ -51,18 +53,21 @@ class ArticleAdmin(admin.ModelAdmin):
         'slug': ('title_ru',)
     }
     save_on_top = True
+    change_list_template = 'smuggler/change_list.html'
 
 
 class CategoryAdmin(admin.ModelAdmin):
     fields = ('title_ru', 'parent_category', 'products', 'is_hidden')
     list_display = ('title_ru', 'parent_category')
     save_on_top = True
+    change_list_template = 'smuggler/change_list.html'
 
 
 class PartnerAdmin(admin.ModelAdmin):
     fields = ('title', 'desc', 'image', 'is_hidden')
     list_display = ('title',)
     save_on_top = True
+    change_list_template = 'smuggler/change_list.html'
 
 
 class ProductAdmin(admin.ModelAdmin):
@@ -73,46 +78,54 @@ class ProductAdmin(admin.ModelAdmin):
     }
     inlines = (ProductImageInline, DocFileInline, YoutubeVideoInline,)
     save_on_top = True
+    change_list_template = 'smuggler/change_list.html'
 
 
 class CategoryImageAdmin(admin.ModelAdmin):
     fields = ('desc', 'image',)
     list_display = ('desc',)
     save_on_top = True
+    change_list_template = 'smuggler/change_list.html'
 
 
 class ArticleImageAdmin(admin.ModelAdmin):
     fields = ('desc', 'image',)
     list_display = ('desc',)
     save_on_top = True
+    change_list_template = 'smuggler/change_list.html'
 
 
 class DocFileAdmin(admin.ModelAdmin):
     fields = ('title_ru', 'file', 'product', 'is_hidden')
     list_display = ('title_ru',)
     save_on_top = True
+    change_list_template = 'smuggler/change_list.html'
 
 
 class YoutubeVideoAdmin(admin.ModelAdmin):
     fields = ('title_ru', 'video', 'product', 'is_hidden')
     list_display = ('title_ru',)
     save_on_top = True
+    change_list_template = 'smuggler/change_list.html'
 
 
 class UserRequestAdmin(admin.ModelAdmin):
     readonly_fields = ('org_title', 'name', 'email', 'phone', 'cart', 'message', 'timestamp')
     list_display = ('timestamp', 'name', 'email',)
     save_on_top = True
+    change_list_template = 'smuggler/change_list.html'
 
 
 class UserAdmin(BaseUserAdmin):
     inlines = (EmployeeInline,)
+    change_list_template = 'smuggler/change_list.html'
 
 
 class CarouselItemAdmin(admin.ModelAdmin):
     fields = ('title', 'desc', 'url', 'image', 'is_hidden')
     list_display = ('title', )
     save_on_top = True
+    change_list_template = 'smuggler/change_list.html'
 
 
 admin.site.register(CarouselItem, CarouselItemAdmin)

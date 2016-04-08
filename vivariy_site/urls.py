@@ -8,6 +8,7 @@ from app.views import (MainView, CatalogView, CategoryView, ProductView, Partner
                        ArticleDetailView, ContactsView, RequestSuccess, )
 
 urlpatterns = [
+    url(r'^admin/', include('smuggler.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^$', MainView.as_view(), name='main'),
     url(r'^catalog/$', CatalogView.as_view(), name='catalog'),
