@@ -112,3 +112,4 @@ db.sqlite3
 questions.txt
 howto.txt
 assets/
+.venv/

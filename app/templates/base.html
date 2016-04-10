@@ -2,7 +2,7 @@
 {% load i18n %}
 <!DOCTYPE html>
 <html lang="ru">
-<head>
+<headh>
     {% block meta %}
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,7 +27,7 @@
         <link rel="stylesheet" href="{% static 'css/bootstrap-theme.min.css' %}">
         <link rel="stylesheet" href="{% static 'css/custom.css' %}">
     {% endblock %}
-</head>
+</headh>
 
 <body>
 <div class="content-wrapper">
@@ -36,7 +36,7 @@
             <div class="container">
                 <div class="row">
                     <form action="{% url 'set_language' %}" method="post"
-                          class="lang_form col-lg-2 col-lg-offset-10">{% csrf_token %}
+                          class="lang_form pull-right">{% csrf_token %}
                         {% get_current_language as LANGUAGE_CODE %}
                         <button type="submit" name="language" value="en"
                                 {% if LANGUAGE_CODE == 'en' %}class="active"{% endif %}>ENG
@@ -48,7 +48,7 @@
 
                 </div>
                 <div class="row">
-                    <a href="/" class="col-lg-5">
+                    <a href="/" class="col-lg-6">
                         <h1 class="header-logo">
                             <img src="{% static 'img/logo_100x100.png' %}" alt="company logo">
                             <div>ГРУППА КОМПАНИЙ</div>
@@ -56,19 +56,23 @@
                         </h1>
                     </a>
                     <form action="" class="search_form">{% csrf_token %}
-                        <div class="col-lg-offset-1 col-lg-4 search_form-input">
+                        <div class="col-lg-6">
                             <input type="text" name="search_text">
-                        </div>
-                        <div class="col-lg-2 search_form-submit">
                             <input type="submit" value="ПОИСК">
                         </div>
+{#                        <div class="col-lg-offset-1 col-lg-4 search_form-input">#}
+{#                            <input type="text" name="search_text">#}
+{#                        </div>#}
+{#                        <div class="col-lg-2 search_form-submit">#}
+{#                            <input type="submit" value="ПОИСК">#}
+{#                        </div>#}
                     </form>
                 </div>
             </div>
 
             <div class="menu-container">
                 <div class="container">
-                    <div class="row">
+{#                    <div class="row">#}
                         <ul class="nav navbar-nav main-menu">
                             <li class="{% if menuitem == 'main' %}active{% endif %}"><a href="/">ГЛАВНАЯ</a></li>
                             <li class="{% if menuitem == 'catalog' %}active{% endif %}"><a href="/catalog">КАТАЛОГ</a>
@@ -80,7 +84,7 @@
                             <li class="{% if menuitem == 'contacts' %}active{% endif %}"><a
                                     href="/contacts">КОНТАКТЫ</a></li>
                         </ul>
-                    </div>
+{#                    </div>#}
                 </div>
             </div>
         {% endblock %}

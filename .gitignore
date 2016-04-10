@@ -116,4 +116,4 @@ db_dump.json
 howto.txt
 questions.txt
 deploy/prod_settings.py
-
+.venv/
