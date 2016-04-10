@@ -100,8 +100,8 @@ class Category(models.Model):
     """
     title_ru = models.CharField(_('Title (ru)'), max_length=254, help_text=_('Category title (in russian).'))
     is_hidden = models.BooleanField(_('Don`t show this entry on site'), default=False)
-    parent_category = models.ForeignKey('TopCategory', related_name='categories',
-                                        help_text=_('Parent top-level category'))
+    parent_category = models.ManyToManyField('TopCategory', related_name='categories',
+                                             help_text=_('Parent top-level categories'))
     products = models.ManyToManyField('Product', blank=True, help_text=_('Products from this category'))
 
     def __str__(self):

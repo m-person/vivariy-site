@@ -90,7 +90,7 @@ h3 {
 }
 
 .main-menu > li > a:hover {
-    background-color: black;
+    background-color: #414141;
     color: #74b336;
 }
 
@@ -158,6 +158,7 @@ header a:hover {
 
 .search_form input[type="text"] {
     background-color: #e5e5e5;
+    padding-left: 15px;
 }
 
 .search_form input[type="submit"] {

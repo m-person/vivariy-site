@@ -58,7 +58,8 @@ class ArticleAdmin(admin.ModelAdmin):
 
 class CategoryAdmin(admin.ModelAdmin):
     fields = ('title_ru', 'parent_category', 'products', 'is_hidden')
-    list_display = ('title_ru', 'parent_category')
+    # list_display = ('title_ru', 'parent_category')
+    list_display = ('title_ru', )
     save_on_top = True
     change_list_template = 'smuggler/change_list.html'
 
