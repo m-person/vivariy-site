@@ -23,11 +23,11 @@
                         <div class="item {% if forloop.counter0 == slide_initial %} active{% endif %}">
                             <div class="media">
                                 <div class="media-left media-middle">
-                                    <img src="{{ slide.image.crop.200x200 }}" alt="slide image">
+                                    <img src="{{ slide.image.crop.220x220 }}" alt="slide image">
                                     <a href="{{ slide.url }}" class="btn">ПОДРОБНЕЕ</a>
                                 </div>
                                 <div class="media-body">
-                                    <h4 class="media-heading slide-title">{{ slide.title }}</h4>
+                                    <h2 class="media-heading slide-title">{{ slide.title | upper }}</h2>
                                     <div class="slide-desc">{{ slide.desc }}</div>
                                 </div>
                             </div>
@@ -38,7 +38,7 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="container main-catalog">
         <h2>КАТАЛОГ ПРОДУКЦИИ</h2>
         <div class="row">
             {% for category in top_categories %}
@@ -53,7 +53,7 @@
                                     {# But I dunno easy way to combine template tags and css, so I'm using inline styles #}
                             >
                             </div>
-                            <h5>{{ category.title_ru | upper }}</h5>
+                            <h4>{{ category.title_ru | upper }}</h4>
                         </div>
                     </a>
                 </div>
@@ -84,21 +84,28 @@
         </div>
     </div>
 
-    <div class="container">
-        <h2>НОВОСТИ</h2>
+    <div class="container main-article">
+        <h2>СТАТЬИ</h2>
         <div class="row">
             {% for article in articles %}
-                <div class="col-lg-4 main-article-item">
-                    <img src="{{ article.image.image.crop.300x190 }}" alt="article image">
-                    <h5>{{ article.title_ru }}</h5>
-                    <div>{{ article.cut_ru | truncatewords:15 }}...</div>
-                    <a href="{% url 'article_details' article.slug %}" class="btn">ПОДРОБНЕЕ</a>
-                    <div>
-                        <time class="article-date"
-                              datetime="{{ article.date | date:'c' }}">{{ article.date | date:"j E Y" }}</time>
+                <div class="col-lg-4">
+                    <div class="main-article-item">
+                        <img src="{{ article.image.image.crop.300x150 }}" alt="article image">
+                        <div class="main-article-item-wrapper">
+                            <div class="main-article-item-content">
+                                <h3>{{ article.title_ru | upper }}</h3>
+                                <div>{{ article.cut_ru | truncatewords:15 }}...</div>
+                            </div>
+                            <a href="{% url 'article_details' article.slug %}" class="btn">ПОДРОБНЕЕ</a>
+                            <div>
+                                <time class="article-date"
+                                      datetime="{{ article.date | date:'c' }}">{{ article.date | date:"j E Y" | upper }}</time>
+                            </div>
+                        </div>
                     </div>
                 </div>
             {% endfor %}
         </div>
+        <a href="/articles" class="btn center-block">СМОТРЕТЬ ВСЕ СТАТЬИ</a>
     </div>
 {% endblock %}

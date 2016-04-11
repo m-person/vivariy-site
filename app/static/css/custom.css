@@ -22,6 +22,17 @@
     font-style: italic;
 }
 
+@font-face {
+    font-family: "Open Sans";
+    src: url('/static/fonts/OpenSans-Regular.ttf');
+}
+
+@font-face {
+    font-family: "Open Sans";
+    src: url('/static/fonts/OpenSans-Light.ttf');
+    font-weight: 300;
+}
+
 /*@font-face {*/
 /*font-family: "MyriadPro";*/
 /*src: url('/static/fonts/MyriadPro-Regular.otf');*/
@@ -29,17 +40,17 @@
 
 /*---- base template ----*/
 div { /* todo: dbg*/
-    border: solid yellow 1px;
+    /*border: solid yellow 1px;*/
 }
 
 html,
 body {
     font-family: 'PT Sans', sans-serif;
+    /*font-family: 'Open Sans', sans-serif;*/
     font-size: 20px;
-    line-height: 25px;
+    line-height: 24px;
     color: #414141;
     max-width: 1300px;
-    /*height: 100vh;*/
 }
 
 .container {
@@ -54,17 +65,29 @@ h1, h2, h3, h4, h5 {
 }
 
 h1 {
-    /*font-size: 3rem;*/
     font-size: 52px;
 }
 
 h2 {
-    font-size: 2.2rem;
+    font-size: 46px;
     text-align: center;
 }
 
 h3 {
-    font-size: 2rem
+    font-size: 24px;
+}
+
+h4 {
+    font-size: 18px;
+}
+
+.content-wrapper {
+    min-height: 100vh;
+}
+
+main {
+    height: 100%;
+    padding-bottom: 190px;
 }
 
 /*---- base template: main menu -------*/
@@ -75,18 +98,26 @@ h3 {
 .main-menu {
     width: 100%;
     margin: 0;
+    height: 60px;
 }
 
 .main-menu > li {
     text-align: center;
     width: 20%;
+    height: 100%;
+}
+
+.main-menu span {
+    display: inline-block;
+    height: 40px;
 }
 
 .main-menu > li > a {
     color: white;
     font-family: 'Open Sans Condensed', sans-serif;
-    /*font-size: 1.6rem;*/
     font-size: 28px;
+    height: 100%;
+    padding: 20px 0;
 }
 
 .main-menu > li > a:hover {
@@ -94,8 +125,24 @@ h3 {
     color: #74b336;
 }
 
-.main-menu > li.active {
+.main-menu > li.active span {
     border-bottom: 3px solid #74b336;
+}
+
+.main-menu li:nth-of-type(1) {
+    text-align: left;
+}
+
+.main-menu li:nth-of-type(5) {
+    text-align: right;
+}
+
+.main-menu li:nth-of-type(2) {
+    padding-right: 20px;
+}
+
+.main-menu li:nth-of-type(4) {
+    padding-left: 14px;
 }
 
 /* ---------- base template: header-language switcher ---------*/
@@ -106,7 +153,7 @@ h3 {
 
 .lang_form button {
     background-color: #414141;
-    color: white;
+    color: #74b336;
     border: 0;
     font-family: 'Open Sans Condensed', sans-serif;
     width: 54px;
@@ -117,18 +164,19 @@ h3 {
     margin-left: 10px;
 }
 
-.lang_form button:first-of-type {
+.lang_form button.active {
+    color: white;
+    background-color: #74b336;
 }
 
-.lang_form button.active {
-    color: #74b336;
+.lang_form button:hover {
+    color: white;
 }
 
 /*----- base template: company logo ------*/
 .header-logo img {
     float: left;
     margin-right: 18px;
-    /*margin-right: 36px;*/
 }
 
 .header-logo {
@@ -140,7 +188,6 @@ header a:hover {
 }
 
 .header-logo div:nth-of-type(1) {
-    /*font-size: 1.84rem;*/
     font-size: 32px;
 }
 
@@ -151,7 +198,7 @@ header a:hover {
 }
 
 .search_form input {
-    height: 40px;
+    height: 36px;
     border-radius: 20px;
     border: 0;
 }
@@ -159,6 +206,8 @@ header a:hover {
 .search_form input[type="text"] {
     background-color: #e5e5e5;
     padding-left: 15px;
+    width: 300px;
+    margin-right: 10px;
 }
 
 .search_form input[type="submit"] {
@@ -168,3 +217,213 @@ header a:hover {
     font-family: 'Open Sans Condensed', sans-serif;
     width: 140px;
 }
+
+.search_form input[type="submit"]:hover {
+    color: white;
+}
+
+/*------ base template: footer -----*/
+/* Note: footer is flushing to bottom on pages with small content amount.
+ To attain that, also set rules for ".content-wrapper" and "main" blocks  */
+footer {
+    background-color: #414141;
+    color: white;
+    height: 190px; /*todo: change it on small screens*/
+    margin-top: -190px;
+    position: relative;
+    padding-top: 40px;
+}
+
+footer h3 {
+    color: white;
+    margin-top: 0;
+}
+
+footer .contacts {
+    padding: 0;
+}
+
+footer .contacts div:nth-of-type(2) {
+    text-indent: 100px;
+}
+
+footer img {
+    margin-bottom: 11px;
+}
+
+footer a {
+    color: #74b336;
+    text-decoration: underline;
+}
+
+footer .studio-logo {
+    text-align: right;
+    padding-top: 30px;
+}
+
+/*-------- main page: carousel ---------*/
+.carousel-bkg {
+    background-color: #e5e5e5;
+    height: 410px;
+    margin-bottom: 14px;
+}
+
+.carousel-bkg .container {
+    height: 100%;
+}
+
+.carousel {
+    height: 100%;
+}
+
+.carousel img {
+    border: solid 20px white;
+    border-radius: 10px;
+    margin-right: 50px;
+}
+
+div.carousel {
+    padding-top: 40px;
+}
+
+.carousel a.btn {
+    background-color: #414141;
+    font-family: 'Open Sans Condensed', sans-serif;
+    color: #74b336;
+    font-size: 18px;
+    width: 140px;
+    border-radius: 20px;
+    margin-top: 24px;
+    margin-left: 60px;
+}
+
+.carousel a:hover {
+    color: white;
+}
+
+.carousel-indicators {
+    bottom: 0;
+}
+
+.carousel-indicators li {
+    background-color: white;
+    margin: 8px;
+}
+
+.carousel-indicators li.active {
+    background-color: #74b336;
+    color: #74b336;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    margin: 2px;
+    border: none;
+}
+
+/* --------- main page: product catalog -------- */
+
+.main-catalog h2 {
+    margin-bottom: 30px;
+}
+
+.main-catalog-item-img {
+    height: 150px;
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, .5);
+}
+
+.main-catalog-item a {
+    text-decoration: none;
+    color: #414141;
+}
+
+.main-catalog-item a:hover .main-catalog-item-container {
+    color: white;
+    background-color: #74b336;
+}
+
+.main-catalog-item a:hover .main-catalog-item-img {
+    -webkit-filter: grayscale(100%) opacity(60%) contrast(200%);
+    filter: grayscale(100%) opacity(60%) contrast(200%);
+}
+
+.main-catalog-item-container {
+    background-color: #e5e5e5;
+    width: 300px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    text-align: center;
+    margin: 0 auto 40px;
+    padding-bottom: 5px;
+}
+
+.main-catalog-item-container h4 {
+    padding-top: 5px;
+}
+
+.main-catalog-item a:hover h4 {
+    color: white;
+}
+
+/* --------- main page: about us -----------*/
+.about-us {
+    background-image: url("/static/img/about-us-bkg-2.jpg");
+    background-color: #414141;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% auto;
+    color: white;
+    height: 420px;
+    text-align: center;
+    margin-top: 14px;
+}
+
+.about-us h2 {
+    color: white;
+    margin: 40px auto 30px;
+}
+
+/* ------------- main page: articles ---------------*/
+.main-article h2 {
+    margin: 40px auto 30px;
+}
+
+.main-article-item {
+    background-color: #e5e5e5;
+    width: 300px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    text-align: center;
+}
+
+.main-article-item-wrapper {
+    padding: 0 16px 16px;
+}
+
+.main-article-item-content {
+    min-height: 240px;
+}
+
+.main-article a {
+    background-color: #414141;
+    color: #74b336;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 18px;
+    border-radius: 20px;
+    width: 240px;
+    margin-bottom: 60px;
+    margin-top: 40px;
+}
+
+.main-article a:hover {
+    color: white;
+}
+
+.main-article-item a {
+    width: 140px;
+    margin: 26px auto;
+}
+
+.main-article-item .article-date {
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+
