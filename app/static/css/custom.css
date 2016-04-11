@@ -40,7 +40,7 @@
 
 /*---- base template ----*/
 div { /* todo: dbg*/
-    /*border: solid yellow 1px;*/
+    border: solid yellow 1px;
 }
 
 html,
@@ -427,3 +427,35 @@ div.carousel {
     font-family: 'Open Sans Condensed', sans-serif;
 }
 
+
+/*------- breadcrumbs---------*/
+.breadcrumbs a {
+    color: #74b336;
+    text-decoration: underline;
+}
+
+.breadcrumbs span {
+    font-size: 13px;
+    margin: 0 5px;
+}
+
+.breadcrumbs {
+    padding: 8px 15px;
+}
+
+.breadcrumbs span:last-of-type {
+    font-weight: bolder;
+}
+
+
+/*------- top-level catalog page --------*/
+
+.catalog-top-container h2 {
+    margin: 30px auto;
+}
+
+.catalog-top-container {
+    margin-bottom: 30px;
+}
+
+/*------- category page: left menu ----------*/
