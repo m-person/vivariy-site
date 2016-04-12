@@ -40,7 +40,7 @@
 
 /*---- base template ----*/
 div { /* todo: dbg*/
-    border: solid yellow 1px;
+    /*border: solid yellow 1px;*/
 }
 
 html,
@@ -81,13 +81,19 @@ h4 {
     font-size: 18px;
 }
 
-.content-wrapper {
-    min-height: 100vh;
-}
+/*.content-wrapper {*/
+    /*min-height: 100vh;*/
+    /*position: relative;*/
+/*}*/
 
 main {
-    height: 100%;
-    padding-bottom: 190px;
+    /*position: relative; !* for absolute positioned childrens *!*/
+    /*min-height: calc(100vh - 185px);*/
+    /*min-height: 100vh;*/
+    /*height: 100%;*/
+    /*height: calc(100vh - 200px);*/
+    /*padding-bottom: 190px;*/
+    /*min-height: 740px;*/
 }
 
 /*---- base template: main menu -------*/
@@ -228,10 +234,11 @@ header a:hover {
 footer {
     background-color: #414141;
     color: white;
-    height: 190px; /*todo: change it on small screens*/
-    margin-top: -190px;
-    position: relative;
-    padding-top: 40px;
+    /*height: 190px; !*todo: change it on small screens*!*/
+    /*margin-top: -190px;*/
+    /*position: relative;*/
+    /*padding-top: 40px;*/
+    padding: 40px 0;
 }
 
 footer h3 {
@@ -458,4 +465,35 @@ div.carousel {
     margin-bottom: 30px;
 }
 
+/*-------- category, articles, contacts: side background div, expanded to screen edge */
+.aside-bkg {
+    background-color: #e5e5e5;
+    position: absolute;
+    height: 40px;
+}
+
 /*------- category page: left menu ----------*/
+.catalog-container {
+    /*position: relative;*/
+    /*width: 980px;*/
+    /*margin: auto;*/
+    /*height: calc(100vh - 185px);*/
+    /*height: 100%;*/
+}
+
+.catalog-container .aside-bkg {
+    width: 33%
+}
+
+/*.catalog-aside-bkg {*/
+    /*position: absolute;*/
+    /*background-color: greenyellow;*/
+    /*height: calc(100% - 300px);*/
+    /*width: 33%;*/
+/*}*/
+
+.catalog-aside {
+    background-color: #e5e5e5;
+    /*height: calc(100% - 300px);*/
+    height: 100%;
+}

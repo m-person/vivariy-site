@@ -32,6 +32,10 @@ $(document).ready(
         });
 
 
+        var catalogCategoryBlock = $('.catalog-category');
+        setMainBlockHeight();
+        $(window).resize(setMainBlockHeight);
+        catalogCategoryBlock.on('shown.bs.collapse', updateMainChildrenHeight);
         $('.product-ask-btn').on('click', addToCart);
         $('.cart-item-remove-btn').on('click', delFromCart);
     }
@@ -132,3 +136,30 @@ function csrfSafeMethod(method) {
 }
 
 
+/**
+ * set height for content block.
+ * It's called when page loaded or window resized.
+ * I use js because I'm give up to implement using css the following: footer, flushed to bottom and fixed-width bootstraps
+ *   containers with some columns, that expands to screen edge. Note: it's easy to do with flexbox, but old IE doesn't support it.
+ */
+function setMainBlockHeight() {
+    var footerHeight = $('footer').outerHeight(),
+        headerHeight = $('header').outerHeight(),
+        viewportHeight = $(window).height(),
+        mainBlock = $('main'),
+        contentHeight = viewportHeight - footerHeight - headerHeight;
+
+    mainBlock.css("minHeight", contentHeight);
+    updateMainChildrenHeight();
+}
+
+/**
+ * set height of side menus and its backgrounds.
+ * call it every time the "main" block height changed
+ */
+function updateMainChildrenHeight() {
+    var height = $('main').height();
+
+    $('.aside-bkg').height(height);
+    $('.catalog-aside').height(height);
+}
