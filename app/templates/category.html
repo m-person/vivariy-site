@@ -5,20 +5,24 @@
 
 {% block content %}
     <div class="catalog-container">
-            <div class="aside-bkg"></div>
+        <div class="aside-bkg"></div>
 
         <div class="container">
             <div class="row">
 
                 <!-- left menu -->
-                <aside class="catalog-aside col-lg-4">
+                <aside class="catalog-aside col-lg-3">
                     <ul>
                         {% for top_category in top_categories %}
-                            <li><a href="{% url 'category' top_category.slug %}">{{ top_category.title_ru }}</a></li>
+                            <li>
+                                <a href="{% url 'category' top_category.slug %}" {% if current_top_category.title_ru == top_category.title_ru %}class="active" {% endif %}>
+                                    <h4>{{ top_category.title_ru }}</h4>
+                                </a>
+                            </li>
                         {% endfor %}
                     </ul>
                 </aside>
-                <section class="catalog-category col-lg-8">
+                <section class="catalog-category col-lg-9">
 
                     <!-- breadcrumbs -->
                     <div class="breadcrumbs">
@@ -29,7 +33,7 @@
                         </div>
                     </div>
 
-                    <h1>{{ current_top_category.title_ru | upper }}</h1>
+                    <h2>{{ current_top_category.title_ru | upper }}</h2>
 
                     <!-- list of subcategories -->
                     {% for category in categories %}
@@ -40,10 +44,10 @@
                                     <a class="collapsed" role="button" data-toggle="collapse"
                                        href="#collapse-{{ category.id }}"
                                        aria-expanded="false" aria-controls="collapse-{{ category.id }}">
-                                        <h4 class="panel-title">
+                                        <h3>
                                             <span class="glyphicon glyphicon-plus-sign"></span>
                                             <span>{{ category.title_ru | upper }}</span>
-                                        </h4>
+                                        </h3>
                                     </a>
                                 </div>
 
@@ -61,7 +65,7 @@
                                                     </div>
                                                     <div class="media-body">
                                                         <a href="{% url 'product' product.slug %}">
-                                                            <h5 class="media-heading">{{ product.title_ru }}</h5>
+                                                            <h3 class="media-heading">{{ product.title_ru }}</h3>
                                                         </a>
                                                         <a href="{% url 'product' product.slug %}" class="btn"
                                                            role="button">ПОДРОБНЕЕ</a>

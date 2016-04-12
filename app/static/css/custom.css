@@ -82,8 +82,8 @@ h4 {
 }
 
 /*.content-wrapper {*/
-    /*min-height: 100vh;*/
-    /*position: relative;*/
+/*min-height: 100vh;*/
+/*position: relative;*/
 /*}*/
 
 main {
@@ -226,18 +226,13 @@ header a:hover {
 
 .search_form input[type="submit"]:hover {
     color: white;
+    background-color: #74b336;
 }
 
 /*------ base template: footer -----*/
-/* Note: footer is flushing to bottom on pages with small content amount.
- To attain that, also set rules for ".content-wrapper" and "main" blocks  */
 footer {
     background-color: #414141;
     color: white;
-    /*height: 190px; !*todo: change it on small screens*!*/
-    /*margin-top: -190px;*/
-    /*position: relative;*/
-    /*padding-top: 40px;*/
     padding: 40px 0;
 }
 
@@ -306,6 +301,7 @@ div.carousel {
 
 .carousel a:hover {
     color: white;
+        background-color: #74b336;
 }
 
 .carousel-indicators {
@@ -423,6 +419,7 @@ div.carousel {
 
 .main-article a:hover {
     color: white;
+        background-color: #74b336;
 }
 
 .main-article-item a {
@@ -433,7 +430,6 @@ div.carousel {
 .main-article-item .article-date {
     font-family: 'Open Sans Condensed', sans-serif;
 }
-
 
 /*------- breadcrumbs---------*/
 .breadcrumbs a {
@@ -447,13 +443,12 @@ div.carousel {
 }
 
 .breadcrumbs {
-    padding: 8px 15px;
+    padding: 8px 0;
 }
 
 .breadcrumbs span:last-of-type {
     font-weight: bolder;
 }
-
 
 /*------- top-level catalog page --------*/
 
@@ -465,6 +460,7 @@ div.carousel {
     margin-bottom: 30px;
 }
 
+
 /*-------- category, articles, contacts: side background div, expanded to screen edge */
 .aside-bkg {
     background-color: #e5e5e5;
@@ -472,28 +468,96 @@ div.carousel {
     height: 40px;
 }
 
-/*------- category page: left menu ----------*/
-.catalog-container {
-    /*position: relative;*/
-    /*width: 980px;*/
-    /*margin: auto;*/
-    /*height: calc(100vh - 185px);*/
-    /*height: 100%;*/
-}
+/*------- catalog category page: left menu ----------*/
 
 .catalog-container .aside-bkg {
-    width: 33%
+    width: 20%
 }
-
-/*.catalog-aside-bkg {*/
-    /*position: absolute;*/
-    /*background-color: greenyellow;*/
-    /*height: calc(100% - 300px);*/
-    /*width: 33%;*/
-/*}*/
 
 .catalog-aside {
     background-color: #e5e5e5;
-    /*height: calc(100% - 300px);*/
-    height: 100%;
+    text-align: right;
+    text-transform: uppercase;
+    color: #414141;
+    padding-left: 0;
+}
+
+.catalog-aside > ul {
+    list-style-type: none;
+    margin-top: 30px;
+    padding-left: 0;
+}
+
+.catalog-aside li {
+    padding: 1px 4px;
+}
+
+.catalog-aside a {
+    text-decoration: none;
+}
+
+.catalog-aside a.active h4 {
+    color: #74b336;
+}
+
+/*------- catalog category page: main content ------- */
+.catalog-category h2 {
+    margin-top: 60px;
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.catalog-category .panel {
+    background-color: #e5e5e5;
+    border-radius: 10px;
+}
+
+
+.catalog-category .panel a {
+    color: #414141;
+    text-decoration: none;
+}
+
+.catalog-category .panel-heading h3.active span:last-of-type {
+    color: #74b336;
+}
+
+
+.catalog-category .panel-heading h3 {
+    font-size: 24px; /* bootstrap overrides global settings for panel headers */
+    margin: 5px 4px;
+}
+
+.catalog-category .list-group-item {
+    background-color: #e5e5e5;
+}
+
+.catalog-category .list-group-item a.btn {
+        background-color: #414141;
+    font-family: 'Open Sans Condensed', sans-serif;
+    color: #74b336;
+    font-size: 18px;
+    width: 140px;
+    border-radius: 20px;
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+}
+
+.catalog-category .list-group-item h3 {
+    margin-left: 10px;
+    margin-top: 30px;
+}
+
+.catalog-category .list-group-item a.btn:hover {
+    color: white;
+    background-color: #74b336;
+}
+
+.catalog-category .list-group-item a:hover h3 {
+    color: #74b336;
+}
+
+.catalog-category .panel-group:last-of-type {
+    margin-bottom: 60px;
 }

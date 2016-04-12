@@ -32,10 +32,12 @@ $(document).ready(
         });
 
 
-        var catalogCategoryBlock = $('.catalog-category');
+        var catalogCategoryPanel = $('.catalog-category .panel');
         setMainBlockHeight();
         $(window).resize(setMainBlockHeight);
-        catalogCategoryBlock.on('shown.bs.collapse', updateMainChildrenHeight);
+        catalogCategoryPanel.on('shown.bs.collapse', updateMainChildrenHeight);
+        catalogCategoryPanel.on('show.bs.collapse', categoryPanelShow);
+        catalogCategoryPanel.on('hide.bs.collapse', categoryPanelHide);
         $('.product-ask-btn').on('click', addToCart);
         $('.cart-item-remove-btn').on('click', delFromCart);
     }
@@ -162,4 +164,14 @@ function updateMainChildrenHeight() {
 
     $('.aside-bkg').height(height);
     $('.catalog-aside').height(height);
+}
+
+function categoryPanelShow() {
+    $(this).parents().find('.panel-heading h3').removeClass('active');
+    $(this).find('.panel-heading h3').addClass('active');
+}
+
+function categoryPanelHide() {
+    $(this).find('.panel-heading h3').removeClass('active');
+    $(this).parents().find('.panel-heading h3').removeClass('active');
 }
