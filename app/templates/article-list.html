@@ -4,11 +4,11 @@
 {% block title %}{{ block.super }} | статьи{% endblock %}
 
 {% block content %}
-    <div class="container">
+    <div class="container article-list">
 
-        <div class="article-aside-bkg"></div>
+        <div class="aside-bkg"></div>
 
-        <div class="row article-list">
+        <div class="row">
             <section class="col-lg-10 article-content-panel">
 
                 <div class="row breadcrumbs"><!-- breadcrumbs -->
@@ -18,7 +18,7 @@
                     </div>
                 </div><!-- end breadcrumbs -->
 
-                <h1>СТАТЬИ</h1>
+                <h2>СТАТЬИ</h2>
 
                 {% if current_tag %}
                     <div>
@@ -31,15 +31,16 @@
                 {% for article in articles %}
                     <div class="media">
                         <time class="article-date"
-                              datetime="{{ article.date | date:'c' }}">{{ article.date | date:"j E Y" }}</time>
+                              datetime="{{ article.date | date:'c' }}">
+                            <h4>{{ article.date | date:"j E Y" | upper }}</h4></time>
                         <a href="{% url 'article_details' article.slug %}">
                             <div class="media-left media-top">
-                                <img src="{{ article.image.image.crop.300x190 }}" alt="article image"
+                                <img src="{{ article.image.image.crop.300x150 }}" alt="article image"
                                      class="media-object">
                             </div>
                             <div class="media-body">
-                                <h4 class="media-heading">{{ article.title_ru | upper }}</h4>
-                                <div class="article-cut">{{ article.cut_ru }}</div>
+                                <h3 class="media-heading">{{ article.title_ru | upper }}</h3>
+                                <div class="article-cut">{{ article.cut_ru | truncatewords:23 }}</div>
 
                             </div>
                         </a>
@@ -47,17 +48,19 @@
                 {% endfor %}
 
                 {% if articles.paginator.num_pages > 1 %}
-                    <nav><!-- paginagion -->
+                    <nav class="pagination-container"><!-- paginagion -->
                         <ul class="pagination">
                             {% if articles.has_previous %}
                                 <li>
-                                    <a href="{{ current_url }}page={{ articles.previous_page_number }}">
+                                    <a href="{{ current_url }}page={{ articles.previous_page_number }}"
+                                       id="articles-paginator-chevron-left">
                                         <span class="glyphicon glyphicon-chevron-left"></span>
                                     </a>
                                 </li>
                             {% else %}
                                 <li class="disabled">
-                                    <span class="glyphicon-chevron-left glyphicon"></span>
+                                    <span id="articles-paginator-chevron-left"
+                                          class="glyphicon-chevron-left glyphicon"></span>
                                 </li>
                             {% endif %}
 
@@ -76,13 +79,15 @@
 
                             {% if articles.has_next %}
                                 <li>
-                                    <a href="{{ current_url }}page={{ articles.next_page_number }}">
+                                    <a href="{{ current_url }}page={{ articles.next_page_number }}"
+                                       id="articles-paginator-chevron-right">
                                         <span class="glyphicon glyphicon-chevron-right"></span>
                                     </a>
                                 </li>
                             {% else %}
                                 <li class="disabled">
-                                    <span class="glyphicon-chevron-right glyphicon"></span>
+                                    <span id="articles-paginator-chevron-right"
+                                          class="glyphicon-chevron-right glyphicon"></span>
                                 </li>
                             {% endif %}
                         </ul>

@@ -87,7 +87,7 @@ h4 {
 /*}*/
 
 main {
-    /*position: relative; !* for absolute positioned childrens *!*/
+    position: relative; /* for absolute positioned childrens */
     /*min-height: calc(100vh - 185px);*/
     /*min-height: 100vh;*/
     /*height: 100%;*/
@@ -301,7 +301,7 @@ div.carousel {
 
 .carousel a:hover {
     color: white;
-        background-color: #74b336;
+    background-color: #74b336;
 }
 
 .carousel-indicators {
@@ -419,7 +419,7 @@ div.carousel {
 
 .main-article a:hover {
     color: white;
-        background-color: #74b336;
+    background-color: #74b336;
 }
 
 .main-article-item a {
@@ -459,7 +459,6 @@ div.carousel {
 .catalog-top-container {
     margin-bottom: 30px;
 }
-
 
 /*-------- category, articles, contacts: side background div, expanded to screen edge */
 .aside-bkg {
@@ -512,7 +511,6 @@ div.carousel {
     border-radius: 10px;
 }
 
-
 .catalog-category .panel a {
     color: #414141;
     text-decoration: none;
@@ -521,7 +519,6 @@ div.carousel {
 .catalog-category .panel-heading h3.active span:last-of-type {
     color: #74b336;
 }
-
 
 .catalog-category .panel-heading h3 {
     font-size: 24px; /* bootstrap overrides global settings for panel headers */
@@ -533,7 +530,7 @@ div.carousel {
 }
 
 .catalog-category .list-group-item a.btn {
-        background-color: #414141;
+    background-color: #414141;
     font-family: 'Open Sans Condensed', sans-serif;
     color: #74b336;
     font-size: 18px;
@@ -560,4 +557,108 @@ div.carousel {
 
 .catalog-category .panel-group:last-of-type {
     margin-bottom: 60px;
+}
+
+/*------- article list page------- */
+.article-tags-panel {
+    background-color: #e5e5e5;
+}
+
+.article-list .aside-bkg {
+    width: 15%;
+    right: 0;
+}
+
+.article-tags-panel ul {
+    list-style-type: none;
+    padding-left: 5px;
+    margin-top: 80px;
+    text-decoration: underline;
+    font-size: 16px;
+    line-height: 28px;
+}
+
+.article-tags-panel a {
+    color: #414141;
+}
+
+.article-tags-panel a:hover {
+    color: #74b336;
+}
+
+.article-list .media {
+    margin-bottom: 20px;
+}
+
+.article-list .breadcrumbs {
+    padding-right: 10px;
+}
+
+.article-list h2 {
+    text-align: left;
+    margin-top: 30px;
+    margin-bottom: 16px;
+}
+
+.article-list time h4 {
+    margin-bottom: 5px;
+}
+
+.article-list h3.media-heading {
+    margin-top: -4px;
+    margin-bottom: 10px;
+}
+
+.article-list .media a {
+    text-decoration: none;
+    color: #414141;
+}
+
+.article-list .media a:hover .article-cut {
+    text-decoration: underline;
+}
+
+.article-list a:hover h3 {
+    color: #74b336;
+}
+
+.article-list .pagination-container {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+#articles-paginator-chevron-left {
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+}
+
+#articles-paginator-chevron-right {
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.article-list .pagination > li > a,
+.article-list .pagination > li > span {
+    background-color: #414141;
+    color: #74b336;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    border: none;
+}
+
+.article-list .pagination > li > a {
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+
+.article-list .pagination > li.active > a {
+    background-color: #74b336;
+    color: white;
+}
+
+.article-list .pagination > li.disabled > span {
+    color: darkgray;
+}
+
+.article-list .pagination > li.disabled:hover > span {
+    background-color: #414141;
 }

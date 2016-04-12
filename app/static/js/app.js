@@ -164,6 +164,7 @@ function updateMainChildrenHeight() {
 
     $('.aside-bkg').height(height);
     $('.catalog-aside').height(height);
+    $('.article-tags-panel').height(height);
 }
 
 function categoryPanelShow() {
