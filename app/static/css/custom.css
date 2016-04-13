@@ -662,3 +662,66 @@ div.carousel {
 .article-list .pagination > li.disabled:hover > span {
     background-color: #414141;
 }
+
+.article-list .filter-msg {
+    font-size: 16px;
+}
+
+/*------- article details page -----------*/
+.article-details .aside-bkg {
+    width: 15%;
+    right: 0;
+}
+
+.article-details .breadcrumbs {
+    padding-right: 10px;
+}
+
+.article-details h2 {
+    text-align: left;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.article-details .article-top-image {
+    float: left;
+    margin: 0 20px 18px 0;
+}
+
+.article-details time h4 {
+    margin-bottom: 30px;
+}
+
+.article-details .article-content {
+    margin-bottom: 30px;
+}
+
+.article-details .article-source a {
+    color: #74b336;
+    text-decoration: underline;
+}
+
+.article-details .article-source {
+    margin-bottom: 5px;
+}
+
+.article-details .article-tags li {
+    font-size: 16px;
+    padding: 0;
+}
+
+.article-details .article-tags a {
+    text-decoration: underline;
+    color: #74b336;
+}
+
+.article-details .article-more-btn {
+    background-color: #414141;
+    font-family: 'Open Sans Condensed', sans-serif;
+    color: #74b336;
+    font-size: 18px;
+    width: 240px;
+    border-radius: 20px;
+    margin-top: 40px;
+    margin-bottom: 60px;
+}

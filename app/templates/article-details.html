@@ -5,13 +5,13 @@
 {% block title %}{{ block.super }} | статьи | {{ article.title_ru | truncatechars:20 }}{% endblock %}
 
 {% block content %}
-    <div class="container">
+    <div class="container article-details">
 
-        <div class="article-aside-bkg"></div>
+        <div class="aside-bkg"></div>
 
-        <div class="row article-details">
+        <div class="row">
 
-            <article class="col-lg-10 article-content-panel"><!--- article block -->
+            <article class="col-lg-10 article-content-wrapper"><!--- article block -->
 
                 <div class="row breadcrumbs"><!-- breadcrumbs -->
                     <div class="pull-right">
@@ -21,19 +21,37 @@
                 </div>
 
                 <h2>{{ article.title_ru | upper }}</h2>
-                <img src="{{ article.image.image.crop.300x190 }}" alt="article description image">
-                <time class="article-date" datetime="{{ article.date | date:'c'}}">{{ article.date | date:"j E Y" }}</time>
+                <img class="article-top-image" src="{{ article.image.image.crop.300x150 }}"
+                     alt="article description image">
+                <time class="article-date" datetime="{{ article.date | date:'c' }}">
+                    <h4>{{ article.date | date:"j E Y" | upper }}</h4></time>
                 <div class="article-content">{{ article.text_ru | safe }}</div>
-                <p>Источник: <a href="{{ article.source_url }}">{{ article.source_url | domain_from_url }}</a></p>
-                <div class="row">
-                    <a href="/articles" class="btn">ДРУГИЕ НОВОСТИ</a>
-                </div>
+                {% if article.source_url %}
+                    <p class="article-source">Источник: <a
+                            href="{{ article.source_url }}">{{ article.source_url | domain_from_url }}</a></p>
+                {% endif %}
+                <ul class="list-unstyled list-inline article-tags">
+                    {% for tag in article_tags %}
+                        <li>
+                            <a href="/articles?filter={{ tag }}"> {{ tag }} </a>
+                            {% if not forloop.last %},{% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+
+                <a href="/articles" class="btn article-more-btn center-block">ДРУГИЕ НОВОСТИ</a>
+
             </article>
 
-            <aside class="col-lg-2 article-tags-panel"><!-- tags block -->
-                <p>there should be tags</p>
+            <aside class="col-lg-2 article-tags-panel">
+                <ul>
+                    {% for tag in tags %}
+                        <li><a href="/articles?filter={{ tag }}">{{ tag }}</a></li>
+                    {% endfor %}
+                </ul>
             </aside>
         </div>
+
 
     </div>
 {% endblock %}

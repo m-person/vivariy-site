@@ -162,7 +162,10 @@ class ArticleDetailView(TemplateView):
     def get_context_data(self, **kwargs):
         ctx = super(ArticleDetailView, self).get_context_data(**kwargs)
         ctx['menuitem'] = 'articles'
-        ctx['article'] = get_object_or_404(Article, slug=kwargs['slug'])
+        article = get_object_or_404(Article, slug=kwargs['slug'])
+        ctx['article'] = article
+        ctx['tags'] = Tag.objects.all()
+        ctx['article_tags'] = Tag.objects.get_for_object(article)
         return ctx
 
 
