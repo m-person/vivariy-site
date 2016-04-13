@@ -3,7 +3,7 @@
 {% block title %}{{ block.super }} | партнеры{% endblock %}
 
 {% block content %}
-    <div class="container">
+    <div class="container partners-list">
         <!-- breadcrumbs -->
         <div class="row breadcrumbs">
             <div class="pull-right">
@@ -13,16 +13,19 @@
         </div>
 
         <!-- list of partners -->
-        <div class="row partners-list">
+        <div class="row">
+            <h2>НАШИ ПАРТНЕРЫ</h2>
             {% for partner in partner_list %}
-                <div class="media col-lg-offset-1 col-lg-10 partner-item" id="pt_{{ partner.id }}">
+                <div class="media col-lg-12 partner-item" id="pt_{{ partner.id }}">
                     <div class="media-left media-middle">
                         {% if partner.image %}
-                            <img class="media-object" src="{{ partner.image.crop.200x100 }}" alt="partner image">
+                            <div class="logo-wrapper">
+                                <img class="media-object" src="{{ partner.image.thumbnail.200x100 }}" alt="partner image">
+                            </div>
                         {% endif %}
                     </div>
                     <div class="media-body">
-                        <h4 class="media-heading">{{ partner.title }}</h4>
+                        <h4 class="media-heading">{{ partner.title | upper }}</h4>
                         <div>{{ partner.desc }}</div>
                     </div>
                 </div>
@@ -30,7 +33,4 @@
         </div>
 
     </div>
-
-
-
 {% endblock %}

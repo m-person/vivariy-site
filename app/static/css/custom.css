@@ -81,19 +81,8 @@ h4 {
     font-size: 18px;
 }
 
-/*.content-wrapper {*/
-/*min-height: 100vh;*/
-/*position: relative;*/
-/*}*/
-
 main {
     position: relative; /* for absolute positioned childrens */
-    /*min-height: calc(100vh - 185px);*/
-    /*min-height: 100vh;*/
-    /*height: 100%;*/
-    /*height: calc(100vh - 200px);*/
-    /*padding-bottom: 190px;*/
-    /*min-height: 740px;*/
 }
 
 /*---- base template: main menu -------*/
@@ -724,4 +713,49 @@ div.carousel {
     border-radius: 20px;
     margin-top: 40px;
     margin-bottom: 60px;
+}
+
+/*-------- partners page -----------*/
+.partners-list .breadcrumbs {
+    margin-right: -5px;
+}
+
+.partners-list h2 {
+    margin: 40px auto 30px;
+}
+
+.partners-list .partner-item {
+    border-top: solid #e5e5e5 1px;
+    border-bottom: solid #e5e5e5 1px;
+    margin-bottom: 30px;
+    padding: 5px;
+}
+
+.partners-list h4.media-heading {
+    margin-bottom: 10px;
+}
+
+.partners-list .logo-wrapper {
+    border: solid 1px #414141;
+    height: 102px;
+    width: 202px;
+    position: relative;
+    margin-right: 8px;
+}
+
+.partners-list img {
+    margin: auto;
+    max-height: 100%;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.partners-list {
+    padding-bottom: 40px;
 }
