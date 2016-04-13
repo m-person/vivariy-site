@@ -176,3 +176,4 @@ function categoryPanelHide() {
     $(this).find('.panel-heading h3').removeClass('active');
     $(this).parents().find('.panel-heading h3').removeClass('active');
 }
+

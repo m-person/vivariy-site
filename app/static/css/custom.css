@@ -759,3 +759,50 @@ div.carousel {
 .partners-list {
     padding-bottom: 40px;
 }
+
+/*--------- contacts page: contacts block ----------*/
+
+.contacts-page .aside-bkg {
+    width: 20%;
+    left: 0;
+}
+
+.contacts-page .contacts {
+    background-color: #e5e5e5;
+}
+
+.contacts-page .breadcrumbs {
+    margin-right: -5px;
+}
+
+.contacts-page .contacts h2 {
+    margin-top: 86px;
+    margin-bottom: 30px;
+}
+
+.contacts-page .contacts h3 {
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+
+.contacts-page .vcard .tel:nth-of-type(1),
+.contacts-page .vcard .tel:nth-of-type(2) {
+    text-indent: 48px;
+}
+
+.contacts-page .vcard .local-emails {
+    margin-top: 20px;
+}
+
+.contacts-page .vcard .email a {
+    color: #414141;
+    text-decoration: underline;
+}
+
+.contacts-page .vcard .local-emails .email:last-of-type {
+    text-indent: 66px;
+}
+
+.contacts-page .vcard {
+    padding-bottom: 60px;
+}
