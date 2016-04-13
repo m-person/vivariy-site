@@ -799,10 +799,128 @@ div.carousel {
     text-decoration: underline;
 }
 
+.contacts-page .vcard .email a:hover {
+    color: #74b336;
+}
+
 .contacts-page .vcard .local-emails .email:last-of-type {
     text-indent: 66px;
 }
 
 .contacts-page .vcard {
     padding-bottom: 60px;
+}
+
+/*-------- contacts page: request form -----------*/
+
+.request-form li {
+    /*border: solid 1px yellow; !*todo: dbg*!*/
+    position: relative;
+}
+
+.contacts-page .request-form ul {
+    padding: 0;
+}
+
+.contacts-page .request-form h2 {
+    margin-top: 70px;
+    margin-bottom: 5px;
+}
+
+.contacts-page .cart-item-remove-btn {
+    position: absolute;
+    right: 0;
+    top: 44px;
+    cursor: pointer;
+}
+
+.contacts-page .cart-item-remove-btn:hover {
+    color: #74b336;
+}
+
+.contacts-page .basket-list a:hover h3 {
+    color: #74b336;
+    text-decoration: none;
+}
+
+.contacts-page .basket-list a:hover {
+    text-decoration: none;
+}
+
+.contacts-page .request-form form h3 {
+    font-size: 30px;
+    margin-top: 70px;
+}
+
+.contacts-page .request-form form {
+    list-style-type: none;
+    padding-bottom: 60px;
+}
+
+.contacts-page .request-form form label {
+    font-size: 16px;
+    font-weight: 400;
+    display: block;
+    /*margin: 8px auto 0 10px;*/
+    margin-left: 15px;
+    margin-bottom: 0;
+}
+
+.contacts-page .request-form form input,
+.contacts-page .request-form form textarea {
+    background-color: #e5e5e5;
+    border-radius: 20px;
+    border: none;
+    padding: 7px 15px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.contacts-page .request-form-desc {
+    font-size: 16px;
+}
+
+.contacts-page .request-form input[type='submit'] {
+    background-color: #414141;
+    font-family: 'Open Sans Condensed', sans-serif;
+    color: #74b336;
+    font-size: 18px;
+    width: 150px;
+    border-radius: 20px;
+    margin-top: 40px;
+    margin-bottom: 15px;
+}
+
+.contacts-page .request-form input[type='submit']:hover {
+    background-color: #74b336;
+    color: white;
+}
+
+.contacts-page .request-form ul.errorlist {
+    list-style-type: none;
+    color: red;
+    margin: 0 0 0 15px;
+    font-size: 16px;
+}
+
+.contacts-page .request-form label[for="id_captcha_0"] {
+    display: none;
+}
+
+.contacts-page .request-form .captcha-question:before {
+    content: "Контрольный код:";
+    display: block;
+    font-size: 16px;
+    margin-left: 15px;
+}
+
+.contacts-page #id_captcha_0 {
+    width: 120px;
+    margin-left: 15px;
+}
+
+.contacts-page .request-form .cart-empty-msg {
+    text-align: center;
+    font-size: 16px;
+    margin-top: 40px;
 }

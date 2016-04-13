@@ -81,7 +81,7 @@
                                         <div class="media-body">
                                             {{ item.categories.all | first }}
                                             <a href="{% url 'product' product.slug %}">
-                                                <h4 class="media-heading">{{ item.title_ru }}</h4>
+                                                <h3 class="media-heading">{{ item.title_ru | truncatechars:32 }}</h3>
                                             </a>
                                     <span class="glyphicon glyphicon-remove-sign cart-item-remove-btn"
                                           data-slug="{{ item.slug }}"></span>
@@ -97,11 +97,11 @@
                     </div>
                 </div>
 
-                <form action="" method="post" class="request-form">{% csrf_token %}
+                <form action="" method="post">{% csrf_token %}
                     <h3>ЗАПРОСИТЬ СТОИМОСТЬ</h3>
                     {{ form.as_ul }}
-                    <input type="submit" class="btn">
-                    *-Поля, отмеченные звездочкой, обязательные для заполнения
+                    <input type="submit" class="btn" value="ОТПРАВИТЬ">
+                    <div class="request-form-desc"> * - Поля, отмеченные звездочкой, обязательные для заполнения</div>
                 </form>
 
             </div>
