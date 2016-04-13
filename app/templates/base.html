@@ -10,7 +10,7 @@
     {% endblock %}
 
     <title>
-        {% block title %}Группа "Виварий"{% endblock %}
+        {% block title %}{% trans '"Vivarium" group' %}{% endblock %}
     </title>
     {% block fonts %}
         {#        todo: uncomment it in production #}
@@ -31,67 +31,66 @@
 
 <body>
 {#<div class="content-wrapper">#}
-    <header>
-        {% block header %}
+<header>
+    {% block header %}
+        <div class="container">
+            <div class="row">
+                <form action="{% url 'set_language' %}" method="post"
+                      class="lang_form pull-right">{% csrf_token %}
+                    {% get_current_language as LANGUAGE_CODE %}
+                    <button type="submit" name="language" value="en"
+                            {% if LANGUAGE_CODE == 'en' %}class="active"{% endif %}>ENG
+                    </button>
+                    <button type="submit" name="language" value="ru"
+                            {% if LANGUAGE_CODE == 'ru' %}class="active"{% endif %}>РУС
+                    </button>
+                </form>
+
+            </div>
+            <div class="row">
+                <a href="/" class="col-lg-6">
+                    <h1 class="header-logo">
+                        <img src="{% static 'img/logo_100x100.png' %}" alt="company logo">
+                        <div>{% trans "COMPANY GROUP" %}</div>
+                        <div>{% trans "&laquoVIVARIUM&raquo" %}</div>
+                    </h1>
+                </a>
+                <form action="" class="search_form">{% csrf_token %}
+                    <div class="col-lg-6">
+                        <input type="text" name="search_text">
+                        <input type="submit" value={% trans "SEARCH" %}>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="menu-container">
             <div class="container">
-                <div class="row">
-                    <form action="{% url 'set_language' %}" method="post"
-                          class="lang_form pull-right">{% csrf_token %}
-                        {% get_current_language as LANGUAGE_CODE %}
-                        <button type="submit" name="language" value="en"
-                                {% if LANGUAGE_CODE == 'en' %}class="active"{% endif %}>ENG
-                        </button>
-                        <button type="submit" name="language" value="ru"
-                                {% if LANGUAGE_CODE == 'ru' %}class="active"{% endif %}>РУС
-                        </button>
-                    </form>
-
-                </div>
-                <div class="row">
-                    <a href="/" class="col-lg-6">
-                        <h1 class="header-logo">
-                            <img src="{% static 'img/logo_100x100.png' %}" alt="company logo">
-                            <div>ГРУППА КОМПАНИЙ</div>
-                            <div>&laquoВИВАРИЙ&raquo</div>
-                        </h1>
-                    </a>
-                    <form action="" class="search_form">{% csrf_token %}
-                        <div class="col-lg-6">
-                            <input type="text" name="search_text">
-                            <input type="submit" value="ПОИСК">
-                        </div>
-                    </form>
-                </div>
+                {#                    <div class="row">#}
+                <ul class="nav navbar-nav main-menu">
+                    <li class="{% if menuitem == 'main' %}active{% endif %}"><a href="/"><span>{% trans "MAIN" %}</span></a>
+                    </li>
+                    <li class="{% if menuitem == 'catalog' %}active{% endif %}"><a
+                            href="/catalog"><span>{% trans "CATALOG" %}</span></a>
+                    </li>
+                    <li class="{% if menuitem == 'articles' %}active{% endif %}"><a
+                            href="/articles"><span>{% trans "ARTICLES" %}</span></a>
+                    </li>
+                    <li class="{% if menuitem == 'partners' %}active{% endif %}"><a
+                            href="/partners"><span>{% trans "PARTNERS" %}</span></a></li>
+                    <li class="{% if menuitem == 'contacts' %}active{% endif %}"><a
+                            href="/contacts"><span>{% trans "CONTACTS" %}</span></a></li>
+                </ul>
             </div>
+        </div>
+    {% endblock %}
+</header>
 
-            <div class="menu-container">
-                <div class="container">
-                    {#                    <div class="row">#}
-                    <ul class="nav navbar-nav main-menu">
-                        <li class="{% if menuitem == 'main' %}active{% endif %}"><a href="/"><span>ГЛАВНАЯ</span></a>
-                        </li>
-                        <li class="{% if menuitem == 'catalog' %}active{% endif %}"><a
-                                href="/catalog"><span>КАТАЛОГ</span></a>
-                        </li>
-                        <li class="{% if menuitem == 'articles' %}active{% endif %}"><a
-                                href="/articles"><span>СТАТЬИ</span></a>
-                        </li>
-                        <li class="{% if menuitem == 'partners' %}active{% endif %}"><a
-                                href="/partners"><span>ПАРТНЕРЫ</span></a></li>
-                        <li class="{% if menuitem == 'contacts' %}active{% endif %}"><a
-                                href="/contacts"><span>КОНТАКТЫ</span></a></li>
-                    </ul>
-                    {#                    </div>#}
-                </div>
-            </div>
-        {% endblock %}
-    </header>
-
-    <main>
-        {% block content %}
-            <br><br><br>
-        {% endblock %}
-    </main>
+<main>
+    {% block content %}
+        <br><br><br>
+    {% endblock %}
+</main>
 
 {#</div>#}
 
@@ -101,10 +100,10 @@
             <div class="row">
                 <div class="col-lg-6">
                     <img src="{% static 'img/logo_footer.png' %}" alt="company logo">
-                    <p>© 2010-2016 Группа компаний «Виварий».<br> Все права защищены.</p>
+                    <p>{% trans "© 2010-2016 Vivaium group.<br>All rights reserved." %}</p>
                 </div>
                 <div class="col-lg-3 contacts">
-                    <h3>КОНТАКТЫ:</h3>
+                    <h3>{% trans 'CONTACTS:' %}</h3>
                     <div>Тел.: (4722)37-29-38</div>
                     <div>37-29-40</div>
                     <div>E-mail: <a href="mailto:info@vivariy.com">info@vivariy.com</a></div>

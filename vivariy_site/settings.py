@@ -49,7 +49,7 @@ INSTALLED_APPS = [
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    # 'django.middleware.locale.LocaleMiddleware', todo: enable it in production
+    'django.middleware.locale.LocaleMiddleware', # todo: enable it in production
     # 'django.middleware.cache.UpdateCacheMiddleware',
     'django.middleware.common.CommonMiddleware',
     # 'django.middleware.cache.FetchFromCacheMiddleware',
@@ -137,6 +137,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'app', 'media')
 
 MEDIA_URL = '/media/'
+
+
+LOCALE_PATHS = [os.path.join(BASE_DIR, 'app', 'locale')]
 
 # django-smuggler setup (db backups)
 SMUGGLER_FIXTURE_DIR = os.path.join(BASE_DIR, 'db_dumps')
