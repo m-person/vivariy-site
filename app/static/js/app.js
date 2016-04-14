@@ -65,14 +65,17 @@ function popup(msg, type) {
  * add items to request cart via ajax
  * product identifier is taken from current page url
  */
-function addToCart() {
+function addToCart(evt) {
+    evt.preventDefault();
     $.post(window.location.pathname,
         {},
         function (data, textStatus) {
             if (data['result'] != 'ok') {
                 popup('Ошибка добавления товара в запрос.', 'error');
             } else {
-                popup('Товар добавлен.', 'success')
+                //popup('Товар добавлен.', 'success');
+                update_cart();
+                $(evt.target).addClass("disabled");
             }
         }).fail(function (err) {
         popup('Ошибка добавления товара в запрос.', 'error');
@@ -84,7 +87,8 @@ function addToCart() {
  * remove items from request cart using ajax
  * product identifier take from 'data-slug' attribute
  */
-function delFromCart() {
+function delFromCart(evt) {
+    evt.preventDefault();
     var self = $(this);
 
     $.ajax({
@@ -103,6 +107,7 @@ function delFromCart() {
                 cp.empty();
                 cp.append('<div class="cart-empty-msg">Список пуст.<br>Добавить товар к запросу можно на странице товара в каталоге.</div>');
             }
+            update_cart();
         },
         error: function (xhr, status, error) {
             popup('Ошибка удаления товара из списка.', 'error');
@@ -178,3 +183,19 @@ function categoryPanelHide() {
     $(this).parents().find('.panel-heading h3').removeClass('active');
 }
 
+/*
+ * update request cart representation (visibility & itmems count)
+ * */
+function update_cart() {
+    var cart = $('.request-basket-btn'),
+        count_elem = cart.find('span:last-of-type');
+
+    $.get('/xhr/cart_count/', function (data) {
+        if (data == 0) {
+            cart.addClass('hidden');
+        } else {
+            cart.removeClass("hidden");
+            count_elem.html("(" + data + ")");
+        }
+    })
+}

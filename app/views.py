@@ -1,6 +1,7 @@
 # coding=utf-8
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import TemplateView, RedirectView, FormView
+from django.core.exceptions import ObjectDoesNotExist
 from app.models import (Category, Product, TopCategory, Partner, Article, Employee, CarouselItem, )
 from django.core.urlresolvers import reverse
 from django.core.paginator import PageNotAnInteger, Paginator, EmptyPage
@@ -8,6 +9,7 @@ from tagging.models import Tag, TaggedItem
 from django.http import JsonResponse
 from app.forms import UserRequestForm
 import json
+from django.http import HttpResponse
 from django.core.mail import send_mail
 from smtplib import SMTPException
 from django.template.loader import render_to_string
@@ -93,20 +95,31 @@ class ProductView(TemplateView):
 
     def post(self, request, *args, **kwargs):
         # add product to cart (list of products for future request)
+        if 'delete_method' in request.POST:  # for non-ajax requests
+            return self.delete(request, *args, **kwargs)
         item = kwargs.get('slug')
         if item:
             if not 'cart' in request.session.keys():
                 request.session['cart'] = {}
             request.session['cart'][item] = None
-        return JsonResponse({'result': 'ok'})
+        if self.request.is_ajax():
+            return JsonResponse({'result': 'ok'})
+        else:
+            return redirect(self.request.path, *args, **kwargs)
 
     def delete(self, request, *args, **kwargs):
         # remove product form cart (list of products for mail request)
         item = kwargs.get('slug')
         if item and 'cart' in request.session.keys():
             request.session['cart'].pop(item)
-            return JsonResponse({'result': 'ok'})
-        return JsonResponse({'result': 'error'})
+            if request.is_ajax():
+                return JsonResponse({'result': 'ok'})
+            else:
+                return redirect('contacts')
+        if request.is_ajax():
+            return JsonResponse({'result': 'error'})
+        else:
+            return redirect('contacts')
 
     @staticmethod
     def get_ordered_images(product):
@@ -115,7 +128,7 @@ class ProductView(TemplateView):
         res = list(product.images.filter(is_default=False))
         try:
             res.insert(0, product.images.get(is_default=True))
-        except product.DoesNotExist:
+        except ObjectDoesNotExist:
             pass
         return res
 
@@ -221,7 +234,7 @@ class ContactsView(FormView):
 
     def hrefs_from_cart(self):
         # extracts list of products from cart, and return them as list of http links (in json format)
-        if not self.request.session['cart']:
+        if not 'cart' in self.request.session:
             return '[]'
         host = self.request.get_host()
         return json.dumps(
@@ -247,3 +260,11 @@ class ContactsView(FormView):
         for k, v in ctx.items():
             res += "{}: {}\n".format(k, v)
         return res
+
+
+def cart_count_request(request):
+    # returns count of items in request cart (ajax only).
+    if not 'cart' in request.session:
+        return HttpResponse("0")
+    else:
+        return HttpResponse(len(request.session['cart']))

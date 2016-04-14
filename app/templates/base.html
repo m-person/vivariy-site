@@ -45,7 +45,11 @@
                             {% if LANGUAGE_CODE == 'ru' %}class="active"{% endif %}>РУС
                     </button>
                 </form>
-
+                <a href="/contacts" class="btn pull-right request-basket-btn {% if not request.session.cart %}hidden{% endif %}">
+                    <span class="glyphicon glyphicon-shopping-cart"></span>
+                    <span>&nbspЗАПРОС</span>
+                    <span>({{ request.session.cart | length }})</span>
+                </a>
             </div>
             <div class="row">
                 <a href="/" class="col-lg-6">

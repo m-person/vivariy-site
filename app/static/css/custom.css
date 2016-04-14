@@ -168,6 +168,29 @@ main {
     color: white;
 }
 
+/* ----------base template: request basket button -----*/
+
+.request-basket-btn {
+        background-color: #414141;
+    color: #74b336;
+    border: 0;
+    font-family: 'Open Sans Condensed', sans-serif;
+    width: 140px;
+    padding-bottom: 2px;
+    padding-top: 1px;
+    border-radius: 0 0 10px 10px;
+    font-size: 18px;
+    margin-right: 4px;
+}
+
+.request-basket-btn:hover {
+    color: white;
+}
+
+.request-basket-btn span:last-of-type {
+    color: greenyellow;
+}
+
 /*----- base template: company logo ------*/
 .header-logo img {
     float: left;
@@ -836,8 +859,10 @@ div.carousel {
 .contacts-page .cart-item-remove-btn {
     position: absolute;
     right: 0;
-    top: 44px;
-    cursor: pointer;
+    top: 34px;
+    font-size: 26px;
+    color: #414141;
+    background-color: transparent;
 }
 
 .contacts-page .cart-item-remove-btn:hover {
@@ -965,6 +990,7 @@ div.carousel {
 .product-container .product-ask-btn {
     background-color: #414141;
     font-family: 'Open Sans Condensed', sans-serif;
+    text-decoration: none;
     color: #74b336;
     font-size: 18px;
     width: 240px;
@@ -1023,3 +1049,12 @@ div.carousel {
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 }
+
+
+/*------- notifications-------*/
+.alert {
+    position: fixed;
+    top: 5px;
+    right: 5px;
+}
+

@@ -80,11 +80,20 @@
                                         </div>
                                         <div class="media-body">
                                             {{ item.categories.all | first }}
-                                            <a href="{% url 'product' product.slug %}">
+                                            <a href="{% url 'product' item.slug %}">
                                                 <h3 class="media-heading">{{ item.title_ru | truncatechars:32 }}</h3>
                                             </a>
-                                    <span class="glyphicon glyphicon-remove-sign cart-item-remove-btn"
-                                          data-slug="{{ item.slug }}"></span>
+                                            <form action="{% url 'product' item.slug %}" method="post">{% csrf_token %}
+                                                <!-- note: we need to use DELETE method, but html forms allow only GET and POST, so we emulate it-->
+                                                <input type="hidden" name="delete_method">
+                                                <button class="btn cart-item-remove-btn" type="submit" data-slug="{{ item.slug }}">
+                                                    <span class="glyphicon glyphicon-remove-sign"></span>
+                                                </button>
+                                            </form>
+                                            {#                                            <a href="#" class="btn cart-item-remove-btn">#}
+                                            {#                                                <span class="glyphicon glyphicon-remove-sign"#}
+                                            {#                                                      data-slug="{{ item.slug }}"></span>#}
+                                            {#                                            </a>#}
                                         </div>
                                     </li>
                                 {% endfor %}

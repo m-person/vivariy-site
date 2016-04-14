@@ -38,7 +38,7 @@
             <div class="product-images col-lg-4">
                 <div>
                     <ul id="product-gallery">
-{#                        {% for image in product.images.all %}#}
+                        {#                        {% for image in product.images.all %}#}
                         {% for image in images %}
                             <li data-thumb="{{ image.image.crop.59x59 }}">
                                 <img src="{{ image.image.crop.300x300 }}" alt="product image">
@@ -86,10 +86,16 @@
 
         <div class="row">
             <div class="pull-right">
-                <button class="btn product-ask-btn">
-                    <span class="glyphicon glyphicon-shopping-cart"></span>
-                    &nbspДОБАВИТЬ В ЗАПРОС
-                </button>
+                <form action="" method="post">{% csrf_token %}
+                    <button class="btn product-ask-btn" type="submit">
+                        <span class="glyphicon glyphicon-shopping-cart"></span>
+                        &nbspДОБАВИТЬ В ЗАПРОС
+                    </button>
+                </form>
+{#                <a href="#" class="btn product-ask-btn">#}
+{#                    <span class="glyphicon glyphicon-shopping-cart"></span>#}
+{#                    &nbspДОБАВИТЬ В ЗАПРОС#}
+{#                </a>#}
             </div>
         </div>
 

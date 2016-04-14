@@ -5,7 +5,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 # from django.conf.urls.i18n import i18n_patterns
 from app.views import (MainView, CatalogView, CategoryView, ProductView, PartnersView, ArticleListView,
-                       ArticleDetailView, ContactsView, RequestSuccess, )
+                       ArticleDetailView, ContactsView, RequestSuccess, cart_count_request)
 
 urlpatterns = [
     url(r'^admin/', include('smuggler.urls')),
@@ -21,6 +21,7 @@ urlpatterns = [
     url(r'^articles/(?P<slug>[-_\w]*)$', ArticleDetailView.as_view(), name='article_details'),
     url(r'^tagging_autocomplete/', include('tagging_autocomplete.urls')),
     url(r'^request_success/', RequestSuccess.as_view(), name='request_success'),
+    url(r'^xhr/cart_count/', cart_count_request),
 ]
 
 # access to uploaded files
