@@ -38,7 +38,8 @@
             <div class="product-images col-lg-4">
                 <div>
                     <ul id="product-gallery">
-                        {% for image in product.images.all %}
+{#                        {% for image in product.images.all %}#}
+                        {% for image in images %}
                             <li data-thumb="{{ image.image.crop.59x59 }}">
                                 <img src="{{ image.image.crop.300x300 }}" alt="product image">
                             </li>
@@ -50,27 +51,34 @@
             <div class="col-lg-8">
                 <!-- short product description  -->
                 <h2>{{ product.title_ru }}</h2>
-                <div class="manufacturer-block">
-                    <p>
-                        Производитель: <a href="{% url 'partners' %}#pt_{{ product.manufacturer.id }}">
-                        {{ product.manufacturer.title }}
-                    </a>
-                    </p>
-                    <p><img src="{{ product.manufacturer.image.thumbnail.200x100 }}" alt="manufacturer logo"></p>
-                </div>
+                {% if product.manufacturer %}
+                    <div class="manufacturer-block">
+                        <p>
+                            Производитель: <a href="{% url 'partners' %}#pt_{{ product.manufacturer.id }}">
+                            {{ product.manufacturer.title }}
+                        </a>
+                        </p>
+                        {% if product.manufacturer.image %}
+                            <p><img src="{{ product.manufacturer.image.thumbnail.200x100 }}" alt="manufacturer logo">
+                            </p>
+                        {% endif %}
+                    </div>
+                {% endif %}
                 {{ product.desc_short_ru | safe }}
                 <!-- end short product description  -->
 
                 <!-- list of  files to download -->
-                <h3>Информационные материалы:</h3>
-                <ul class="doc-files">
-                    {% for doc in docfiles %}
-                        <li>
-                            <span class="glyphicon glyphicon-file"></span>
-                            <a href="/media/{{ doc.file }}">{{ doc.title_ru }}</a>
-                        </li>
-                    {% endfor %}
-                </ul>
+                {% if docfiles %}
+                    <h3>Информационные материалы:</h3>
+                    <ul class="doc-files">
+                        {% for doc in docfiles %}
+                            <li>
+                                <span class="glyphicon glyphicon-file"></span>
+                                <a href="/media/{{ doc.file }}">{{ doc.title_ru }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
                 <!-- end list of  files to download -->
             </div>
 
@@ -90,21 +98,31 @@
             {#        <div>#}
             <!-- Nav tabs -->
             <ul class="nav nav-tabs nav-justified" role="tablist">
-                <li role="presentation" class="active">
-                    <a href="#tab-desc" aria-controls="tab-desc" role="tab" data-toggle="tab">ОПИСАНИЕ</a>
-                </li>
-                <li role="presentation">
-                    <a href="#tab-characteristics" aria-controls="tab-characteristics" role="tab" data-toggle="tab">ХАРАКТЕРИСТИКИ</a>
-                </li>
-                <li role="presentation">
-                    <a href="#tab-options" aria-controls="tab-options" role="tab" data-toggle="tab">ОПЦИИ</a>
-                </li>
-                <li role="presentation">
-                    <a href="#tab-mentions" aria-controls="tab-mentions" role="tab" data-toggle="tab">УПОМИНАНИЯ</a>
-                </li>
-                <li role="presentation">
-                    <a href="#tab-videos" aria-controls="tab-videos" role="tab" data-toggle="tab">ВИДЕО</a>
-                </li>
+                {% if product.desc_full_ru %}
+                    <li role="presentation" class="active">
+                        <a href="#tab-desc" aria-controls="tab-desc" role="tab" data-toggle="tab">ОПИСАНИЕ</a>
+                    </li>
+                {% endif %}
+                {% if product.specifications_ru %}
+                    <li role="presentation">
+                        <a href="#tab-characteristics" aria-controls="tab-characteristics" role="tab" data-toggle="tab">ХАРАКТЕРИСТИКИ</a>
+                    </li>
+                {% endif %}
+                {% if product.options_ru %}
+                    <li role="presentation">
+                        <a href="#tab-options" aria-controls="tab-options" role="tab" data-toggle="tab">ОПЦИИ</a>
+                    </li>
+                {% endif %}
+                {% if product.mentions_ru %}
+                    <li role="presentation">
+                        <a href="#tab-mentions" aria-controls="tab-mentions" role="tab" data-toggle="tab">УПОМИНАНИЯ</a>
+                    </li>
+                {% endif %}
+                {% if videos %}
+                    <li role="presentation">
+                        <a href="#tab-videos" aria-controls="tab-videos" role="tab" data-toggle="tab">ВИДЕО</a>
+                    </li>
+                {% endif %}
             </ul>
 
             <!-- Tab panes -->

@@ -41,7 +41,7 @@ class MainView(TemplateView):
         ctx['top_categories'] = TopCategory.objects.filter(is_hidden=False)
         ctx['articles'] = Article.objects.filter(is_hidden=False).order_by('-date')[:3]
         ctx['slides'] = CarouselItem.objects.filter(is_hidden=False)
-        ctx['slide_initial'] = randint(0,ctx['slides'].count()-1)
+        ctx['slide_initial'] = randint(0, ctx['slides'].count() - 1)
         return ctx
 
 
@@ -84,10 +84,11 @@ class ProductView(TemplateView):
         ctx = super(ProductView, self).get_context_data(**kwargs)
         ctx['menuitem'] = 'catalog'
         product = get_object_or_404(Product, slug=kwargs['slug'])
-        ctx['top_category'] = product.categories.all()[0].parent_category
+        ctx['top_category'] = product.categories.all()[0].parent_category.all()[0]
         ctx['docfiles'] = product.doc_files.filter(is_hidden=False)
         ctx['videos'] = product.videos.filter(is_hidden=False)
         ctx['product'] = product
+        ctx['images'] = self.get_ordered_images(product)
         return ctx
 
     def post(self, request, *args, **kwargs):
@@ -106,6 +107,17 @@ class ProductView(TemplateView):
             request.session['cart'].pop(item)
             return JsonResponse({'result': 'ok'})
         return JsonResponse({'result': 'error'})
+
+    @staticmethod
+    def get_ordered_images(product):
+        # returns list of product images with default image at first place
+        assert isinstance(product, Product)
+        res = list(product.images.filter(is_default=False))
+        try:
+            res.insert(0, product.images.get(is_default=True))
+        except product.DoesNotExist:
+            pass
+        return res
 
 
 class PartnersView(TemplateView):
