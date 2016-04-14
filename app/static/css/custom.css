@@ -924,3 +924,96 @@ div.carousel {
     font-size: 16px;
     margin-top: 40px;
 }
+
+/*------- product page ----------*/
+.product-container .lSSlideWrapper {
+    margin-bottom: 1px;
+}
+
+.product-container .breadcrumbs {
+    margin-right: -5px;
+    margin-bottom: 40px;
+}
+
+.product-container h2 {
+    margin-top: 0;
+    margin-bottom: 40px;
+    text-align: left;
+}
+
+.product-container .manufacturer-block {
+    margin-bottom: 40px;
+}
+
+.product-container a {
+    text-decoration: underline;
+    color: #74b336;
+}
+
+.product-container .doc-files {
+    list-style-type: none;
+    padding: 0;
+    margin-left: 20px;
+}
+
+.product-container .product-ask-btn {
+    background-color: #414141;
+    font-family: 'Open Sans Condensed', sans-serif;
+    color: #74b336;
+    font-size: 18px;
+    width: 240px;
+    border-radius: 20px;
+    margin: 15px 10px 50px auto;
+}
+
+.product-container .product-ask-btn:hover {
+    background-color: #74b336;
+    color: white;
+}
+
+.product-container .tabs-container {
+    margin-bottom: 50px;
+}
+
+.product-container .tab-content {
+    padding: 25px 15px;
+    background-color: #e5e5e5;
+}
+
+/**/
+.product-container .nav-tabs.nav-justified {
+    border-collapse: separate;
+    border-spacing: 10px 0;
+}
+
+.product-container .nav-tabs > li > a {
+    font-family: 'Open Sans Condensed', sans-serif;
+    text-decoration: none;
+}
+
+.product-container .nav-tabs > li {
+    background-color: #414141;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.product-container .nav-tabs > li.active > a,
+.product-container .nav-tabs > li.active > a:focus,
+.product-container .nav-tabs > li.active > a:hover {
+    background-color: #e5e5e5;
+    color: #414141;
+    border-top-right-radius: 9px;
+    border-top-left-radius: 9px;
+    border-bottom-color: #e5e5e5;
+}
+
+.product-container .nav-tabs > li > a {
+    color: #74b336;
+}
+
+.product-container .tab-content {
+    margin-right: 10px;
+    margin-left: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}

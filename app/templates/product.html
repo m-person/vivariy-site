@@ -19,109 +19,112 @@
 
 
 {% block content %}
-    <!-- breadcrumbs -->
-    <div class="row breadcrumbs">
-        <div class="pull-right">
-            <span><a href="/">Главная</a></span> |
-            <span><a href="/catalog">Каталог</a></span> |
+    <div class="container product-container">
+        <!-- breadcrumbs -->
+        <div class="row breadcrumbs">
+            <div class="pull-right">
+                <span><a href="/">Главная</a></span> |
+                <span><a href="/catalog">Каталог</a></span> |
             <span><a
                     href="{% url 'category' top_category.slug %}">{{ top_category.title_ru | lower | capfirst }}</a></span>
-            |
-            <span>{{ product.title_ru | lower | capfirst }}</span>
-        </div>
-    </div>
-
-    <div class="row product-container">
-
-        <!-- images gallery -->
-        <div class="product-images col-lg-4">
-            <div>
-                <ul id="product-gallery">
-                    {% for image in product.images.all %}
-                        <li data-thumb="{{ image.image.crop.59x59 }}">
-                            <img src="{{ image.image.crop.300x300 }}" alt="product image">
-                        </li>
-                    {% endfor %}
-                </ul>
+                |
+                <span>{{ product.title_ru | lower | capfirst }}</span>
             </div>
-        </div><!-- end images gallery -->
-
-        <div class="col-lg-8">
-            <!-- short product description  -->
-            <h2>{{ product.title_ru }}</h2>
-            <p>
-                Производитель: <a href="{% url 'partners' %}#pt_{{ product.manufacturer.id }}">
-                {{ product.manufacturer.title }}
-            </a>
-            </p>
-            <p><img src="{{ product.manufacturer.image.thumbnail.200x100 }}" alt="manufacturer logo"></p>
-
-            {{ product.desc_short_ru | safe }}
-            <!-- end short product description  -->
-
-            <!-- list of  files to download -->
-            <h3>Скачать:</h3>
-            <ul class="doc_files">
-                {% for doc in docfiles %}
-                    <li>
-                        <span class="glyphicon glyphicon-file"></span>
-                        <a href="/media/{{ doc.file }}">{{ doc.title_ru }}</a>
-                    </li>
-                {% endfor %}
-            </ul>
-            <!-- end list of  files to download -->
         </div>
 
-    </div>
+        <div class="row">
 
-    <div class="row">
-        <div class="pull-right">
-            <button class="btn product-ask-btn">
-                <span class="glyphicon glyphicon-shopping-cart"></span>
-                &nbspДОБАВИТЬ В ЗАПРОС
-            </button>
-        </div>
-    </div>
+            <!-- images gallery -->
+            <div class="product-images col-lg-4">
+                <div>
+                    <ul id="product-gallery">
+                        {% for image in product.images.all %}
+                            <li data-thumb="{{ image.image.crop.59x59 }}">
+                                <img src="{{ image.image.crop.300x300 }}" alt="product image">
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div><!-- end images gallery -->
 
-    <!-- tabs with with additional product info -->
-    <div class="row product-container">
-        {#        <div>#}
-        <!-- Nav tabs -->
-        <ul class="nav nav-tabs nav-justified" role="tablist">
-            <li role="presentation" class="active">
-                <a href="#tab-desc" aria-controls="tab-desc" role="tab" data-toggle="tab">ОПИСАНИЕ</a>
-            </li>
-            <li role="presentation">
-                <a href="#tab-characteristics" aria-controls="tab-characteristics" role="tab" data-toggle="tab">ХАРАКТЕРИСТИКИ</a>
-            </li>
-            <li role="presentation">
-                <a href="#tab-options" aria-controls="tab-options" role="tab" data-toggle="tab">ОПЦИИ</a>
-            </li>
-            <li role="presentation">
-                <a href="#tab-mentions" aria-controls="tab-mentions" role="tab" data-toggle="tab">УПОМИНАНИЯ</a>
-            </li>
-            <li role="presentation">
-                <a href="#tab-videos" aria-controls="tab-videos" role="tab" data-toggle="tab">ВИДЕО</a>
-            </li>
-        </ul>
+            <div class="col-lg-8">
+                <!-- short product description  -->
+                <h2>{{ product.title_ru }}</h2>
+                <div class="manufacturer-block">
+                    <p>
+                        Производитель: <a href="{% url 'partners' %}#pt_{{ product.manufacturer.id }}">
+                        {{ product.manufacturer.title }}
+                    </a>
+                    </p>
+                    <p><img src="{{ product.manufacturer.image.thumbnail.200x100 }}" alt="manufacturer logo"></p>
+                </div>
+                {{ product.desc_short_ru | safe }}
+                <!-- end short product description  -->
 
-        <!-- Tab panes -->
-        <div class="tab-content">
-            <div role="tabpanel" class="tab-pane active" id="tab-desc">{{ product.desc_full_ru | safe }}</div>
-            <div role="tabpanel" class="tab-pane" id="tab-characteristics">{{ product.specifications_ru | safe }}</div>
-            <div role="tabpanel" class="tab-pane" id="tab-options">{{ product.options_ru | safe }}</div>
-            <div role="tabpanel" class="tab-pane" id="tab-mentions">{{ product.mentions_ru | safe }}</div>
-            <div role="tabpanel" class="tab-pane" id="tab-videos">
-                <ul>
-                    {% for video in videos %}
+                <!-- list of  files to download -->
+                <h3>Информационные материалы:</h3>
+                <ul class="doc-files">
+                    {% for doc in docfiles %}
                         <li>
-                            <h4>{{ video.title_ru }}</h4>
-                            {{ video.video | safe }}
+                            <span class="glyphicon glyphicon-file"></span>
+                            <a href="/media/{{ doc.file }}">{{ doc.title_ru }}</a>
                         </li>
                     {% endfor %}
                 </ul>
+                <!-- end list of  files to download -->
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="pull-right">
+                <button class="btn product-ask-btn">
+                    <span class="glyphicon glyphicon-shopping-cart"></span>
+                    &nbspДОБАВИТЬ В ЗАПРОС
+                </button>
             </div>
         </div>
-    </div><!-- end tabs with with additional product info -->
 
+        <!-- tabs with with additional product info -->
+        <div class="row tabs-container">
+            {#        <div>#}
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+                <li role="presentation" class="active">
+                    <a href="#tab-desc" aria-controls="tab-desc" role="tab" data-toggle="tab">ОПИСАНИЕ</a>
+                </li>
+                <li role="presentation">
+                    <a href="#tab-characteristics" aria-controls="tab-characteristics" role="tab" data-toggle="tab">ХАРАКТЕРИСТИКИ</a>
+                </li>
+                <li role="presentation">
+                    <a href="#tab-options" aria-controls="tab-options" role="tab" data-toggle="tab">ОПЦИИ</a>
+                </li>
+                <li role="presentation">
+                    <a href="#tab-mentions" aria-controls="tab-mentions" role="tab" data-toggle="tab">УПОМИНАНИЯ</a>
+                </li>
+                <li role="presentation">
+                    <a href="#tab-videos" aria-controls="tab-videos" role="tab" data-toggle="tab">ВИДЕО</a>
+                </li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="tab-desc">{{ product.desc_full_ru | safe }}</div>
+                <div role="tabpanel" class="tab-pane"
+                     id="tab-characteristics">{{ product.specifications_ru | safe }}</div>
+                <div role="tabpanel" class="tab-pane" id="tab-options">{{ product.options_ru | safe }}</div>
+                <div role="tabpanel" class="tab-pane" id="tab-mentions">{{ product.mentions_ru | safe }}</div>
+                <div role="tabpanel" class="tab-pane" id="tab-videos">
+                    <ul class="list-unstyled">
+                        {% for video in videos %}
+                            <li>
+                                <h3>{{ video.title_ru }}</h3>
+                                {{ video.video | safe }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div><!-- end tabs with with additional product info -->
+    </div>
 {% endblock %}
