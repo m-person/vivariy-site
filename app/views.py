@@ -147,7 +147,7 @@ class ArticleListView(TemplateView):
     template_name = 'article-list.html'
 
     def get_context_data(self, **kwargs):
-        items_on_page = 2  # todo: change it after debug
+        items_on_page = 10
         ctx = super(ArticleListView, self).get_context_data(**kwargs)
         ctx['menuitem'] = 'articles'
         ctx['tags'] = Tag.objects.all()
@@ -165,12 +165,13 @@ class ArticleListView(TemplateView):
         if tag:
             try:
                 curr_tag = Tag.objects.get(name=tag)
-                paginator = MyPaginator(TaggedItem.objects.get_by_model(Article, curr_tag).filter(is_hidden=False),
-                                        items_on_page)
+                paginator = MyPaginator(
+                    TaggedItem.objects.get_by_model(Article, curr_tag).filter(is_hidden=False).order_by('-date'),
+                    items_on_page)
             except Tag.DoesNotExist:
-                paginator = MyPaginator(Article.objects.filter(is_hidden=False), items_on_page)
+                paginator = MyPaginator(Article.objects.filter(is_hidden=False).order_by('-date'), items_on_page)
         else:
-            paginator = MyPaginator(Article.objects.filter(is_hidden=False), items_on_page)
+            paginator = MyPaginator(Article.objects.filter(is_hidden=False).order_by('-date'), items_on_page)
 
         try:
             ctx['articles'] = paginator.page(page)

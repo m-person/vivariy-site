@@ -679,6 +679,10 @@ div.carousel {
     font-size: 16px;
 }
 
+.article-list .media:last-of-type {
+    margin-bottom: 60px;
+}
+
 /*------- article details page -----------*/
 .article-details .aside-bkg {
     width: 15%;
