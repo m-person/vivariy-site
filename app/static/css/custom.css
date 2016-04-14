@@ -725,10 +725,15 @@ div.carousel {
 }
 
 .partners-list .partner-item {
-    border-top: solid #e5e5e5 1px;
-    border-bottom: solid #e5e5e5 1px;
-    margin-bottom: 30px;
-    padding: 5px;
+    /*border-top: solid #e5e5e5 1px;*/
+    /*border-bottom: solid #e5e5e5 1px;*/
+    /*margin-bottom: 30px;*/
+    /*padding: 5px;*/
+
+    background-color: #e5e5e5;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    padding: 10px;
 }
 
 .partners-list h4.media-heading {
@@ -736,11 +741,12 @@ div.carousel {
 }
 
 .partners-list .logo-wrapper {
-    border: solid 1px #414141;
+    /*border: solid 1px #414141;*/
     height: 102px;
     width: 202px;
     position: relative;
-    margin-right: 8px;
+    /*background-color: white;*/
+    /*margin-right: 8px;*/
 }
 
 .partners-list img {
