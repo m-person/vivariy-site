@@ -50,7 +50,7 @@ body {
     font-size: 20px;
     line-height: 24px;
     color: #414141;
-    max-width: 1300px;
+    max-width: 1920px;
 }
 
 .container {
@@ -482,7 +482,7 @@ div.carousel {
 /*------- catalog category page: left menu ----------*/
 
 .catalog-container .aside-bkg {
-    width: 20%
+    /*width: 20%*/
 }
 
 .catalog-aside {
@@ -577,7 +577,7 @@ div.carousel {
 }
 
 .article-list .aside-bkg {
-    width: 15%;
+    /*width: 15%;*/
     right: 0;
 }
 
@@ -685,7 +685,7 @@ div.carousel {
 
 /*------- article details page -----------*/
 .article-details .aside-bkg {
-    width: 15%;
+    /*width: 15%;*/
     right: 0;
 }
 
@@ -796,7 +796,7 @@ div.carousel {
 /*--------- contacts page: contacts block ----------*/
 
 .contacts-page .aside-bkg {
-    width: 20%;
+    /*width: 48%;*/
     left: 0;
 }
 

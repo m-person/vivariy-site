@@ -34,7 +34,9 @@ $(document).ready(
 
         var catalogCategoryPanel = $('.catalog-category .panel');
         setMainBlockHeight();
+        setSideBkgWidth();
         $(window).resize(setMainBlockHeight);
+        $(window).resize(setSideBkgWidth);
         catalogCategoryPanel.on('shown.bs.collapse', updateMainChildrenHeight);
         catalogCategoryPanel.on('show.bs.collapse', categoryPanelShow);
         catalogCategoryPanel.on('hide.bs.collapse', categoryPanelHide);
@@ -172,6 +174,35 @@ function updateMainChildrenHeight() {
     $('.article-tags-panel').height(height);
     $('.contacts-page div.contacts').height(height);
 }
+
+/*
+ * set width for side background element '.aside-bkg' (it fills empty space on some pages)
+ */
+function setSideBkgWidth() {
+    var bkg = $('.aside-bkg');
+    if (!bkg.length) {
+        return
+    }
+    if (window.innerWidth < 1200) {
+        bkg.width(0); // we need a side background only on wide screens
+        return;
+    }
+
+    if (location.pathname.indexOf('/catalog/') >= 0) {
+        var catalog_menu = $('.catalog-aside');
+        bkg.width(catalog_menu.offset().left + 10);
+    }
+
+    if (location.pathname.indexOf('/articles/') >= 0) {
+        var side_menu = $('.article-tags-panel');
+        bkg.width(window.innerWidth - side_menu.offset().left - 40);
+    }
+
+    if (location.pathname.indexOf('/contacts/') >= 0) {
+        bkg.width(window.innerWidth / 2 - 20);
+    }
+}
+
 
 function categoryPanelShow() {
     $(this).parents().find('.panel-heading h3').removeClass('active');
