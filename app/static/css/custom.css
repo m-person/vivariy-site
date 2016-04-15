@@ -39,7 +39,7 @@
 /*}*/
 
 /*---- base template ----*/
-div { /* todo: dbg*/
+div,ul,li { /* todo: dbg*/
     /*border: solid yellow 1px;*/
 }
 
@@ -860,13 +860,18 @@ div.carousel {
     margin-bottom: 5px;
 }
 
+.contacts-page li.cart-item {
+    margin: 0;
+}
+
 .contacts-page .cart-item-remove-btn {
     position: absolute;
     right: 0;
-    top: 34px;
+    top: 38px;
     font-size: 26px;
     color: #414141;
     background-color: transparent;
+    padding: 0;
 }
 
 .contacts-page .cart-item-remove-btn:hover {
@@ -958,6 +963,10 @@ div.carousel {
     text-align: center;
     font-size: 16px;
     margin-top: 40px;
+}
+
+.contacts-page .request-form form {
+    padding: 0;
 }
 
 /*------- product page ----------*/
