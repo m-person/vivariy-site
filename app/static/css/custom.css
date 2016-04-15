@@ -855,6 +855,7 @@ div.carousel {
 
 .contacts-page .request-form ul {
     padding: 0;
+    margin-bottom: 40px;
 }
 
 .contacts-page .request-form h2 {
@@ -889,9 +890,9 @@ div.carousel {
     text-decoration: none;
 }
 
-.contacts-page .request-form form h3 {
+.contacts-page .basket-list>h3 {
     font-size: 30px;
-    margin-top: 70px;
+    margin-top: 30px;
 }
 
 .contacts-page .request-form form {

@@ -63,9 +63,10 @@
                     </div>
                 </div><!-- end breadcrumbs -->
 
-                <h2>КОРЗИНА</h2>
+                <h2>ОТПРАВИТЬ ЗАПРОС</h2>
 
                 <div class="basket-list">
+                    <h3>ЗАПРОСИТЬ СТОИМОСТЬ:</h3>
                     <div class="cart-placeholder">
                         {% if cart %}
                             <ul>
@@ -86,7 +87,8 @@
                                             <form action="{% url 'product' item.slug %}" method="post">{% csrf_token %}
                                                 <!-- note: we emulate DELETE method, because html forms allow only GET and POST-->
                                                 <input type="hidden" name="delete_method">
-                                                <button class="btn cart-item-remove-btn" type="submit" data-slug="{{ item.slug }}">
+                                                <button class="btn cart-item-remove-btn" type="submit"
+                                                        data-slug="{{ item.slug }}">
                                                     <span class="glyphicon glyphicon-remove-sign"></span>
                                                 </button>
                                             </form>
@@ -103,7 +105,7 @@
                 </div>
 
                 <form action="" method="post">{% csrf_token %}
-                    <h3>ЗАПРОСИТЬ СТОИМОСТЬ</h3>
+                    {#                    <h3>ЗАПРОСИТЬ СТОИМОСТЬ</h3>#}
                     {{ form.as_ul }}
                     <input type="submit" class="btn" value="ОТПРАВИТЬ">
                     <div class="request-form-desc"> * - Поля, отмеченные звездочкой, обязательные для заполнения</div>
