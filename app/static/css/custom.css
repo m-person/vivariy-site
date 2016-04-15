@@ -39,7 +39,7 @@
 /*}*/
 
 /*---- base template ----*/
-div,ul,li { /* todo: dbg*/
+div, ul, li { /* todo: dbg*/
     /*border: solid yellow 1px;*/
 }
 
@@ -115,6 +115,8 @@ main {
     padding: 20px 0;
 }
 
+.main-menu > li > a:active,
+.main-menu > li > a:focus,
 .main-menu > li > a:hover {
     background-color: #414141;
     color: #74b336;
@@ -171,7 +173,7 @@ main {
 /* ----------base template: request basket button -----*/
 
 .request-basket-btn {
-        background-color: #414141;
+    background-color: #414141;
     color: #74b336;
     border: 0;
     font-family: 'Open Sans Condensed', sans-serif;
@@ -1062,7 +1064,6 @@ div.carousel {
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 }
-
 
 /*------- notifications-------*/
 .alert {
