@@ -1,8 +1,8 @@
 # vivariy-site project
 web:
   build: .
-#  volumes:
-#    - /mnt/hlam/__www__/vivariy_site/app/media:/www/app/media
+  volumes:
+    - /mnt/hlam/__www__/vivariy_site/app/media:/www/app/media
   ports:
     - "8003:80"
   links:

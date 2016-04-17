@@ -112,7 +112,7 @@ assets/
 bower_components/
 junk/
 db.sqlite3
-db_dump.json
+*dump*json
 howto.txt
 questions.txt
 deploy/prod_settings.py
