@@ -123,8 +123,8 @@ class UserAdmin(BaseUserAdmin):
 
 
 class CarouselItemAdmin(admin.ModelAdmin):
-    fields = ('title', 'desc', 'url', 'image', 'is_hidden')
-    list_display = ('title', )
+    fields = ('title', 'order_position', 'desc', 'url', 'image', 'is_hidden')
+    list_display = ('title', 'order_position',)
     save_on_top = True
     change_list_template = 'smuggler/change_list.html'
 

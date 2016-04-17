@@ -147,14 +147,17 @@ class Product(models.Model):
     categories = models.ManyToManyField('Category', help_text=_('Subcategories containing this product'))
     desc_short_ru = RichTextField(_('Short description (ru)'), max_length=4096, default='', blank=True, null=True,
                                   help_text=_('Short device description in russian (4096 symbols max)'))
-    desc_full_ru = RichTextUploadingField(_('Full description (ru)'), max_length=10240, default='', blank=True, null=True,
-                                 help_text=_('Full device description in russian (10240 symbols max)'))
-    specifications_ru = RichTextUploadingField(_('Specifications (ru)'), max_length=10240, default='', blank=True, null=True,
-                                      help_text=_('Technical characteristics in russian (10240 symbols max)'))
+    desc_full_ru = RichTextUploadingField(_('Full description (ru)'), max_length=10240, default='', blank=True,
+                                          null=True,
+                                          help_text=_('Full device description in russian (10240 symbols max)'))
+    specifications_ru = RichTextUploadingField(_('Specifications (ru)'), max_length=10240, default='', blank=True,
+                                               null=True,
+                                               help_text=_('Technical characteristics in russian (10240 symbols max)'))
     options_ru = RichTextUploadingField(_('Options (ru)'), max_length=4096, default='', blank=True, null=True,
-                               help_text=_('Delivery options in russian (4096 symbols max)'))
+                                        help_text=_('Delivery options in russian (4096 symbols max)'))
     mentions_ru = RichTextUploadingField(_('Mentions (ru)'), max_length=4096, default='', blank=True, null=True,
-                                help_text=_('Links to researches using this device in russian (4096 symbols max)'))
+                                         help_text=_(
+                                             'Links to researches using this device in russian (4096 symbols max)'))
 
     def __str__(self):
         return self.title_ru
@@ -210,7 +213,7 @@ class Article(models.Model):
     cut_ru = models.CharField(_('Cut text (ru)'), default='', max_length=4096,
                               help_text=_('Truncated article (in russian)'))
     text_ru = RichTextUploadingField(_('Article text (ru)'), default='', null=True,
-                            help_text=(_('Full article text (in russian)')))
+                                     help_text=(_('Full article text (in russian)')))
     date = models.DateTimeField(_('Date'), default=timezone.now, help_text=_('Article creation date'))
     is_hidden = models.BooleanField(_('Don`t show it on site'), default=False)
     source_url = models.URLField(_('Link to source'), max_length=1024, help_text=_('Source url'))
@@ -266,6 +269,8 @@ class CarouselItem(models.Model):
     width = models.PositiveIntegerField(_('Image widht'), blank=True, null=True)
     height = models.PositiveIntegerField(_('Image height'), blank=True, null=True)
     ppoi = PPOIField(_('Image point of interest'), help_text=_('Select center point for cropped (resized) image'))
+    order_position = models.SmallIntegerField(_('Ordering position'), default=0,
+                                              help_text=_('Serial number in list of slides'))
 
     def __str__(self):
         return self.title
