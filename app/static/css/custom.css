@@ -39,10 +39,6 @@
 /*}*/
 
 /*---- base template ----*/
-div, ul, li { /* todo: dbg*/
-    /*border: solid yellow 1px;*/
-}
-
 html,
 body {
     font-family: 'PT Sans', sans-serif;
@@ -145,7 +141,7 @@ main {
 /* ---------- base template: header-language switcher ---------*/
 
 .lang_form {
-    margin-right: 15px;
+    /*margin-right: 15px;*/
 }
 
 .lang_form button {
@@ -493,6 +489,7 @@ div.carousel {
     text-transform: uppercase;
     color: #414141;
     padding-left: 0;
+    /*height: 100%;*/
 }
 
 .catalog-aside > ul {
@@ -890,7 +887,7 @@ div.carousel {
     text-decoration: none;
 }
 
-.contacts-page .basket-list>h3 {
+.contacts-page .basket-list > h3 {
     font-size: 30px;
     margin-top: 30px;
 }
@@ -1074,3 +1071,228 @@ div.carousel {
     right: 5px;
 }
 
+/*------todo: debug only, get rid in production -------*/
+/*.row, .container {*/
+/*border: solid black 1px;*/
+/*}*/
+
+/**[class*=' col-'], *[class^='col-'] {*/
+/*border: solid red 1px;*/
+/*}*/
+
+/*--------- adjust for smaller screen sizes ---------*/
+@media (max-width: 1200px) {
+    .search_form input[type="text"] {
+        width: 280px;
+    }
+
+}
+
+@media (max-width: 992px) {
+    .container {
+        width: 100%;
+    }
+
+    .breadcrumbs {
+        visibility: hidden;
+    }
+
+    .search_form input[type="text"] {
+        width: 70%;
+    }
+
+    .carousel-bkg {
+        height: 480px;
+    }
+
+    .catalog-category .panel-heading h3,
+    .catalog-category .list-group-item h3 {
+        font-size: 18px;
+    }
+
+    .article-tags-panel ul {
+        margin: 20px;
+    }
+
+    .article-tags-panel li {
+        padding: 10px;
+        display: inline;
+    }
+
+    .partners-list .media {
+        margin-right: 15px;
+        margin-left: 15px;
+    }
+
+    .contacts-page .contacts img {
+        /*width: 100%;*/
+    }
+
+}
+
+@media (max-width: 768px) {
+    html,
+    body {
+        font-size: 16px;
+        line-height: normal;
+    }
+
+    h1 {
+        font-size: 36px;
+    }
+
+    h2 {
+        font-size: 28px;
+        text-align: center;
+    }
+
+    h3 {
+        font-size: 24px;
+    }
+
+    h4 {
+        font-size: 20px;
+    }
+
+    .main-menu {
+        height: auto;
+    }
+
+    .main-menu li {
+        padding: 0 !important;
+        text-align: left;
+    }
+
+    .main-menu li a {
+        padding: 5px;
+    }
+
+    .main-menu span {
+        height: 30px;
+    }
+
+    .header-logo div:nth-of-type(1) {
+        font-size: 22px;
+    }
+
+    .search_form {
+        margin: 0;
+    }
+
+    .search_form > div {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+    .search_form input[type="text"] {
+        width: 180px;
+    }
+
+    .search_form input[type="submit"] {
+        width: 80px;
+    }
+
+    .carousel-bkg {
+        display: none;
+    }
+
+    footer {
+        text-align: center;
+    }
+
+    footer .row > div {
+        padding-top: 20px;
+    }
+
+    footer .studio-logo {
+        text-align: center;
+        padding: 0;
+    }
+
+    footer .contacts div:nth-of-type(2) {
+        text-indent: 82px;
+    }
+
+    .main-catalog-item-container {
+        margin: 10px auto;
+    }
+
+    .main-catalog-item {
+        padding: 0;
+    }
+
+    .about-us {
+        height: auto;
+        padding-bottom: 20px;
+    }
+
+    .main-article {
+        padding: 0;
+    }
+
+    .main-article-item {
+        margin: 10px auto;
+    }
+
+    .catalog-aside {
+        text-align: left;
+    }
+
+    .catalog-aside h4 {
+        margin: 5px;
+    }
+
+    .catalog-category .media-left {
+        display: none;
+    }
+
+    .catalog-category .media-heading {
+        font-size: 18px;
+    }
+
+    .catalog-category .panel-collapse .list-group-item h3 {
+        margin-top: 10px;
+    }
+
+    .catalog-category .panel-collapse .list-group-item {
+        height: 160px;
+    }
+
+    .article-list h2 {
+        text-align: center;
+    }
+
+    .article-list .media-left {
+        display: none;
+    }
+
+    .article-details h2 {
+        font-size: 22px;
+    }
+
+    .partners-list .media-left {
+        display: none;
+    }
+
+    .contacts-page .vcard .tel:nth-of-type(1),
+    .contacts-page .vcard .tel:nth-of-type(2) {
+        text-indent: 38px;
+    }
+
+    .contacts-page .vcard .local-emails .email:last-of-type {
+        text-indent: 52px;
+    }
+
+    .request-form .basket-list > h3 {
+        /*font-size: 20px;*/
+    }
+
+    .request-form h3 {
+        font-size: 20px !important;
+    }
+
+    #id_captcha_0 {
+        margin: 0;
+        width: 40px;
+    }
+}

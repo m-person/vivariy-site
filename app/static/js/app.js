@@ -167,12 +167,26 @@ function setMainBlockHeight() {
  * call it every time the "main" block height changed
  */
 function updateMainChildrenHeight() {
-    var height = $('main').height();
+    var height = $('main').height(),
+        article_tags_panel = $('.article-tags-panel'),
+        contacts_div = $('.contacts-page div.contacts');
 
-    $('.aside-bkg').height(height);
-    $('.catalog-aside').height(height);
-    $('.article-tags-panel').height(height);
-    $('.contacts-page div.contacts').height(height);
+    if ($(window).width() >= 992) {
+        contacts_div.height(height);
+        $('.aside-bkg').height(height);
+        article_tags_panel.height(height);
+    } else {
+        $('.aside-bkg').height(0);
+        if (article_tags_panel.length) {
+            article_tags_panel.height(article_tags_panel.find('ul')[0].scrollHeight + 40);
+        }
+        if (contacts_div.length) {
+            contacts_div.height(contacts_div.find('div')[0].scrollHeight + 60);
+        }
+    }
+    if ($(window).width() >= 768) {
+        $('.catalog-aside').height(height);
+    }
 }
 
 /*
@@ -183,7 +197,7 @@ function setSideBkgWidth() {
     if (!bkg.length) {
         return
     }
-    if (window.innerWidth < 1200) {
+    if ($(window).width() < 992) {
         bkg.width(0); // we need a side background only on wide screens
         return;
     }
