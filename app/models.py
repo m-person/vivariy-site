@@ -3,6 +3,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.utils import timezone
 from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 from versatileimagefield.fields import (VersatileImageField, PPOIField, )
 from tagging_autocomplete.models import TagAutocompleteField
 from django.contrib.auth.models import User
@@ -146,13 +147,13 @@ class Product(models.Model):
     categories = models.ManyToManyField('Category', help_text=_('Subcategories containing this product'))
     desc_short_ru = RichTextField(_('Short description (ru)'), max_length=4096, default='', blank=True, null=True,
                                   help_text=_('Short device description in russian (4096 symbols max)'))
-    desc_full_ru = RichTextField(_('Full description (ru)'), max_length=10240, default='', blank=True, null=True,
+    desc_full_ru = RichTextUploadingField(_('Full description (ru)'), max_length=10240, default='', blank=True, null=True,
                                  help_text=_('Full device description in russian (10240 symbols max)'))
-    specifications_ru = RichTextField(_('Specifications (ru)'), max_length=10240, default='', blank=True, null=True,
+    specifications_ru = RichTextUploadingField(_('Specifications (ru)'), max_length=10240, default='', blank=True, null=True,
                                       help_text=_('Technical characteristics in russian (10240 symbols max)'))
-    options_ru = RichTextField(_('Options (ru)'), max_length=4096, default='', blank=True, null=True,
+    options_ru = RichTextUploadingField(_('Options (ru)'), max_length=4096, default='', blank=True, null=True,
                                help_text=_('Delivery options in russian (4096 symbols max)'))
-    mentions_ru = RichTextField(_('Mentions (ru)'), max_length=4096, default='', blank=True, null=True,
+    mentions_ru = RichTextUploadingField(_('Mentions (ru)'), max_length=4096, default='', blank=True, null=True,
                                 help_text=_('Links to researches using this device in russian (4096 symbols max)'))
 
     def __str__(self):
@@ -208,7 +209,7 @@ class Article(models.Model):
                             help_text=_('URL representation (a..z, 0..9 and "-" symbols only)'))
     cut_ru = models.CharField(_('Cut text (ru)'), default='', max_length=4096,
                               help_text=_('Truncated article (in russian)'))
-    text_ru = RichTextField(_('Article text (ru)'), default='', null=True,
+    text_ru = RichTextUploadingField(_('Article text (ru)'), default='', null=True,
                             help_text=(_('Full article text (in russian)')))
     date = models.DateTimeField(_('Date'), default=timezone.now, help_text=_('Article creation date'))
     is_hidden = models.BooleanField(_('Don`t show it on site'), default=False)

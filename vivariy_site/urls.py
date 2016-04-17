@@ -10,6 +10,7 @@ from app.views import (MainView, CatalogView, CategoryView, ProductView, Partner
 urlpatterns = [
     url(r'^admin/', include('smuggler.urls')),
     url(r'^admin/', admin.site.urls),
+    url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^$', MainView.as_view(), name='main'),
     url(r'^catalog/$', CatalogView.as_view(), name='catalog'),
     url(r'^catalog/(?P<slug>[-_\w]*)$', CategoryView.as_view(), name='category'),

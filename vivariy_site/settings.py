@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'app',
     'debug_toolbar',
     'ckeditor',
+    'ckeditor_uploader',
     'versatileimagefield',
     'tagging',
     'tagging_autocomplete',
@@ -138,6 +139,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'app', 'media')
 
 MEDIA_URL = '/media/'
 
+# ckeditor file uploader
+CKEDITOR_UPLOAD_PATH = 'ck_uploads/'
+CKEDITOR_IMAGE_BACKEND = 'pillow'
 
 LOCALE_PATHS = [os.path.join(BASE_DIR, 'app', 'locale')]
 
