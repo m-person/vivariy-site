@@ -181,7 +181,7 @@ function updateMainChildrenHeight() {
     } else {
         $('.aside-bkg').height(0);
         if (article_tags_panel.length) {
-            article_tags_panel.height(article_tags_panel.find('ul')[0].scrollHeight + 40);
+            article_tags_panel.height(article_tags_panel.find('div')[0].scrollHeight + 300);
         }
         if (contacts_div.length) {
             contacts_div.height(contacts_div.find('div')[0].scrollHeight + 60);

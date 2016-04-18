@@ -216,7 +216,7 @@ class Article(models.Model):
                                      help_text=(_('Full article text (in russian)')))
     date = models.DateTimeField(_('Date'), default=timezone.now, help_text=_('Article creation date'))
     is_hidden = models.BooleanField(_('Don`t show it on site'), default=False)
-    source_url = models.URLField(_('Link to source'), max_length=1024, help_text=_('Source url'))
+    source_url = models.URLField(_('Link to source'), max_length=1024, help_text=_('Source url'), blank=True, null=True)
     image = models.ForeignKey('ArticleImage', related_name='articles')
     tags = TagAutocompleteField(_('Artilcle tags'), help_text=_('Add list of article tags separated by commas'))
 

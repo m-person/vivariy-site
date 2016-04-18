@@ -18,14 +18,13 @@
                     </div>
                 </div><!-- end breadcrumbs -->
 
-                <h2>СТАТЬИ</h2>
-
                 {% if current_tag %}
-                    <div class="filter-msg">
-                        фильтр по тегу "{{ current_tag }}"
-                        <a href="/articles/">[очистить]</a>
+                    <h2>СТАТЬИ ПО ТЕГУ "{{ current_tag }}"</h2>
+                        <a class="filter-msg" href="/articles/">[очистить фильтр]</a>
                         {#<a href="/articles/"><span class="glyphicon glyphicon-remove"></span></a>#}
-                    </div>
+{#                    </div>#}
+                {% else %}
+                    <h2>СТАТЬИ</h2>
                 {% endif %}
 
                 {% for article in articles %}
@@ -97,11 +96,14 @@
             </section>
 
             <aside class="col-lg-2 col-md-2 col-sm-12 col-xs-12 article-tags-panel">
-                <ul>
-                    {% for tag in tags %}
-                        <li><a href="/articles?filter={{ tag }}">{{ tag }}</a></li>
-                    {% endfor %}
-                </ul>
+                <div>
+                    <h5>КЛЮЧЕВЫЕ СЛОВА</h5>
+                    <ul>
+                        {% for tag in tags %}
+                            <li><a href="/articles?filter={{ tag }}">{{ tag }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
             </aside>
         </div>
 

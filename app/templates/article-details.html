@@ -39,16 +39,19 @@
                     {% endfor %}
                 </ul>
 
-                <a href="/articles" class="btn article-more-btn center-block">ДРУГИЕ НОВОСТИ</a>
+                <a href="/articles" class="btn article-more-btn center-block">ДРУГИЕ СТАТЬИ</a>
 
             </article>
 
             <aside class="col-lg-2 col-md-2 article-tags-panel">
-                <ul>
-                    {% for tag in tags %}
-                        <li><a href="/articles?filter={{ tag }}">{{ tag }}</a></li>
-                    {% endfor %}
-                </ul>
+                <div>
+                    <h5>КЛЮЧЕВЫЕ СЛОВА</h5>
+                    <ul>
+                        {% for tag in tags %}
+                            <li><a href="/articles?filter={{ tag }}">{{ tag }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
             </aside>
         </div>
 

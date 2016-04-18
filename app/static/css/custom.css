@@ -580,10 +580,14 @@ div.carousel {
     right: 0;
 }
 
+.article-tags-panel h5 {
+    margin-top: 80px;
+    margin-bottom: 30px;
+}
+
 .article-tags-panel ul {
     list-style-type: none;
     padding-left: 5px;
-    margin-top: 80px;
     text-decoration: underline;
     font-size: 16px;
     line-height: 28px;
@@ -676,6 +680,8 @@ div.carousel {
 
 .article-list .filter-msg {
     font-size: 16px;
+    color: #74b336;
+    text-decoration: underline;
 }
 
 .article-list .media:last-of-type {
@@ -1114,6 +1120,13 @@ div.carousel {
     .catalog-category .panel-heading h3,
     .catalog-category .list-group-item h3 {
         font-size: 18px;
+    }
+
+
+    .article-tags-panel h5 {
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 10px;
     }
 
     .article-tags-panel ul {
