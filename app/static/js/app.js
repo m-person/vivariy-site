@@ -31,12 +31,7 @@ $(document).ready(
             }
         });
 
-
         var catalogCategoryPanel = $('.catalog-category .panel');
-        setMainBlockHeight();
-        setSideBkgWidth();
-        $(window).resize(setMainBlockHeight);
-        $(window).resize(setSideBkgWidth);
         catalogCategoryPanel.on('shown.bs.collapse', updateMainChildrenHeight);
         catalogCategoryPanel.on('show.bs.collapse', categoryPanelShow);
         catalogCategoryPanel.on('hide.bs.collapse', categoryPanelHide);
@@ -44,6 +39,14 @@ $(document).ready(
         $('.cart-item-remove-btn').on('click', delFromCart);
     }
 );
+
+$(window).load(function () {
+    // set up gray backgrounds
+    setMainBlockHeight();
+    setSideBkgWidth();
+    $(window).resize(setMainBlockHeight);
+    $(window).resize(setSideBkgWidth);
+});
 
 
 /**
