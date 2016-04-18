@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load watson %}
+
+{% block title %}{{ block.super }} | результаты поиска{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <h2>результаты поиска</h2>
+        </div>
+        <div class="row">
+            {% if search_results %}
+                <h3>фраза "{{ query }}" найдена в:</h3>
+                {% search_results search_results %}
+            {% else %}
+                <div class="search-empty-result">
+                    {% if query %}
+                        <p><em>По данному запросу ничего не найдено.</em></p>
+                        <p><em>Попробуйте переформулировать запрос.</em></p>
+                    {% else %}
+                        <p><em>Введите свой запрос в форме поиска.</em></p>
+                    {% endif %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

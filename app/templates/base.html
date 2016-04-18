@@ -1,5 +1,6 @@
 {% load staticfiles %}
 {% load i18n %}
+{% load watson %}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -62,9 +63,13 @@
                         <div>{% trans "&laquoVIVARIUM&raquo" %}</div>
                     </h1>
                 </a>
-                <form action="" class="search_form">{% csrf_token %}
+{#                <form action="{% url 'watson:search' %}">#}
+{#                    <input name="q" value="{{ request.GET.q }}">#}
+{#                    <input type="submit" value="Go">#}
+{#                </form>#}
+                <form action="{% url 'watson:search' %}" class="search_form">{% csrf_token %}
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                        <input type="text" name="search_text">
+                        <input type="text" name="q" value="{{ request.GET.q }}">
                         <input type="submit" value={% trans "SEARCH" %}>
                     </div>
                 </form>

@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^tagging_autocomplete/', include('tagging_autocomplete.urls')),
     url(r'^request_success/', RequestSuccess.as_view(), name='request_success'),
     url(r'^xhr/cart_count/', cart_count_request),
+    url(r"^search/", include("watson.urls", namespace="watson")),
 ]
 
 # access to uploaded files

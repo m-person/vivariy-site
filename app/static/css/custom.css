@@ -1064,6 +1064,12 @@ div.carousel {
     border-bottom-right-radius: 10px;
 }
 
+/*------- search results page --------*/
+.search-empty-result {
+    text-align: center;
+    margin-top: 60px;
+}
+
 /*------- notifications-------*/
 .alert {
     position: fixed;

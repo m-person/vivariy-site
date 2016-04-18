@@ -278,3 +278,5 @@ class CarouselItem(models.Model):
     class Meta:
         verbose_name = _('Slide')
         verbose_name_plural = _('Slides')
+
+
