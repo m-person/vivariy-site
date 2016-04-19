@@ -15,6 +15,10 @@ from smtplib import SMTPException
 from django.template.loader import render_to_string
 from copy import copy
 from random import randint
+from django.contrib.admin.views.decorators import staff_member_required
+from django.conf import settings
+from datetime import datetime
+import tarfile
 
 
 class MyPaginator(Paginator):
@@ -269,3 +273,14 @@ def cart_count_request(request):
         return HttpResponse("0")
     else:
         return HttpResponse(len(request.session['cart']))
+
+
+@staff_member_required
+def media_backup_request(request):
+    # returns gzipped content of /media directory
+    resp = HttpResponse(content_type='application/x-gzip')
+    resp['Content-Disposition'] = 'attachment; filename=media_{}.tar.gz'.format(
+        (datetime.now().isoformat()).split('.')[0], )
+    with tarfile.open(fileobj=resp, mode='w:gz') as tar:
+        tar.add(settings.MEDIA_ROOT)
+    return resp

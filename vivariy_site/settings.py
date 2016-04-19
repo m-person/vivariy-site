@@ -44,8 +44,8 @@ INSTALLED_APPS = [
     'versatileimagefield',
     'tagging',
     'tagging_autocomplete',
-    'smuggler',
     'watson',
+    'smuggler'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -148,34 +148,7 @@ CKEDITOR_IMAGE_BACKEND = 'pillow'
 LOCALE_PATHS = [os.path.join(BASE_DIR, 'app', 'locale')]
 
 # django-smuggler setup (db backups)
-SMUGGLER_FIXTURE_DIR = os.path.join(BASE_DIR, 'db_dumps')
-
-# haystack search
-# HAYSTACK_CONNECTIONS = {
-#     'default': {
-#         'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
-#         'URL': 'http://127.0.0.1:9200/',
-#         'INDEX_NAME': 'haystack',
-#     },
-# }
-#
-
-# django-debug-toolbar
-# DEBUG_TOOLBAR_PANELS = [
-#     'debug_toolbar.panels.versions.VersionsPanel',
-#     'debug_toolbar.panels.timer.TimerPanel',
-#     'debug_toolbar.panels.settings.SettingsPanel',
-#     'debug_toolbar.panels.headers.HeadersPanel',
-#     'debug_toolbar.panels.request.RequestPanel',
-#     'debug_toolbar.panels.sql.SQLPanel',
-#     'debug_toolbar.panels.staticfiles.StaticFilesPanel',
-#     'debug_toolbar.panels.templates.TemplatesPanel',
-#     'debug_toolbar.panels.cache.CachePanel',
-#     'debug_toolbar.panels.signals.SignalsPanel',
-#     'debug_toolbar.panels.logging.LoggingPanel',
-#     'debug_toolbar.panels.redirects.RedirectsPanel',
-#     'haystack_panel.panel.HaystackDebugPanel'
-# ]
+SMUGGLER_FIXTURE_DIR = os.path.join(BASE_DIR, 'backups')
 
 # email settings:
 if DEBUG:
@@ -259,6 +232,10 @@ FORCE_LOWERCASE_TAGS = True
 
 # django-tagging-autocomplete settings:
 TAGGING_AUTOCOMPLETE_SEARCH_CONTAINS = True
+
+# django-dbbackup settings:
+# DBBACKUP_STORAGE = 'dbbackup.storage.filesystem_storage'
+# DBBACKUP_STORAGE_OPTIONS = {'location': './backups'}
 
 # Deployment: import local_settings file to override
 try:

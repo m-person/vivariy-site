@@ -3,6 +3,7 @@ web:
   build: .
   volumes:
     - /mnt/hlam/__www__/vivariy_site/app/media:/www/app/media
+    - /mnt/hlam/__www__/vivariy_site/backups:/backups
   ports:
     - "8003:80"
   links:

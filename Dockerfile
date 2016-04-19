@@ -31,7 +31,7 @@ RUN cp deploy/nginx-app.conf /etc/nginx/sites-enabled/
 RUN cp deploy/supervisor-app.conf /etc/supervisor/conf.d/
 RUN cp deploy/prod_settings.py /www/vivariy_site/
 
-VOLUME ["/www/app/media"]
+VOLUME ["/www/app/media", "/www/backups"]
 
 RUN python3 manage.py collectstatic --noinput
 
