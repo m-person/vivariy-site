@@ -228,6 +228,21 @@ footer .studio-logo {
     padding-top: 30px;
 }
 
+footer .back-to-top {
+    margin: 0;
+    font-size: 40px;
+    padding: 10px;
+    border-radius: 30px;
+    opacity: .3;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 100;
+    text-decoration: none;
+    color: #414141;
+    background-color: #74b336;
+}
+
 /*-------- main page: carousel ---------*/
 .carousel-bkg {
     background-color: #e5e5e5;
