@@ -334,7 +334,7 @@ div.carousel {
 
 /* --------- main page: about us -----------*/
 .about-us {
-    background-image: url("/static/img/about-us-bkg-2.jpg");
+    background-image: url("/static/img/about-us-bkg.jpg");
     background-color: #414141;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -1242,5 +1242,9 @@ div.carousel {
     #id_captcha_0 {
         margin: 0;
         width: 40px;
+    }
+
+    .about-us {
+        background-attachment: scroll;
     }
 }
