@@ -124,6 +124,11 @@
                         <a href="#tab-mentions" aria-controls="tab-mentions" role="tab" data-toggle="tab">УПОМИНАНИЯ</a>
                     </li>
                 {% endif %}
+                {% if product.faq_ru %}
+                    <li role="presentation">
+                        <a href="#tab-faq" aria-controls="tab-faq" role="tab" data-toggle="tab">ВОПРОСЫ</a>
+                    </li>
+                {% endif %}
                 {% if videos %}
                     <li role="presentation">
                         <a href="#tab-videos" aria-controls="tab-videos" role="tab" data-toggle="tab">ВИДЕО</a>
@@ -138,6 +143,7 @@
                      id="tab-characteristics">{{ product.specifications_ru | safe }}</div>
                 <div role="tabpanel" class="tab-pane" id="tab-options">{{ product.options_ru | safe }}</div>
                 <div role="tabpanel" class="tab-pane" id="tab-mentions">{{ product.mentions_ru | safe }}</div>
+                <div role="tabpanel" class="tab-pane" id="tab-faq">{{ product.faq_ru | safe }}</div>
                 <div role="tabpanel" class="tab-pane" id="tab-videos">
                     <ul class="list-unstyled">
                         {% for video in videos %}

@@ -158,6 +158,8 @@ class Product(models.Model):
     mentions_ru = RichTextUploadingField(_('Mentions (ru)'), max_length=4096, default='', blank=True, null=True,
                                          help_text=_(
                                              'Links to researches using this device in russian (4096 symbols max)'))
+    faq_ru = RichTextUploadingField(_('FAQ (ru)'), max_length=4096, default='', blank=True, null=True,
+                                    help_text=_('Frequently asked questions (4096 symbols max)'))
 
     def __str__(self):
         return self.title_ru
@@ -278,5 +280,3 @@ class CarouselItem(models.Model):
     class Meta:
         verbose_name = _('Slide')
         verbose_name_plural = _('Slides')
-
-

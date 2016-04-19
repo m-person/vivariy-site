@@ -72,7 +72,7 @@ class PartnerAdmin(admin.ModelAdmin):
 
 
 class ProductAdmin(admin.ModelAdmin):
-    fields = ('title_ru', 'slug', 'manufacturer', 'categories', 'desc_short_ru', 'desc_full_ru', 'specifications_ru', 'options_ru', 'mentions_ru', 'is_hidden')
+    fields = ('title_ru', 'slug', 'manufacturer', 'categories', 'desc_short_ru', 'desc_full_ru', 'specifications_ru', 'options_ru', 'mentions_ru', 'faq_ru', 'is_hidden')
     list_display = ('title_ru', 'manufacturer')
     prepopulated_fields = {
         'slug': ('title_ru',)
