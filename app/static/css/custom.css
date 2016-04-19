@@ -190,13 +190,13 @@ main {
 }
 
 /*----- base template: company logo ------*/
-.header-logo img {
-    float: left;
-    margin-right: 18px;
+.header-logo {
+    margin-top: -10px;
+    margin-bottom: 20px;
 }
 
-.header-logo {
-    margin: -15px 0 20px 0;
+.header-logo>div {
+    display: none;
 }
 
 header a:hover {

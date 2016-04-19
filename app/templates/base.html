@@ -31,7 +31,6 @@
 </head>
 
 <body>
-{#<div class="content-wrapper">#}
 <header>
     {% block header %}
         <div class="container">
@@ -58,15 +57,10 @@
             <div class="row">
                 <a href="/" class="col-lg-6 col-md-6 col-sm-12">
                     <h1 class="header-logo">
-                        <img src="{% static 'img/logo_100x100.png' %}" alt="company logo">
-                        <div>{% trans "COMPANY GROUP" %}</div>
-                        <div>{% trans "&laquoVIVARIUM&raquo" %}</div>
+                        <img src="{% static 'img/logo_header.png' %}" alt="company logo">
+                        <div>группа компаний "ВИВАРИЙ"</div>
                     </h1>
                 </a>
-{#                <form action="{% url 'watson:search' %}">#}
-{#                    <input name="q" value="{{ request.GET.q }}">#}
-{#                    <input type="submit" value="Go">#}
-{#                </form>#}
                 <form action="{% url 'watson:search' %}" class="search_form">{% csrf_token %}
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                         <input type="text" name="q" value="{{ request.GET.q }}">
@@ -78,7 +72,6 @@
 
         <div class="menu-container">
             <div class="container">
-                {#                    <div class="row">#}
                 <ul class="nav navbar-nav main-menu">
                     <li class="{% if menuitem == 'main' %}active{% endif %}"><a href="/"><span>{% trans "MAIN" %}</span></a>
                     </li>
@@ -104,14 +97,14 @@
     {% endblock %}
 </main>
 
-{#</div>#}
 
 <footer>
     {% block footer %}
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-5">
-                    <img src="{% static 'img/logo_footer.png' %}" alt="company logo">
+{#                    <img src="{% static 'img/logo_footer.png' %}" alt="company logo">#}
+                    <img src="{% static 'img/logo_footer2.png' %}" alt="company logo">
                     <p>{% trans "© 2010-2016 Vivaium group.<br>All rights reserved." %}</p>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-4 contacts">
@@ -121,7 +114,7 @@
                     <div>E-mail: <a href="mailto:info@vivariy.com">info@vivariy.com</a></div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-3 studio-logo">
-                    <img src="{% static 'img/studio_logo.png' %}" alt="design studio logo">
+                    <img src="{% static 'img/studio_logo2.png' %}" alt="design studio logo">
                     <!-- programming: Vasyliev Andrey <andrey_at_micro-man.com> -->
                 </div>
             </div>
