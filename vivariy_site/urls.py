@@ -24,6 +24,10 @@ urlpatterns = [
     url(r'^request_success/', RequestSuccess.as_view(), name='request_success'),
     url(r'^xhr/cart_count/', cart_count_request),
     url(r"^search/", include("watson.urls", namespace="watson")),
+    # url(r'^404/$', 'django.views.defaults.page_not_found', {'exception': 'ERR'}),
+    # url(r'^500/$', 'django.views.defaults.server_error', ),
+    # url(r'^400/$', 'django.views.defaults.bad_request', {'exception': 'ERR'}),
+    # url(r'^403/$', 'django.views.defaults.permission_denied', {'exception': 'ERR'}),
 ]
 
 # access to uploaded files
