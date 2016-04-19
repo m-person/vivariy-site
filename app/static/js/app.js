@@ -37,6 +37,9 @@ $(document).ready(
         catalogCategoryPanel.on('hide.bs.collapse', categoryPanelHide);
         $('.product-ask-btn').on('click', addToCart);
         $('.cart-item-remove-btn').on('click', delFromCart);
+
+        expandCurrentCategory();
+
     }
 );
 
@@ -222,18 +225,50 @@ function setSideBkgWidth() {
 
 
 function categoryPanelShow() {
+    var panel_id = $(this).attr('id');
+    Cookies.set('current_category', panel_id);
+
+    // allow to open only one category at a time
+    $('.catalog-category .collapse').collapse('hide');
+
+    $(this).find('.glyphicon').removeClass('glyphicon-plus-sign').addClass('glyphicon-minus-sign');
+
     $(this).parents().find('.panel-heading h3').removeClass('active');
     $(this).find('.panel-heading h3').addClass('active');
 }
 
 function categoryPanelHide() {
+    var panel_id = $(this).attr('id');
+
+    if (panel_id == Cookies.get('current_category')) {
+        Cookies.set('current_category', null);
+    }
+
+    $(this).find('.glyphicon').removeClass('glyphicon-minus-sign').addClass('glyphicon-plus-sign');
+
     $(this).find('.panel-heading h3').removeClass('active');
     $(this).parents().find('.panel-heading h3').removeClass('active');
 }
 
 /*
- * update request cart representation (visibility & itmems count)
- * */
+ * expands last selected category panel in catalog
+ */
+function expandCurrentCategory() {
+    if (location.pathname.indexOf('/catalog/') == -1) {
+        return
+    }
+    var current_category = Cookies.get('current_category'),
+        panel = $('#' + current_category);
+    console.log(current_category, panel);
+    if (panel) {
+        console.log(panel.find('a.collapse'));
+        panel.find('.collapse').collapse('show');
+    }
+}
+
+/*
+ * update request cart representation (visibility & items count)
+ */
 function update_cart() {
     var cart = $('.request-basket-btn'),
         count_elem = cart.find('span:last-of-type');
@@ -247,3 +282,4 @@ function update_cart() {
         }
     })
 }
+

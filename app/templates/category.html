@@ -38,7 +38,7 @@
                     <!-- list of subcategories -->
                     {% for category in categories %}
                         <div class="panel-group" role="tablist">
-                            <div class="panel">
+                            <div class="panel" id="category-panel_{{ category.id }}">
 
                                 <div class="panel-heading" role="tab" id="collapse-heading-{{ category.id }}">
                                     <a class="collapsed" role="button" data-toggle="collapse"

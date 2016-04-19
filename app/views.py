@@ -9,7 +9,7 @@ from tagging.models import Tag, TaggedItem
 from django.http import JsonResponse
 from app.forms import UserRequestForm
 import json
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseNotAllowed
 from django.core.mail import send_mail
 from smtplib import SMTPException
 from django.template.loader import render_to_string
