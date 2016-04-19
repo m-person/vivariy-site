@@ -1,50 +1,9 @@
-/*----------- fonts --------------*/
-/*todo: use local fonts only in development. Delete this block in production*/
-@font-face {
-    font-family: "Open Sans Condensed";
-    src: url('/static/fonts/OpenSans-CondBold.ttf');
-}
-
-@font-face {
-    font-family: "PT Sans";
-    src: url('/static/fonts/PT_Sans-Web-Regular.ttf');
-}
-
-@font-face {
-    font-family: "PT Sans";
-    src: url('/static/fonts/PT_Sans-Web-Bold.ttf');
-    font-weight: bold;
-}
-
-@font-face {
-    font-family: "PT Sans";
-    src: url('/static/fonts/PT_Sans-Web-Italic.ttf');
-    font-style: italic;
-}
-
-@font-face {
-    font-family: "Open Sans";
-    src: url('/static/fonts/OpenSans-Regular.ttf');
-}
-
-@font-face {
-    font-family: "Open Sans";
-    src: url('/static/fonts/OpenSans-Light.ttf');
-    font-weight: 300;
-}
-
-/*@font-face {*/
-/*font-family: "MyriadPro";*/
-/*src: url('/static/fonts/MyriadPro-Regular.otf');*/
-/*}*/
-
 /*---- base template ----*/
 html,
 body {
-    font-family: 'PT Sans', sans-serif;
-    /*font-family: 'Open Sans', sans-serif;*/
-    font-size: 20px;
-    line-height: 24px;
+    font-family: 'Open Sans Regular', sans-serif;
+    font-size: 18px;
+    font-weight: 200;
     color: #414141;
     max-width: 1920px;
 }
@@ -140,10 +99,6 @@ main {
 
 /* ---------- base template: header-language switcher ---------*/
 
-.lang_form {
-    /*margin-right: 15px;*/
-}
-
 .lang_form button {
     background-color: #414141;
     color: #74b336;
@@ -195,7 +150,7 @@ main {
     margin-bottom: 20px;
 }
 
-.header-logo>div {
+.header-logo > div {
     display: none;
 }
 
@@ -479,17 +434,12 @@ div.carousel {
 
 /*------- catalog category page: left menu ----------*/
 
-.catalog-container .aside-bkg {
-    /*width: 20%*/
-}
-
 .catalog-aside {
     background-color: #e5e5e5;
     text-align: right;
     text-transform: uppercase;
     color: #414141;
     padding-left: 0;
-    /*height: 100%;*/
 }
 
 .catalog-aside > ul {
@@ -576,7 +526,6 @@ div.carousel {
 }
 
 .article-list .aside-bkg {
-    /*width: 15%;*/
     right: 0;
 }
 
@@ -690,7 +639,6 @@ div.carousel {
 
 /*------- article details page -----------*/
 .article-details .aside-bkg {
-    /*width: 15%;*/
     right: 0;
 }
 
@@ -757,11 +705,6 @@ div.carousel {
 }
 
 .partners-list .partner-item {
-    /*border-top: solid #e5e5e5 1px;*/
-    /*border-bottom: solid #e5e5e5 1px;*/
-    /*margin-bottom: 30px;*/
-    /*padding: 5px;*/
-
     background-color: #e5e5e5;
     margin-bottom: 10px;
     border-radius: 10px;
@@ -773,12 +716,9 @@ div.carousel {
 }
 
 .partners-list .logo-wrapper {
-    /*border: solid 1px #414141;*/
     height: 102px;
     width: 202px;
     position: relative;
-    /*background-color: white;*/
-    /*margin-right: 8px;*/
 }
 
 .partners-list img {
@@ -801,7 +741,6 @@ div.carousel {
 /*--------- contacts page: contacts block ----------*/
 
 .contacts-page .aside-bkg {
-    /*width: 48%;*/
     left: 0;
 }
 
@@ -852,7 +791,6 @@ div.carousel {
 /*-------- contacts page: request form -----------*/
 
 .request-form li {
-    /*border: solid 1px yellow; !*todo: dbg*!*/
     position: relative;
 }
 
@@ -1142,10 +1080,6 @@ div.carousel {
         margin-left: 15px;
     }
 
-    .contacts-page .contacts img {
-        /*width: 100%;*/
-    }
-
 }
 
 @media (max-width: 768px) {
@@ -1299,10 +1233,6 @@ div.carousel {
 
     .contacts-page .vcard .local-emails .email:last-of-type {
         text-indent: 52px;
-    }
-
-    .request-form .basket-list > h3 {
-        /*font-size: 20px;*/
     }
 
     .request-form h3 {

@@ -14,10 +14,10 @@
         {% block title %}{% trans '"Vivarium" group' %}{% endblock %}
     </title>
     {% block fonts %}
-        {#        todo: uncomment it in production #}
-        {#        <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:700' rel='stylesheet' type='text/css'>#}
-        {#        <link href='https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700&subset=latin,cyrillic'#}
-        {#              rel='stylesheet' type='text/css'>#}
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:700&subset=latin,cyrillic-ext'
+              rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,cyrillic-ext'
+              rel='stylesheet' type='text/css'>
     {% endblock %}
 
     {% block css %}
@@ -103,7 +103,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-5">
-{#                    <img src="{% static 'img/logo_footer.png' %}" alt="company logo">#}
+                    {#                    <img src="{% static 'img/logo_footer.png' %}" alt="company logo">#}
                     <img src="{% static 'img/logo_footer2.png' %}" alt="company logo">
                     <p>{% trans "© 2010-2016 Vivaium group.<br>All rights reserved." %}</p>
                 </div>
