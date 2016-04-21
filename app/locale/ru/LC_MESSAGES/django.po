@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-19 11:03+0000\n"
+"POT-Creation-Date: 2016-04-21 08:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,28 +32,28 @@ msgstr ""
 "Используется, чтобы отличать изображения друг от друга. Не показывается на "
 "сайте."
 
-#: app/models.py:19 app/models.py:40 app/models.py:61 app/models.py:124
-#: app/models.py:269
+#: app/models.py:19 app/models.py:40 app/models.py:61 app/models.py:127
+#: app/models.py:272
 msgid "Image"
 msgstr "Изображение"
 
-#: app/models.py:21 app/models.py:42 app/models.py:63 app/models.py:126
-#: app/models.py:271
+#: app/models.py:21 app/models.py:42 app/models.py:63 app/models.py:129
+#: app/models.py:274
 msgid "Image widht"
 msgstr "Ширина изображения"
 
-#: app/models.py:22 app/models.py:43 app/models.py:64 app/models.py:127
-#: app/models.py:272
+#: app/models.py:22 app/models.py:43 app/models.py:64 app/models.py:130
+#: app/models.py:275
 msgid "Image height"
 msgstr "Высота изображения"
 
-#: app/models.py:23 app/models.py:44 app/models.py:65 app/models.py:128
-#: app/models.py:273
+#: app/models.py:23 app/models.py:44 app/models.py:65 app/models.py:131
+#: app/models.py:276
 msgid "Image point of interest"
 msgstr "Центр изображения."
 
-#: app/models.py:23 app/models.py:44 app/models.py:65 app/models.py:128
-#: app/models.py:273
+#: app/models.py:23 app/models.py:44 app/models.py:65 app/models.py:131
+#: app/models.py:276
 msgid "Select center point for cropped (resized) image"
 msgstr "Выберите центр обрезанного (увеличенного) изображения"
 
@@ -93,8 +93,8 @@ msgstr "Изображение для продукта"
 msgid "Images for product"
 msgstr "Изображения для продукта"
 
-#: app/models.py:84 app/models.py:102 app/models.py:142 app/models.py:176
-#: app/models.py:193 app/models.py:212
+#: app/models.py:84 app/models.py:102 app/models.py:145 app/models.py:179
+#: app/models.py:196 app/models.py:215
 msgid "Title (ru)"
 msgstr "Название"
 
@@ -102,15 +102,15 @@ msgstr "Название"
 msgid "Top category title (in russian)."
 msgstr "Название категории каталога верхнего уровня"
 
-#: app/models.py:85 app/models.py:143 app/models.py:213
+#: app/models.py:85 app/models.py:146 app/models.py:216
 msgid "Slug"
 msgstr ""
 
-#: app/models.py:86 app/models.py:144 app/models.py:214
+#: app/models.py:86 app/models.py:147 app/models.py:217
 msgid "URL representation (a..z, 0..9 and \"-\" symbols only)"
 msgstr ""
 
-#: app/models.py:88 app/models.py:103 app/models.py:123
+#: app/models.py:88 app/models.py:103 app/models.py:126
 msgid "Don`t show this entry on site"
 msgstr "Не показывать на сайте"
 
@@ -143,127 +143,159 @@ msgid "Product categories"
 msgstr "Категории каталога"
 
 #: app/models.py:120
-msgid "Name"
+#, fuzzy
+#| msgid "Title (ru)"
+msgid "Name (ru)"
 msgstr "Название"
 
 #: app/models.py:120
-msgid "Company`s name"
+#, fuzzy
+#| msgid "Company`s name"
+msgid "Company`s name (in russian)"
 msgstr "Название компании"
 
-#: app/models.py:121 app/models.py:266
-msgid "Description"
-msgstr "Описание"
+#: app/models.py:121
+#, fuzzy
+#| msgid "Name"
+msgid "Name (en)"
+msgstr "Название"
+
+#: app/models.py:121
+#, fuzzy
+#| msgid "Company`s name"
+msgid "Company`s name (in english)"
+msgstr "Название компании"
 
 #: app/models.py:122
-msgid "Company description (4096 symbols max)"
+#, fuzzy
+#| msgid "Description"
+msgid "Description (ru)"
+msgstr "Описание"
+
+#: app/models.py:123
+#, fuzzy
+#| msgid "Company description (4096 symbols max)"
+msgid "Company description in russian (4096 symbols max)"
 msgstr "Описание компании (не более 4096симв.)"
 
-#: app/models.py:134
+#: app/models.py:124
+#, fuzzy
+#| msgid "Description"
+msgid "Description (en)"
+msgstr "Описание"
+
+#: app/models.py:125
+#, fuzzy
+#| msgid "Company description (4096 symbols max)"
+msgid "Company description in english (4096 symbols max)"
+msgstr "Описание компании (не более 4096симв.)"
+
+#: app/models.py:137
 msgid "Partner"
 msgstr "Партнер"
 
-#: app/models.py:135
+#: app/models.py:138 app/templates/partners.html.py:18
 msgid "Partners"
 msgstr "Партнеры"
 
-#: app/models.py:142
+#: app/models.py:145
 msgid "Product title (in russian)"
 msgstr "Название продукта"
 
-#: app/models.py:146
+#: app/models.py:149
 msgid "Don`t show in catalog"
 msgstr "Не показывать в каталоге"
 
-#: app/models.py:147
+#: app/models.py:150
 msgid "Subcategories containing this product"
 msgstr "Категории, содержащие этот продукт"
 
-#: app/models.py:148
+#: app/models.py:151
 msgid "Short description (ru)"
 msgstr "Краткое описание"
 
-#: app/models.py:149
+#: app/models.py:152
 msgid "Short device description in russian (4096 symbols max)"
 msgstr "Краткое описание продукта (4096 симв. макс.)"
 
-#: app/models.py:150
+#: app/models.py:153
 msgid "Full description (ru)"
 msgstr "Полное описание"
 
-#: app/models.py:152
+#: app/models.py:155
 msgid "Full device description in russian (10240 symbols max)"
 msgstr "Полное описание продукта (10240 симв. макс.)"
 
-#: app/models.py:153
+#: app/models.py:156
 msgid "Specifications (ru)"
 msgstr "Спецификации"
 
-#: app/models.py:155
+#: app/models.py:158
 msgid "Technical characteristics in russian (10240 symbols max)"
 msgstr "Технические характеристики (10240 симв. макс.)"
 
-#: app/models.py:156
+#: app/models.py:159
 msgid "Options (ru)"
 msgstr "Опции"
 
-#: app/models.py:157
+#: app/models.py:160
 msgid "Delivery options in russian (4096 symbols max)"
 msgstr "Опции поставки (4096 симв. макс.)"
 
-#: app/models.py:158
+#: app/models.py:161
 msgid "Mentions (ru)"
 msgstr "Упоминания"
 
-#: app/models.py:160
+#: app/models.py:163
 msgid "Links to researches using this device in russian (4096 symbols max)"
 msgstr ""
 "Ссылки на иследования, где этот продукт использовался (4096 симв. макс.)"
 
-#: app/models.py:161
+#: app/models.py:164
 msgid "FAQ (ru)"
 msgstr ""
 
-#: app/models.py:162
+#: app/models.py:165
 msgid "Frequently asked questions (4096 symbols max)"
 msgstr "Вопросы и ответы (не более 4096симв.)"
 
-#: app/models.py:168
+#: app/models.py:171
 msgid "Product"
 msgstr "Продукт"
 
-#: app/models.py:169
+#: app/models.py:172
 msgid "Products"
 msgstr "Продукты"
 
-#: app/models.py:176
+#: app/models.py:179
 msgid "File title (in russian)"
 msgstr "Название файла"
 
-#: app/models.py:178 app/models.py:195 app/models.py:220
+#: app/models.py:181 app/models.py:198 app/models.py:223
 msgid "Don`t show it on site"
 msgstr "Не показывать на сайте"
 
-#: app/models.py:179
+#: app/models.py:182
 msgid "File"
 msgstr "Файл"
 
-#: app/models.py:185
+#: app/models.py:188
 msgid "Doc file"
 msgstr "Файл для скачивания"
 
-#: app/models.py:186
+#: app/models.py:189
 msgid "Doc files"
 msgstr "Файлы для скачивания"
 
-#: app/models.py:193
+#: app/models.py:196
 msgid "Video title (in russian)"
 msgstr "Название видео"
 
-#: app/models.py:196
+#: app/models.py:199
 msgid "Embedding code"
 msgstr "Код для добавления на страницу"
 
-#: app/models.py:197
+#: app/models.py:200
 msgid ""
 "Video embedding code from youtube.com. To obtain it, choose \"share\" > "
 "\"embed\" on youtube page with video."
@@ -272,140 +304,144 @@ msgstr ""
 "с видео на youtube, нажмите на \"Поделиться\" > \"HTML-код\" и скопируйте "
 "строку (она должна начинаться с &ltiframe&gt...)."
 
-#: app/models.py:204
+#: app/models.py:207
 msgid "Youtube video"
 msgstr "Видео с youtube"
 
-#: app/models.py:205
+#: app/models.py:208
 msgid "Youtube videos"
 msgstr "Видео с youtube"
 
-#: app/models.py:212
+#: app/models.py:215
 msgid "Article title (in russian)"
 msgstr "Заголовок статьи"
 
-#: app/models.py:215
+#: app/models.py:218
 msgid "Cut text (ru)"
 msgstr "Описание статьи"
 
-#: app/models.py:216
+#: app/models.py:219
 msgid "Truncated article (in russian)"
 msgstr "Описание статьи (начальные фразы). Обрезается до 15 слов."
 
-#: app/models.py:217
+#: app/models.py:220
 msgid "Article text (ru)"
 msgstr "Текст статьи"
 
-#: app/models.py:218
+#: app/models.py:221
 msgid "Full article text (in russian)"
 msgstr "Полный текст статьи"
 
-#: app/models.py:219
+#: app/models.py:222
 msgid "Date"
 msgstr "Дата"
 
-#: app/models.py:219
+#: app/models.py:222
 msgid "Article creation date"
 msgstr "Дата публикации на сайте"
 
-#: app/models.py:221
+#: app/models.py:224
 msgid "Link to source"
 msgstr "Ссылка на источник"
 
-#: app/models.py:221
+#: app/models.py:224
 msgid "Source url"
 msgstr "URL источника"
 
-#: app/models.py:223
+#: app/models.py:226
 msgid "Artilcle tags"
 msgstr "Теги статьи"
 
-#: app/models.py:223
+#: app/models.py:226
 msgid "Add list of article tags separated by commas"
 msgstr "Введите список тегов через запятую"
 
-#: app/models.py:229
+#: app/models.py:232
 msgid "Article"
 msgstr "Статья"
 
-#: app/models.py:230
+#: app/models.py:233
 msgid "Articles"
 msgstr "Статьи"
 
-#: app/models.py:237
+#: app/models.py:240
 msgid "Organization title"
 msgstr "Название организации"
 
-#: app/models.py:238
+#: app/models.py:241
 msgid "Your name*"
 msgstr "Ваше имя*"
 
-#: app/models.py:239
+#: app/models.py:242
 msgid "Your contact e-mail*"
 msgstr "Ваш контактный e-mail*"
 
-#: app/models.py:240
+#: app/models.py:243
 msgid "Your contact phone*"
 msgstr "Ваш контактный телефон*"
 
-#: app/models.py:241
+#: app/models.py:244
 msgid "Additional information"
 msgstr "Дополнительная информация"
 
-#: app/models.py:242
+#: app/models.py:245
 msgid "Message time"
 msgstr "Время отправки сообщения"
 
-#: app/models.py:243
+#: app/models.py:246
 msgid "List of products to ask"
 msgstr "Список продуктов запроса"
 
-#: app/models.py:254
+#: app/models.py:257
 msgid "Receive requests mail?"
 msgstr "Получать письма с запросами?"
 
-#: app/models.py:255
+#: app/models.py:258
 msgid "Check it if this user will receive emails with customer requests."
 msgstr ""
 "Если отмечено, данный пользователь будет получать письма с запросами с сайта"
 
-#: app/models.py:265
+#: app/models.py:268
 msgid "Title"
 msgstr "Заголовок"
 
-#: app/models.py:265
+#: app/models.py:268
 msgid "Slide header"
 msgstr "Заголовок слайдера"
 
-#: app/models.py:266
+#: app/models.py:269
+msgid "Description"
+msgstr "Описание"
+
+#: app/models.py:269
 msgid "Description text"
 msgstr "Текст описания"
 
-#: app/models.py:267
+#: app/models.py:270
 msgid "URL"
 msgstr ""
 
-#: app/models.py:267
+#: app/models.py:270
 msgid "Links to details page."
 msgstr "Ссылка на страницу с дополнительной информацией"
 
-#: app/models.py:268
+#: app/models.py:271
 msgid "Hide this slide"
 msgstr "Не показывать этот слайд"
 
-#: app/models.py:274
+#: app/models.py:277
 msgid "Ordering position"
 msgstr "Порядковый номер"
 
-#: app/models.py:275
+#: app/models.py:278
 msgid "Serial number in list of slides"
 msgstr "Номер, в котором слайд будет выводиться"
 
-#: app/models.py:281
+#: app/models.py:284
 msgid "Slide"
 msgstr "Слайд"
 
-#: app/models.py:282
+#: app/models.py:285
 msgid "Slides"
 msgstr "Слайды"
 
@@ -413,42 +449,60 @@ msgstr "Слайды"
 msgid "\"Vivarium\" group"
 msgstr "Группа Виварий"
 
-#: app/templates/base.html:62
-msgid "COMPANY GROUP"
-msgstr "ГРУППА КОМПАНИЙ"
-
-#: app/templates/base.html:63
-msgid "&laquoVIVARIUM&raquo"
-msgstr "&laquoВИВАРИЙ&raquo"
-
-#: app/templates/base.html:73
+#: app/templates/base.html:71
 msgid "SEARCH"
 msgstr "ПОИСК"
 
-#: app/templates/base.html:83
+#: app/templates/base.html:80
 msgid "MAIN"
 msgstr "ГЛАВНАЯ"
 
-#: app/templates/base.html:86
+#: app/templates/base.html:83
 msgid "CATALOG"
 msgstr "КАТАЛОГ"
 
-#: app/templates/base.html:89
+#: app/templates/base.html:86
 msgid "ARTICLES"
 msgstr "СТАТЬИ"
 
-#: app/templates/base.html:92
+#: app/templates/base.html:89
 msgid "PARTNERS"
 msgstr "ПАРТНЕРЫ"
 
-#: app/templates/base.html:94
+#: app/templates/base.html:91
 msgid "CONTACTS"
 msgstr "КОНТАКТЫ"
 
-#: app/templates/base.html:115
+#: app/templates/base.html:112
 msgid "© 2010-2016 Vivaium group.<br>All rights reserved."
 msgstr "Группа компаний &laquoВиварий&raquo.<br>Все права защищены."
 
-#: app/templates/base.html:118
+#: app/templates/base.html:115
 msgid "CONTACTS:"
 msgstr "КОНТАКТЫ:"
+
+#: app/templates/partners.html:5
+msgid "partners"
+msgstr "партнеры"
+
+#: app/templates/partners.html:17
+msgid "Main"
+msgstr "Главная"
+
+#: app/templates/partners.html:24
+msgid "OUR PARTNERS"
+msgstr "НАШИ ПАРТНЕРЫ"
+
+#: vivariy_site/settings.py:137
+msgid "Russian"
+msgstr "Русский"
+
+#: vivariy_site/settings.py:138
+msgid "English"
+msgstr "Английский"
+
+#~ msgid "COMPANY GROUP"
+#~ msgstr "ГРУППА КОМПАНИЙ"
+
+#~ msgid "&laquoVIVARIUM&raquo"
+#~ msgstr "&laquoВИВАРИЙ&raquo"

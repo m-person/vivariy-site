@@ -60,6 +60,8 @@ class CatalogViewRedirect(RedirectView):
         return reverse('category', kwargs=kwargs)
 
 
+
+
 class CatalogView(TemplateView):
     template_name = 'catalog.html'
 
@@ -284,3 +286,22 @@ def media_backup_request(request):
     with tarfile.open(fileobj=resp, mode='w:gz') as tar:
         tar.add(settings.MEDIA_ROOT)
     return resp
+
+
+class LangRedirect(RedirectView):
+    permanent = False
+
+    def get_redirect_url(self, *args, **kwargs):
+        # for english language - redirect to /partners page, for others - return current page
+        if self.request.LANGUAGE_CODE == 'en':
+            return reverse('partners')
+        else:
+            curr_path = self.request.GET.get('curr_path')
+            if curr_path:
+                if curr_path == '/en/partners/':
+                    curr_path = '/ru/partners/'
+                return curr_path
+            else:
+                return reverse('main')
+
+

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
+from django.utils.translation import ugettext_lazy as _
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -37,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
     'app',
     'debug_toolbar',
     'ckeditor',
@@ -45,7 +48,8 @@ INSTALLED_APPS = [
     'tagging',
     'tagging_autocomplete',
     'watson',
-    'smuggler'
+    'smuggler',
+    'robots'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -129,12 +133,19 @@ USE_L10N = True
 
 USE_TZ = True
 
+LANGUAGES = [
+    ('ru', _('Russian')),
+    ('en', _('English')),
+]
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+SITE_ID = 1  # note: it's an id of current site in django_site table
 
 #
 MEDIA_ROOT = os.path.join(BASE_DIR, 'app', 'media')
@@ -178,6 +189,7 @@ if DEBUG:
 #         'TIMEOUT': 0,
 #     }
 # }
+
 
 
 SESSION_SAVE_EVERY_REQUEST = True

@@ -235,8 +235,8 @@ footer .back-to-top {
     border-radius: 30px;
     opacity: .3;
     position: fixed;
-    bottom: 0;
-    right: 0;
+    bottom: 5px;
+    right: 5px;
     z-index: 100;
     text-decoration: none;
     color: #414141;

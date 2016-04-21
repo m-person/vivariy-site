@@ -117,9 +117,12 @@ class Partner(models.Model):
     """
     Partner company
     """
-    title = models.CharField(_('Name'), max_length=512, help_text=_('Company`s name'))
-    desc = models.TextField(_('Description'), max_length=4096, blank=True, null=True,
-                            help_text=_('Company description (4096 symbols max)'))
+    title = models.CharField(_('Name (ru)'), max_length=512, help_text=_('Company`s name (in russian)'))
+    title_en = models.CharField(_('Name (en)'), max_length=512, help_text=_('Company`s name (in english)'))
+    desc = models.TextField(_('Description (ru)'), max_length=4096, blank=True, null=True,
+                            help_text=_('Company description in russian (4096 symbols max)'))
+    desc_en = models.TextField(_('Description (en)'), max_length=4096, blank=True, null=True,
+                               help_text=_('Company description in english (4096 symbols max)'))
     is_hidden = models.BooleanField(_('Don`t show this entry on site'), default=False)
     image = VersatileImageField(_('Image'), upload_to='partners', blank=True, null=True,
                                 width_field='width', height_field='height', ppoi_field='ppoi')

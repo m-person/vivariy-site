@@ -20,6 +20,8 @@
               rel='stylesheet' type='text/css'>
     {% endblock %}
 
+    {% block lang %}{% endblock %}
+
     {% block css %}
         <link rel="icon" type="image/png" href="{% static 'img/favicon-32x32.png' %}" sizes="32x32"/>
         <link rel="icon" type="image/png" href="{% static 'img/favicon-16x16.png' %}" sizes="16x16"/>
@@ -36,9 +38,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <form action="{% url 'set_language' %}" method="post"
-                          class="lang_form pull-right">{% csrf_token %}
+                    <form action="{% url 'set_language' %}" method="post" class="lang_form pull-right">{% csrf_token %}
                         {% get_current_language as LANGUAGE_CODE %}
+
+                        <input name="next" type="hidden" value="/lang_redirect/?curr_path={{ request.path }}">
+
                         <button type="submit" name="language" value="en"
                                 {% if LANGUAGE_CODE == 'en' %}class="active"{% endif %}>ENG
                         </button>

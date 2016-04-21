@@ -3,6 +3,10 @@
 
 {% block title %}{{ block.super }} | каталог{% endblock %}
 
+{% block lang %}
+    <link rel="alternate" hreflang="ru" href="http://vivariy.com/catalog/" />
+{% endblock %}
+
 {% block content %}
     <div class="container catalog-top-container">
         <!-- breadcrumbs -->

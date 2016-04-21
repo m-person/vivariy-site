@@ -65,8 +65,11 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 class PartnerAdmin(admin.ModelAdmin):
-    fields = ('title', 'desc', 'image', 'is_hidden')
+    fields = (('title', 'title_en',), 'desc', 'desc_en', 'image', 'is_hidden')
     list_display = ('title',)
+    prepopulated_fields = {
+        'title_en': ('title',)
+    }
     save_on_top = True
     change_list_template = 'smuggler/change_list.html'
 

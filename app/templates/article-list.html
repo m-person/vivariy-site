@@ -3,6 +3,10 @@
 
 {% block title %}{{ block.super }} | статьи{% endblock %}
 
+{% block lang %}
+    <link rel="alternate" hreflang="ru" href="http://vivariy.com/articles/" />
+{% endblock %}
+
 {% block content %}
     <div class="container article-list">
 

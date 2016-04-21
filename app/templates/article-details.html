@@ -4,6 +4,10 @@
 
 {% block title %}{{ block.super }} | статьи | {{ article.title_ru | truncatechars:20 }}{% endblock %}
 
+{% block lang %}
+    <link rel="alternate" hreflang="ru" href="http://vivariy.com{{ request.path }}/" />
+{% endblock %}
+
 {% block content %}
     <div class="container article-details">
 
