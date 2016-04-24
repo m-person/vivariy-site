@@ -162,19 +162,11 @@ LOCALE_PATHS = [os.path.join(BASE_DIR, 'app', 'locale')]
 SMUGGLER_FIXTURE_DIR = os.path.join(BASE_DIR, 'backups')
 
 # email settings:
-if DEBUG:
-    # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-    EMAIL_HOST = '127.0.0.1'
-    EMAIL_PORT = 2525
-    DEFAULT_FROM_EMAIL = 'django-dev@localhost'
-# EMAIL_HOST_PASSWORD
-# EMAIL_HOST_USER
-# EMAIL_SUBJECT_PREFIX
-# EMAIL_USE_TLS
-# EMAIL_USE_SSL
-# EMAIL_SSL_CERTFILE
-# EMAIL_SSL_KEYFILE
-# EMAIL_TIMEOUT
+EMAIL_HOST = 'localhost'
+EMAIL_HOST_USER = 'request@vivariy.com'
+EMAIL_PORT = 2525
+EMAIL_TIMEOUT = 15
+EMAIL_SUBJECT_PREFIX = 'vivariy.com: '
 
 
 # django-resized defaults:

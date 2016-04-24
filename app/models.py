@@ -244,6 +244,8 @@ class UserRequest(models.Model):
     message = models.TextField(_('Additional information'), max_length=4096, blank=True, null=True)
     timestamp = models.DateTimeField(_('Message time'), auto_now_add=True)
     cart = models.CharField(_('List of products to ask'), max_length=4096, default='')
+    email_is_sent = models.BooleanField(_('Was sent'), default=False,
+                                        help_text=_('Thist request was sent without errors'))
 
     def __str__(self):
         return "{} ({})".format(self.name, self.email, )

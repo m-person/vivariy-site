@@ -18,4 +18,4 @@ class UserRequestForm(ModelForm):
     class Meta:
         model = UserRequest
         fields = '__all__'
-        exclude = ('timestamp', 'cart',)
+        exclude = ('timestamp', 'cart', 'email_is_sent', )
