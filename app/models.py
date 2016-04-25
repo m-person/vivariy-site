@@ -280,3 +280,19 @@ class CarouselItem(models.Model):
     class Meta:
         verbose_name = _('Slide')
         verbose_name_plural = _('Slides')
+
+
+class Subscriber(models.Model):
+    """
+    subscriber to news
+    """
+    email = models.EmailField(_('E-mail address'))
+    is_active = models.BooleanField(_('E-mail is active'), default=True)
+    timestamp = models.DateTimeField(_('Subscription time'), auto_now_add=True)
+
+    def __str__(self):
+        return self.email
+
+    class Meta:
+        verbose_name = _('Subscriber')
+        verbose_name_plural = _('Subscribers')

@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import User
 from app.models import (Category, TopCategory, Product, Partner, ProductImage, CategoryImage, DocFile, YoutubeVideo,
-                        Article, ArticleImage, UserRequest, Employee, CarouselItem, )
+                        Article, ArticleImage, UserRequest, Employee, CarouselItem, Subscriber, )
 
 
 class ProductImageAdmin(admin.ModelAdmin):
@@ -129,6 +129,14 @@ class CarouselItemAdmin(admin.ModelAdmin):
     change_list_template = 'smuggler/change_list.html'
 
 
+class SubscriberAdmin(admin.ModelAdmin):
+    fields = ('email', 'is_active', 'timestamp', )
+    readonly_fields = ('timestamp', )
+    list_display = ('email', 'is_active', 'timestamp',)
+    save_on_top = True
+    change_list_template = 'smuggler/change_list.html'
+
+
 admin.site.register(CarouselItem, CarouselItemAdmin)
 admin.site.register(CategoryImage, CategoryImageAdmin)
 admin.site.register(TopCategory, TopCategoryAdmin)
@@ -141,6 +149,7 @@ admin.site.register(YoutubeVideo, YoutubeVideoAdmin)
 admin.site.register(Article, ArticleAdmin)
 admin.site.register(ArticleImage, ArticleImageAdmin)
 admin.site.register(UserRequest, UserRequestAdmin)
+admin.site.register(Subscriber, SubscriberAdmin)
 
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)

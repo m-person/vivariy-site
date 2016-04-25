@@ -5,7 +5,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 # from django.conf.urls.i18n import i18n_patterns
 from app.views import (MainView, CatalogView, CategoryView, ProductView, PartnersView, ArticleListView,
-                       ArticleDetailView, ContactsView, RequestSuccess, cart_count_request, media_backup_request, )
+                       ArticleDetailView, ContactsView, RequestSuccess, cart_count_request, media_backup_request,
+                       SubscribeView, )
 
 urlpatterns = [
     url(r'^admin/', include('smuggler.urls')),

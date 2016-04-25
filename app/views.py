@@ -7,7 +7,7 @@ from django.core.urlresolvers import reverse
 from django.core.paginator import PageNotAnInteger, Paginator, EmptyPage
 from tagging.models import Tag, TaggedItem
 from django.http import JsonResponse
-from app.forms import UserRequestForm
+from app.forms import UserRequestForm, SubscribeForm
 import json
 from django.http import HttpResponse, HttpResponseNotAllowed
 from django.core.mail import send_mail
@@ -284,3 +284,7 @@ def media_backup_request(request):
     with tarfile.open(fileobj=resp, mode='w:gz') as tar:
         tar.add(settings.MEDIA_ROOT)
     return resp
+
+
+class SubscribeView(FormView):
+    success_url = '/'

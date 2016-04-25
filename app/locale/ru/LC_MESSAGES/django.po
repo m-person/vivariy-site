@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-19 11:03+0000\n"
+"POT-Creation-Date: 2016-04-25 11:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -409,46 +409,66 @@ msgstr "Слайд"
 msgid "Slides"
 msgstr "Слайды"
 
+#: app/models.py:289
+msgid "E-mail address"
+msgstr "E-mail адрес"
+
+#: app/models.py:290
+msgid "E-mail is active"
+msgstr "E-mail активен"
+
+#: app/models.py:291
+#, fuzzy
+#| msgid "Description text"
+msgid "Subscription time"
+msgstr "Время подписки"
+
+#: app/models.py:297
+msgid "Subscriber"
+msgstr "Подписчик"
+
+#: app/models.py:298
+msgid "Subscribers"
+msgstr "Подписчики"
+
 #: app/templates/base.html:14
 msgid "\"Vivarium\" group"
 msgstr "Группа Виварий"
 
-#: app/templates/base.html:62
-msgid "COMPANY GROUP"
-msgstr "ГРУППА КОМПАНИЙ"
-
-#: app/templates/base.html:63
-msgid "&laquoVIVARIUM&raquo"
-msgstr "&laquoВИВАРИЙ&raquo"
-
-#: app/templates/base.html:73
+#: app/templates/base.html:67
 msgid "SEARCH"
 msgstr "ПОИСК"
 
-#: app/templates/base.html:83
+#: app/templates/base.html:76
 msgid "MAIN"
 msgstr "ГЛАВНАЯ"
 
-#: app/templates/base.html:86
+#: app/templates/base.html:79
 msgid "CATALOG"
 msgstr "КАТАЛОГ"
 
-#: app/templates/base.html:89
+#: app/templates/base.html:82
 msgid "ARTICLES"
 msgstr "СТАТЬИ"
 
-#: app/templates/base.html:92
+#: app/templates/base.html:85
 msgid "PARTNERS"
 msgstr "ПАРТНЕРЫ"
 
-#: app/templates/base.html:94
+#: app/templates/base.html:87
 msgid "CONTACTS"
 msgstr "КОНТАКТЫ"
 
-#: app/templates/base.html:115
+#: app/templates/base.html:108
 msgid "© 2010-2016 Vivaium group.<br>All rights reserved."
 msgstr "Группа компаний &laquoВиварий&raquo.<br>Все права защищены."
 
-#: app/templates/base.html:118
+#: app/templates/base.html:111
 msgid "CONTACTS:"
 msgstr "КОНТАКТЫ:"
+
+#~ msgid "COMPANY GROUP"
+#~ msgstr "ГРУППА КОМПАНИЙ"
+
+#~ msgid "&laquoVIVARIUM&raquo"
+#~ msgstr "&laquoВИВАРИЙ&raquo"
