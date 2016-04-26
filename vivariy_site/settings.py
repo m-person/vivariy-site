@@ -72,7 +72,7 @@ ROOT_URLCONF = 'vivariy_site.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
+        'DIRS': [os.path.join(BASE_DIR, 'templates'), os.path.join(BASE_DIR, 'app', 'templates')]
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -160,6 +160,9 @@ LOCALE_PATHS = [os.path.join(BASE_DIR, 'app', 'locale')]
 
 # django-smuggler setup (db backups)
 SMUGGLER_FIXTURE_DIR = os.path.join(BASE_DIR, 'backups')
+SMUGGLER_EXCLUDE_LIST = ['contenttypes',
+                         'admin',
+                         'tagging']  # skip them, to avoid import key errors on another DB due different sequence numbers
 
 # email settings:
 EMAIL_HOST = 'localhost'
@@ -167,7 +170,6 @@ EMAIL_HOST_USER = 'request@vivariy.com'
 EMAIL_PORT = 2525
 EMAIL_TIMEOUT = 15
 EMAIL_SUBJECT_PREFIX = 'vivariy.com: '
-
 
 # django-resized defaults:
 # DJANGORESIZED_DEFAULT_QUALITY = 99

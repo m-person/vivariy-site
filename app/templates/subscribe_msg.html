@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}{{ block.super }} | подписка{% endblock %}
+
+{% block content %}
+    <div class="container subscribe-msg">
+        <div class="row">
+            {% if success %}
+                <h2>ВАШ АДРЕС СОХРАНЕН</h2>
+                <div class="col-lg-8 col-md-8 col-sm-10 col-xs-12 col-lg-offset-2 col-md-offset-2 col-sm-offset-1">
+                    <a href="{% url 'article_list' %}" class="center-block">к списку статей</a>
+                </div>
+            {% else %}
+                <h2>ПОДПИСКА НА НОВЫЕ СТАТЬИ</h2>
+                <div class="col-lg-8 col-md-8 col-sm-10 col-xs-12 col-lg-offset-2 col-md-offset-2 col-sm-offset-1">
+                    <form action="/subscribe/" method="post" class="subscribe-form">{% csrf_token %}
+                        {{ form.non_field_errors }}
+                    <span class="fieldWrapper">
+                        {{ form.email.errors }}
+{#                    <label for="{{ form.email.id_for_label }}">Email:</label>#}
+                        {{ form.email }}
+                    </span>
+                        <button type="submit">ПОДПИСАТЬСЯ</button>
+                    </form>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

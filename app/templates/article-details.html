@@ -5,7 +5,7 @@
 {% block title %}{{ block.super }} | статьи | {{ article.title_ru | truncatechars:20 }}{% endblock %}
 
 {% block lang %}
-    <link rel="alternate" hreflang="ru" href="http://vivariy.com{{ request.path }}/" />
+    <link rel="alternate" hreflang="ru" href="http://vivariy.com{{ request.path }}/"/>
 {% endblock %}
 
 {% block content %}
@@ -48,6 +48,11 @@
             </article>
 
             <aside class="col-lg-2 col-md-2 article-tags-panel">
+                <form action="/subscribe/" method="post" class="subscribe-form">{% csrf_token %}
+                    <h5>ПОЛУЧАТЬ<br> НОВЫЕ СТАТЬИ</h5>
+                    <input type="text" name="email" placeholder="Ваш e-mail">
+                    <button type="submit">ПОДПИСАТЬСЯ</button>
+                </form>
                 <div>
                     <h5>КЛЮЧЕВЫЕ СЛОВА</h5>
                     <ul>

@@ -100,6 +100,11 @@
             </section>
 
             <aside class="col-lg-2 col-md-2 col-sm-12 col-xs-12 article-tags-panel">
+                <form action="/subscribe/" method="post" class="subscribe-form">{% csrf_token %}
+                    <h5>ПОЛУЧАТЬ<br> НОВЫЕ СТАТЬИ</h5>
+                    <input type="text" name="email" placeholder="Ваш e-mail">
+                    <button type="submit">ПОДПИСАТЬСЯ</button>
+                </form>
                 <div>
                     <h5>КЛЮЧЕВЫЕ СЛОВА</h5>
                     <ul>

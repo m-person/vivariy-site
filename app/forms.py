@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from django.forms import ModelForm
-from app.models import UserRequest
+from django.forms import ModelForm, EmailInput
+from app.models import UserRequest, Subscriber
 from simplemathcaptcha.fields import MathCaptchaField
 from simplemathcaptcha.widgets import MathCaptchaWidget
 
@@ -18,4 +18,13 @@ class UserRequestForm(ModelForm):
     class Meta:
         model = UserRequest
         fields = '__all__'
-        exclude = ('timestamp', 'cart', 'email_is_sent', )
+        exclude = ('timestamp', 'cart', 'email_is_sent',)
+
+
+class SubscriberForm(ModelForm):
+    class Meta:
+        model = Subscriber
+        fields = ('email',)
+        widgets = {
+            'email': EmailInput(attrs={'placeholder': 'Ваш e-mail'})
+        }

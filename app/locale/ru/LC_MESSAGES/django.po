@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-21 08:00+0000\n"
+"POT-Creation-Date: 2016-04-26 15:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,27 +33,27 @@ msgstr ""
 "сайте."
 
 #: app/models.py:19 app/models.py:40 app/models.py:61 app/models.py:127
-#: app/models.py:272
+#: app/models.py:274
 msgid "Image"
 msgstr "Изображение"
 
 #: app/models.py:21 app/models.py:42 app/models.py:63 app/models.py:129
-#: app/models.py:274
+#: app/models.py:276
 msgid "Image widht"
 msgstr "Ширина изображения"
 
 #: app/models.py:22 app/models.py:43 app/models.py:64 app/models.py:130
-#: app/models.py:275
+#: app/models.py:277
 msgid "Image height"
 msgstr "Высота изображения"
 
 #: app/models.py:23 app/models.py:44 app/models.py:65 app/models.py:131
-#: app/models.py:276
+#: app/models.py:278
 msgid "Image point of interest"
 msgstr "Центр изображения."
 
 #: app/models.py:23 app/models.py:44 app/models.py:65 app/models.py:131
-#: app/models.py:276
+#: app/models.py:278
 msgid "Select center point for cropped (resized) image"
 msgstr "Выберите центр обрезанного (увеличенного) изображения"
 
@@ -392,58 +392,110 @@ msgstr "Время отправки сообщения"
 msgid "List of products to ask"
 msgstr "Список продуктов запроса"
 
-#: app/models.py:257
+#: app/models.py:247
+msgid "Was sent"
+msgstr ""
+
+#: app/models.py:248
+msgid "Thist request was sent without errors"
+msgstr ""
+
+#: app/models.py:259
 msgid "Receive requests mail?"
 msgstr "Получать письма с запросами?"
 
-#: app/models.py:258
+#: app/models.py:260
 msgid "Check it if this user will receive emails with customer requests."
 msgstr ""
 "Если отмечено, данный пользователь будет получать письма с запросами с сайта"
 
-#: app/models.py:268
+#: app/models.py:270
 msgid "Title"
 msgstr "Заголовок"
 
-#: app/models.py:268
+#: app/models.py:270
 msgid "Slide header"
 msgstr "Заголовок слайдера"
 
-#: app/models.py:269
+#: app/models.py:271
 msgid "Description"
 msgstr "Описание"
 
-#: app/models.py:269
+#: app/models.py:271
 msgid "Description text"
 msgstr "Текст описания"
 
-#: app/models.py:270
+#: app/models.py:272
 msgid "URL"
 msgstr ""
 
-#: app/models.py:270
+#: app/models.py:272
 msgid "Links to details page."
 msgstr "Ссылка на страницу с дополнительной информацией"
 
-#: app/models.py:271
+#: app/models.py:273
 msgid "Hide this slide"
 msgstr "Не показывать этот слайд"
 
-#: app/models.py:277
+#: app/models.py:279
 msgid "Ordering position"
 msgstr "Порядковый номер"
 
-#: app/models.py:278
+#: app/models.py:280
 msgid "Serial number in list of slides"
 msgstr "Номер, в котором слайд будет выводиться"
 
-#: app/models.py:284
+#: app/models.py:286
 msgid "Slide"
 msgstr "Слайд"
 
-#: app/models.py:285
+#: app/models.py:287
 msgid "Slides"
 msgstr "Слайды"
+
+#: app/models.py:294
+msgid "Email"
+msgstr ""
+
+#: app/models.py:295
+msgid "Email is active"
+msgstr "Подписчик активен"
+
+#: app/models.py:296
+msgid "Subscribe time"
+msgstr "Время подписки"
+
+#: app/models.py:302
+msgid "Subscriber"
+msgstr "Подписчик"
+
+#: app/models.py:303
+msgid "Subscribers"
+msgstr "Подписчики"
+
+#: app/templates/admin/base.html:31
+msgid "Welcome,"
+msgstr "Добро пожаловать,"
+
+#: app/templates/admin/base.html:36
+msgid "View site"
+msgstr "Открыть сайт"
+
+#: app/templates/admin/base.html:41
+msgid "Documentation"
+msgstr "Документация"
+
+#: app/templates/admin/base.html:45
+msgid "Change password"
+msgstr "Сменить пароль"
+
+#: app/templates/admin/base.html:47
+msgid "Log out"
+msgstr "Выйти"
+
+#: app/templates/admin/base.html:65
+msgid "Home"
+msgstr "Начало"
 
 #: app/templates/base.html:14
 msgid "\"Vivarium\" group"

@@ -8,7 +8,7 @@ from django.contrib.sitemaps.views import sitemap
 from app import sitemaps
 from app.views import (MainView, CatalogView, CategoryView, ProductView, PartnersView, ArticleListView,
                        ArticleDetailView, ContactsView, RequestSuccess, cart_count_request, media_backup_request,
-                       LangRedirect, )
+                       LangRedirect, SubscribeView, get_subscribers, )
 
 sitemaps = {
     'staticpages': sitemaps.StaticViewsMap,
@@ -20,6 +20,7 @@ sitemaps = {
 urlpatterns = [
     url(r'^admin/', include('smuggler.urls')),
     url(r'^admin/mediabackup/', media_backup_request, ),
+    url(r'^admin/get_subscribers/', get_subscribers),
     url(r'^admin/', admin.site.urls),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^$', MainView.as_view(), name='main'),
@@ -37,6 +38,7 @@ urlpatterns = [
     url(r"^search/", include("watson.urls", namespace="watson")),
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
     url(r'^robots\.txt$', include('robots.urls')),
+    url(r'^subscribe/', SubscribeView.as_view(), name='subscribe'),
     # url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap')
     # url(r'^404/$', 'django.views.defaults.page_not_found', {'exception': 'ERR'}),
     # url(r'^500/$', 'django.views.defaults.server_error', ),

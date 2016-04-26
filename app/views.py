@@ -2,12 +2,13 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import TemplateView, RedirectView, FormView
 from django.core.exceptions import ObjectDoesNotExist
-from app.models import (Category, Product, TopCategory, Partner, Article, Employee, CarouselItem, UserRequest, )
+from app.models import (Category, Product, TopCategory, Partner, Article, Employee, CarouselItem, UserRequest,
+                        Subscriber, )
 from django.core.urlresolvers import reverse
 from django.core.paginator import PageNotAnInteger, Paginator, EmptyPage
 from tagging.models import Tag, TaggedItem
 from django.http import JsonResponse
-from app.forms import UserRequestForm
+from app.forms import UserRequestForm, SubscriberForm
 import json
 from django.http import HttpResponse, HttpResponseNotAllowed
 from django.core.mail import send_mail
@@ -19,6 +20,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.conf import settings
 from datetime import datetime
 import tarfile
+import csv
 
 
 class MyPaginator(Paginator):
@@ -248,7 +250,6 @@ class ContactsView(FormView):
                           recipient_list=[data['email']],
                           from_email=settings.EMAIL_HOST_USER)
         except Exception:
-            raise
             pass
         UserRequest.objects.create(**data)
         return render(self.request, 'request_success.html', {'success': email_is_sent})
@@ -317,3 +318,26 @@ class LangRedirect(RedirectView):
                 return curr_path
             else:
                 return reverse('main')
+
+
+class SubscribeView(FormView):
+    template_name = 'subscribe_msg.html'
+    form_class = SubscriberForm
+
+    def form_valid(self, form):
+        if form.is_valid():
+            Subscriber.objects.create(email=form.cleaned_data['email'])
+            return render(self.request, 'subscribe_msg.html', {'success': True})
+
+
+@staff_member_required
+def get_subscribers(request):
+    # returns list of subscribers in csv format
+    resp = HttpResponse(content_type='text/csv')
+    resp['Content-Disposition'] = 'attachment; filename="subscribers_{}.csv"'.format(
+        (datetime.now().isoformat()).split('.')[0], )
+    writer = csv.writer(resp)
+    writer.writerow(['email'])
+    for item in Subscriber.objects.filter(is_active=True):
+        writer.writerow([item.email])
+    return resp
