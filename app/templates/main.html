@@ -5,7 +5,7 @@
 {% block title %}{{ block.super }} | главная{% endblock %}
 
 {% block lang %}
-    <link rel="alternate" hreflang="ru" href="http://vivariy.com/" />
+    <link rel="alternate" hreflang="ru" href="http://vivariy.com/"/>
 {% endblock %}
 
 {% block content %}
@@ -56,7 +56,9 @@
                                     {# But I dunno easy way to combine template tags and css, so I'm using inline styles #}
                             >
                             </div>
-                            <h4>{{ category.title_ru | upper }}</h4>
+                            <div class="h-wrapper">
+                                <h4>{{ category.title_ru | upper }}</h4>
+                            </div>
                         </div>
                     </a>
                 </div>
@@ -69,12 +71,12 @@
             <div class="col-lg-offset-1 col-lg-10 col-md-12 col-sm-12 col-xs-12">
                 <h2>КОРОТКО О НАС</h2>
                 <p>
-                    Наша компания является официальным дистрибьютором ряда российских,
+                    Группа компаний "ВИВАРИЙ" является официальным дистрибьютором ряда российских,
                     европейских и американских фирм-производителей и занимает одно из
                     лидирующих мест на профильном рынке.
                 </p>
                 <p>
-                    Наша компания - это широкая номенклатура товаров, профессиональный
+                    Группа компаний "ВИВАРИЙ" - это широкая номенклатура товаров, профессиональный
                     коллектив, активные связи с производителями и клиентами.
                 </p>
                 <p>
@@ -97,7 +99,7 @@
                         <div class="main-article-item-wrapper">
                             <div class="main-article-item-content">
                                 <h3>{{ article.title_ru | upper }}</h3>
-                                <div>{{ article.cut_ru | truncatewords:15 }}...</div>
+                                <p>{{ article.cut_ru | truncatewords:15 }}...</p>
                             </div>
                             <a href="{% url 'article_details' article.slug %}" class="btn">ПОДРОБНЕЕ</a>
                             <div>

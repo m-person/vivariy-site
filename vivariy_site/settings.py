@@ -183,7 +183,6 @@ EMAIL_SUBJECT_PREFIX = 'vivariy.com: '
 # }
 
 
-
 SESSION_SAVE_EVERY_REQUEST = True
 
 # versatile image section
@@ -240,6 +239,11 @@ TAGGING_AUTOCOMPLETE_SEARCH_CONTAINS = True
 # django-dbbackup settings:
 # DBBACKUP_STORAGE = 'dbbackup.storage.filesystem_storage'
 # DBBACKUP_STORAGE_OPTIONS = {'location': './backups'}
+
+# params, recommended by manage.py check --deploy:
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_BROWSER_XSS_FILTER = True
+
 
 # Deployment: import local_settings file to override
 try:

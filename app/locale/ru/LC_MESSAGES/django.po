@@ -67,11 +67,11 @@ msgstr "Изображения для статей"
 
 #: app/models.py:50
 msgid "Image for categories"
-msgstr "Изображение для субкатегорий"
+msgstr "Изображение для категории верхнего уровня"
 
 #: app/models.py:51
 msgid "Images for categories"
-msgstr "Изображения для субкатегорий"
+msgstr "Изображения для категорий верхнего уровня"
 
 #: app/models.py:67
 msgid "Is default product image"
@@ -527,7 +527,7 @@ msgstr "КОНТАКТЫ"
 
 #: app/templates/base.html:112
 msgid "© 2010-2016 Vivaium group.<br>All rights reserved."
-msgstr "Группа компаний &laquoВиварий&raquo.<br>Все права защищены."
+msgstr "Группа компаний &laquo;Виварий&raquo;.<br>Все права защищены."
 
 #: app/templates/base.html:115
 msgid "CONTACTS:"

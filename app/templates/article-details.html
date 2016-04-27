@@ -28,7 +28,8 @@
                 <img class="article-top-image" src="{{ article.image.image.crop.300x150 }}"
                      alt="article description image">
                 <time class="article-date" datetime="{{ article.date | date:'c' }}">
-                    <h4>{{ article.date | date:"j E Y" | upper }}</h4></time>
+                    <span class="h4">{{ article.date | date:"j E Y" | upper }}</span></time>
+                <div class="time-margin"></div>
                 <div class="article-content">{{ article.text_ru | safe }}</div>
                 {% if article.source_url %}
                     <p class="article-source">Источник: <a

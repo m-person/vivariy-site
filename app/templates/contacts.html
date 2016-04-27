@@ -6,7 +6,7 @@
 {% block title %}{{ block.super }} | контакты {% endblock %}
 
 {% block lang %}
-    <link rel="alternate" hreflang="ru" href="http://vivariy.com/contacts/" />
+    <link rel="alternate" hreflang="ru" href="http://vivariy.com/contacts/"/>
 {% endblock %}
 
 {% block content %}
@@ -18,37 +18,56 @@
                 <div>
                     <h2>КОНТАКТЫ</h2>
 
-                    <img src="{% static 'img/contacts-map.jpg' %}" alt="map">
+                    <img src="{% static 'img/contacts-map-1.jpg' %}" alt="map">
 
 
                     <div class="vcard">
+                        <h3 class="org fn">ГРУППА КОМПАНИЙ "ВИВАРИЙ"</h3>
+
                         <div class="adr">
-                            <h3 class="org fn">ГРУППА КОМПАНИЙ "ВИВАРИЙ"</h3>
+                            <h4 class="org fn">ГОЛОВНОЙ ОФИС В РОССИЙСКОЙ ФЕДЕРАЦИИ</h4>
                             <div>
                                 <span><strong>Адрес:</strong></span>
-                                <span class="postal-code">308024</span>
+                                <span class="postal-code">308000</span>,
                                 {#<span class="country-name">Россия</span>#}
-                                <span class="locality">г.Белгород</span>
-                                <span class="street-address">ул.Костюкова, 13Б</span>
+                                <span class="locality">г.Белгород</span>,<br>
+                                <span class="street-address">Михайловское шоссе, д.1, оф. 35</span>
                             </div>
-                            <div>
-                                <span><strong>Тел.:</strong></span>
-                                <span class="tel">+7(4722)37-29-38</span>
-                                <div class="tel">+7(4722)37-29-40</div>
-                                <div class="tel">+7(4722)40-21-42</div>
-                            </div>
+                            {#                            <div>#}
+                            {#                                <span><strong>Тел.:</strong></span>#}
+                            {#                                <span class="tel">+7(4722)40-21-42</span>#}
+                            {#                                <div class="tel">+7(4722)37-29-38</div>#}
+                            {#                            </div>#}
+                            <table>
+                                <tr>
+                                    <td><strong>Тел.:</strong></td>
+                                    <td><a href="tel://+74722402142" class="tel">+7(4722)40-21-42</a></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td><a href="tel://+74722372938" class="tel">37-29-38</a></td>
+                                </tr>
+                            </table>
                             <div class="local-emails">
+                                <h5>ОТДЕЛ ПРОДАЖ</h5>
                                 <span><strong>e-mail:</strong></span>
                                 <span class="email"><a href="mailto:info@vivariy.com">info@vivariy.com</a></span>
-                                <div class="email"><a href="mailto:vet_prod@mail.ru">vet_prod@mail.ru</a></div>
+                                <h5>СЕРВИСНЫЙ ОТДЕЛ</h5>
+                                <span><strong>e-mail:</strong></span>
+                                <span class="email"><a href="mailto:service@vivariy.com">service@vivariy.com</a></span>
+                                <h5>БУХГАЛТЕРИЯ</h5>
+                                <span><strong>e-mail:</strong></span>
+                                <span class="email"><a href="mailto:buh@vivariy.com">buh@vivariy.com</a></span>
                             </div>
                         </div>
                         <div class="adr">
-                            <h3 class="org fn">ПРЕДСТАВИТЕЛЬСТВО В УКРАИНЕ</h3>
+                            <h4 class="org fn">ОФИС В УКРАИНЕ</h4>
                             {#<span class="country-name">Украина</span>#}
+                            <h5>ОТДЕЛ ПРОДАЖ</h5>
                             <div>
                                 <span><strong>Тел.:</strong></span>
-                                <span class="tel">+38(057)762-73-28</span>
+                                {#                                <span class="tel">+38(057)762-73-28</span>#}
+                                <a href="tel://+380577627328" class="tel">+38(057)762-73-28</a>
                             </div>
                             <div>
                                 <span><strong>e-mail:</strong></span>
@@ -71,7 +90,7 @@
                 <h2>ОТПРАВИТЬ ЗАПРОС</h2>
 
                 <div class="basket-list">
-                    <h3>ЗАПРОСИТЬ СТОИМОСТЬ:</h3>
+                    {#                    <h3>ЗАПРОСИТЬ СТОИМОСТЬ:</h3>#}
                     <div class="cart-placeholder">
                         {% if cart %}
                             <ul>
@@ -87,7 +106,8 @@
                                         <div class="media-body">
                                             {{ item.categories.all | first }}
                                             <a href="{% url 'product' item.slug %}">
-                                                <h3 class="media-heading">{{ item.title_ru | truncatechars:32 }}</h3>
+                                                {#                                                <h3 class="media-heading">{{ item.title_ru | truncatechars:32 }}</h3>#}
+                                                <h4 class="media-heading">{{ item.title_ru | upper }}</h4>
                                             </a>
                                             <form action="{% url 'product' item.slug %}" method="post">{% csrf_token %}
                                                 <!-- note: we emulate DELETE method, because html forms allow only GET and POST-->
@@ -111,7 +131,9 @@
 
                 <form action="" method="post">{% csrf_token %}
                     {#                    <h3>ЗАПРОСИТЬ СТОИМОСТЬ</h3>#}
-                    {{ form.as_ul }}
+                    <ul>
+                        {{ form.as_ul }}
+                    </ul>
                     <input type="submit" class="btn" value="ОТПРАВИТЬ">
                     <div class="request-form-desc"> * - Поля, отмеченные звездочкой, обязательные для заполнения</div>
                 </form>

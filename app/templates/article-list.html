@@ -35,7 +35,7 @@
                     <div class="media">
                         <time class="article-date"
                               datetime="{{ article.date | date:'c' }}">
-                            <h4>{{ article.date | date:"j E Y" | upper }}</h4></time>
+                            <span class="h4">{{ article.date | date:"j E Y" | upper }}</span></time>
                         <a href="{% url 'article_details' article.slug %}">
                             <div class="media-left media-top">
                                 <img src="{{ article.image.image.crop.300x150 }}" alt="article image"
@@ -43,7 +43,7 @@
                             </div>
                             <div class="media-body">
                                 <h3 class="media-heading">{{ article.title_ru | upper }}</h3>
-                                <div class="article-cut">{{ article.cut_ru | truncatewords:23 }}</div>
+                                <p class="article-cut">{{ article.cut_ru | truncatewords:23 }}</p>
 
                             </div>
                         </a>

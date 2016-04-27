@@ -128,20 +128,26 @@ main {
     color: #74b336;
     border: 0;
     font-family: 'Open Sans Condensed', sans-serif;
-    width: 140px;
+    width: 160px;
     padding-bottom: 2px;
-    padding-top: 1px;
+    padding-top: 2px;
     border-radius: 0 0 10px 10px;
     font-size: 18px;
     margin-right: 4px;
 }
 
-.request-basket-btn:hover {
+.request-basket-btn span:nth-of-type(2) {
     color: white;
 }
 
+.request-basket-btn:active,
+.request-basket-btn:hover {
+    color: white;
+    background-color: #74b336;
+}
+
 .request-basket-btn span:last-of-type {
-    color: greenyellow;
+    /*color: greenyellow;*/
 }
 
 /*----- base template: company logo ------*/
@@ -150,7 +156,7 @@ main {
     margin-bottom: 20px;
 }
 
-.header-logo > div {
+.header-logo > span {
     display: none;
 }
 
@@ -210,8 +216,8 @@ footer .contacts {
     padding: 0;
 }
 
-footer .contacts div:nth-of-type(2) {
-    text-indent: 100px;
+footer .contacts td {
+    text-align: right;
 }
 
 footer img {
@@ -221,6 +227,15 @@ footer img {
 footer a {
     color: #74b336;
     text-decoration: underline;
+}
+
+footer a.tel {
+    text-decoration: none;
+    color: white;
+}
+
+footer a.tel:hover {
+    color: #23527c;
 }
 
 footer .studio-logo {
@@ -339,8 +354,12 @@ div.carousel {
     padding-bottom: 5px;
 }
 
+.main-catalog-item .h-wrapper {
+    height: 50px;
+}
+
 .main-catalog-item-container h4 {
-    padding-top: 5px;
+    padding-top: 3px;
 }
 
 .main-catalog-item a:hover h4 {
@@ -427,7 +446,7 @@ div.carousel {
 }
 
 .breadcrumbs span:last-of-type {
-    font-weight: bolder;
+    font-weight: bold;
 }
 
 /*------- top-level catalog page --------*/
@@ -439,6 +458,11 @@ div.carousel {
 .catalog-top-container {
     margin-bottom: 30px;
 }
+
+.main-top-container .h-wrapper {
+    height: 50px;
+}
+
 
 /*-------- category, articles, contacts: side background div, expanded to screen edge */
 .aside-bkg {
@@ -579,7 +603,8 @@ div.carousel {
     margin-bottom: 16px;
 }
 
-.article-list time h4 {
+.article-list time .h4 {
+    font-family: 'Open Sans Condensed', sans-serif;
     margin-bottom: 5px;
 }
 
@@ -672,8 +697,12 @@ div.carousel {
     margin: 0 20px 18px 0;
 }
 
-.article-details time h4 {
-    margin-bottom: 30px;
+.article-details time .h4 {
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+
+.article-details .time-margin {
+    height: 20px;
 }
 
 .article-details .article-content {
@@ -821,6 +850,10 @@ div.carousel {
     padding-bottom: 40px;
 }
 
+.partners-list .partner-item p {
+    margin: 0;
+}
+
 /*--------- contacts page: contacts block ----------*/
 
 .contacts-page .aside-bkg {
@@ -835,36 +868,64 @@ div.carousel {
     margin-right: -5px;
 }
 
+
 .contacts-page .contacts h2 {
     margin-top: 86px;
     margin-bottom: 30px;
 }
 
 .contacts-page .contacts h3 {
-    margin-top: 40px;
-    margin-bottom: 30px;
+    /*margin-top: 40px;*/
+    margin-top: 60px;
+    /*margin-bottom: 30px;*/
 }
 
-.contacts-page .vcard .tel:nth-of-type(1),
-.contacts-page .vcard .tel:nth-of-type(2) {
-    text-indent: 48px;
+.contacts-page .contacts h4 {
+    margin-top: 50px;
+    margin-bottom: 15px;
+}
+
+.contacts-page .contacts h4:nth-of-type(2) {
+    /*margin-top: 50px;*/
+}
+
+.contacts-page .contacts h5 {
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+.contacts-page .vcard .street-address {
+    padding-left: 70px;
+}
+
+/*.contacts-page .vcard .tel:nth-of-type(1),*/
+/*.contacts-page .vcard .tel:nth-of-type(2) {*/
+/*text-indent: 48px;*/
+/*}*/
+.contacts-page .vcard td {
+    text-align: right;
 }
 
 .contacts-page .vcard .local-emails {
-    margin-top: 20px;
+    /*margin-top: 20px;*/
 }
 
-.contacts-page .vcard .email a {
+.contacts-page .vcard a {
+    /*.contacts-page .vcard a {*/
     color: #414141;
     text-decoration: underline;
 }
 
-.contacts-page .vcard .email a:hover {
+.contacts-page .vcard a.tel {
+    text-decoration: none;
+}
+
+.contacts-page .vcard a:hover {
     color: #74b336;
 }
 
 .contacts-page .vcard .local-emails .email:last-of-type {
-    text-indent: 66px;
+    /*text-indent: 66px;*/
 }
 
 .contacts-page .vcard {
@@ -880,21 +941,24 @@ div.carousel {
 .contacts-page .request-form ul {
     padding: 0;
     margin-bottom: 40px;
+    list-style-type: none;
 }
 
 .contacts-page .request-form h2 {
     margin-top: 70px;
-    margin-bottom: 5px;
+    margin-bottom: 30px;
 }
 
+
 .contacts-page li.cart-item {
-    margin: 0;
+    min-height: 70px;
 }
 
 .contacts-page .cart-item-remove-btn {
     position: absolute;
     right: 0;
-    top: 38px;
+    /*top: 38px;*/
+    top: 16px;
     font-size: 26px;
     color: #414141;
     background-color: transparent;
@@ -905,7 +969,7 @@ div.carousel {
     color: #74b336;
 }
 
-.contacts-page .basket-list a:hover h3 {
+.contacts-page .basket-list a:hover h4 {
     color: #74b336;
     text-decoration: none;
 }
@@ -914,9 +978,13 @@ div.carousel {
     text-decoration: none;
 }
 
-.contacts-page .basket-list > h3 {
-    font-size: 30px;
-    margin-top: 30px;
+/*.contacts-page .basket-list > h3 {*/
+/*font-size: 30px;*/
+/*margin-top: 30px;*/
+/*}*/
+
+.contacts-page .basket-list h4 {
+    padding-right: 34px;
 }
 
 .contacts-page .request-form form {
@@ -1106,12 +1174,12 @@ div.carousel {
 
 /*------todo: debug only, get rid in production -------*/
 /*.row, .container {*/
-    /*border: solid black 1px;*/
+/*border: solid black 1px;*/
 /*}*/
 /**/
 
 /**[class*=' col-'], *[class^='col-'] {*/
-    /*border: solid red 1px;*/
+/*border: solid red 1px;*/
 /*}*/
 
 /*--------- adjust for smaller screen sizes ---------*/
@@ -1245,8 +1313,11 @@ div.carousel {
         padding: 0;
     }
 
-    footer .contacts div:nth-of-type(2) {
-        text-indent: 82px;
+    /*footer .contacts div:nth-of-type(2) {*/
+    /*text-indent: 82px;*/
+    /*}*/
+    footer .contacts table {
+        margin: auto;
     }
 
     .main-catalog-item-container {

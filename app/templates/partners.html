@@ -44,10 +44,10 @@
                     <div class="media-body">
                         {% if LANGUAGE_CODE == 'ru' %}
                             <h4 class="media-heading">{{ partner.title | upper }}</h4>
-                            <div>{{ partner.desc }}</div>
+                            <p>{{ partner.desc }}</p>
                         {% else %}
                             <h4 class="media-heading">{{ partner.title_en | upper }}</h4>
-                            <div>{{ partner.desc_en }}</div>
+                            <p>{{ partner.desc_en }}</p>
                         {% endif %}
                     </div>
                 </div>

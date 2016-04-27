@@ -278,7 +278,7 @@ function update_cart() {
             cart.addClass('hidden');
         } else {
             cart.removeClass("hidden");
-            count_elem.html("(" + data + ")");
+            count_elem.html(data);
         }
     })
 }

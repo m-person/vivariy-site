@@ -87,6 +87,7 @@ class TopCategory(models.Model):
     image = models.ForeignKey('CategoryImage', related_name='categories')
     is_hidden = models.BooleanField(_('Don`t show this entry on site'), default=False)
 
+
     def __str__(self):
         return self.title_ru
 

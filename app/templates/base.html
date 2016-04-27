@@ -53,8 +53,8 @@
                     <a href="/contacts"
                        class="btn pull-right request-basket-btn {% if not request.session.cart %}hidden{% endif %}">
                         <span class="glyphicon glyphicon-shopping-cart"></span>
-                        <span>&nbspЗАПРОС</span>
-                        <span>({{ request.session.cart | length }})</span>
+                        <span>&nbsp;В ЗАПРОСЕ: </span>
+                        <span>{{ request.session.cart | length }}</span>
                     </a>
                 </div>
             </div>
@@ -62,7 +62,7 @@
                 <a href="/" class="col-lg-6 col-md-6 col-sm-12">
                     <h1 class="header-logo">
                         <img src="{% static 'img/logo_header.png' %}" alt="company logo">
-                        <div>группа компаний "ВИВАРИЙ"</div>
+                        <span>группа компаний "ВИВАРИЙ"</span>
                     </h1>
                 </a>
                 <form action="{% url 'watson:search' %}" class="search_form">{% csrf_token %}
@@ -106,18 +106,28 @@
     {% block footer %}
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-5">
+                <div class="col-lg-6 col-md-6 col-sm-5 col-xs-12">
                     {#                    <img src="{% static 'img/logo_footer.png' %}" alt="company logo">#}
                     <img src="{% static 'img/logo_footer2.png' %}" alt="company logo">
                     <p>{% trans "© 2010-2016 Vivaium group.<br>All rights reserved." %}</p>
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-4 contacts">
+                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 contacts">
                     <h3>{% trans 'CONTACTS:' %}</h3>
-                    <div>Тел.: (4722)40-21-42</div>
-                    <div>37-29-38</div>
+                    <table>
+                        <tr>
+                            <td>Tel.:</td>
+                            <td><a href="tel://+74722402142" class="tel">+7(4722)40-21-42</a></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><a href="tel://+74722372938" class="tel">37-29-38</a></td>
+                        </tr>
+                    </table>
+                    {#                    <div>Тел.: <span class="tel">+7(4722)40-21-42</span></div>#}
+                    {#                    <div><span class="tel">37-29-38</span></div>#}
                     <div>E-mail: <a href="mailto:info@vivariy.com">info@vivariy.com</a></div>
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-3 studio-logo">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 studio-logo">
                     <img src="{% static 'img/studio_logo2.png' %}" alt="design studio logo">
                     <!-- programming: Vasyliev Andrey <andrey_at_micro-man.com> -->
                 </div>
