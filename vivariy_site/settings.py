@@ -160,9 +160,7 @@ LOCALE_PATHS = [os.path.join(BASE_DIR, 'app', 'locale')]
 
 # django-smuggler setup (db backups)
 SMUGGLER_FIXTURE_DIR = os.path.join(BASE_DIR, 'backups')
-SMUGGLER_EXCLUDE_LIST = ['contenttypes',
-                         'admin',
-                         'tagging']  # skip them, to avoid import key errors on another DB due different sequence numbers
+# SMUGGLER_EXCLUDE_LIST = ['contenttypes', 'admin', 'tagging']
 
 # email settings:
 EMAIL_HOST = 'localhost'
