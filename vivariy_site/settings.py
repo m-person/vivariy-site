@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
+from django.utils.translation import ugettext_lazy as _
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -37,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
     'app',
     'debug_toolbar',
     'ckeditor',
@@ -45,7 +48,8 @@ INSTALLED_APPS = [
     'tagging',
     'tagging_autocomplete',
     'watson',
-    'smuggler'
+    'smuggler',
+    'robots'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -68,7 +72,7 @@ ROOT_URLCONF = 'vivariy_site.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
+        'DIRS': [os.path.join(BASE_DIR, 'templates'), os.path.join(BASE_DIR, 'app', 'templates')]
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -129,12 +133,19 @@ USE_L10N = True
 
 USE_TZ = True
 
+LANGUAGES = [
+    ('ru', _('Russian')),
+    ('en', _('English')),
+]
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+SITE_ID = 1  # note: it's an id of current site in django_site table
 
 #
 MEDIA_ROOT = os.path.join(BASE_DIR, 'app', 'media')
@@ -149,22 +160,16 @@ LOCALE_PATHS = [os.path.join(BASE_DIR, 'app', 'locale')]
 
 # django-smuggler setup (db backups)
 SMUGGLER_FIXTURE_DIR = os.path.join(BASE_DIR, 'backups')
+SMUGGLER_EXCLUDE_LIST = ['contenttypes',
+                         'admin',
+                         'tagging']  # skip them, to avoid import key errors on another DB due different sequence numbers
 
 # email settings:
-if DEBUG:
-    # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-    EMAIL_HOST = '127.0.0.1'
-    EMAIL_PORT = 2525
-    DEFAULT_FROM_EMAIL = 'django-dev@localhost'
-# EMAIL_HOST_PASSWORD
-# EMAIL_HOST_USER
-# EMAIL_SUBJECT_PREFIX
-# EMAIL_USE_TLS
-# EMAIL_USE_SSL
-# EMAIL_SSL_CERTFILE
-# EMAIL_SSL_KEYFILE
-# EMAIL_TIMEOUT
-
+EMAIL_HOST = 'localhost'
+EMAIL_HOST_USER = 'request@vivariy.com'
+EMAIL_PORT = 2525
+EMAIL_TIMEOUT = 15
+EMAIL_SUBJECT_PREFIX = 'vivariy.com: '
 
 # django-resized defaults:
 # DJANGORESIZED_DEFAULT_QUALITY = 99
@@ -178,6 +183,7 @@ if DEBUG:
 #         'TIMEOUT': 0,
 #     }
 # }
+
 
 
 SESSION_SAVE_EVERY_REQUEST = True

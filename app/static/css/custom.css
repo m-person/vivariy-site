@@ -235,8 +235,8 @@ footer .back-to-top {
     border-radius: 30px;
     opacity: .3;
     position: fixed;
-    bottom: 0;
-    right: 0;
+    bottom: 5px;
+    right: 5px;
     z-index: 100;
     text-decoration: none;
     color: #414141;
@@ -710,6 +710,74 @@ div.carousel {
     margin-bottom: 60px;
 }
 
+/*--------- subscribing form (presented on article-list, article-details & subscribe_msg pages)-------*/
+.subscribe-form input {
+    height: 30px;
+    border-radius: 20px;
+    border: none;
+    width: 100%;
+    padding-left: 10px;
+}
+
+.subscribe-form button {
+    background-color: #414141;
+    font-family: 'Open Sans Condensed', sans-serif;
+    color: #74b336;
+    font-size: 18px;
+    width: 100%;
+    border-radius: 20px;
+    border: none;
+    height: 30px;
+    margin-top: 10px;
+}
+
+.subscribe-form button:active,
+.subscribe-form button:hover {
+    background-color: #74b336;
+    color: white;
+}
+
+.article-tags-panel .subscribe-form h5 {
+    margin-top: 80px;
+    margin-bottom: 20px;
+}
+
+.subscribe-msg .subscribe-form input {
+    background-color: #e5e5e5;
+    height: 40px;
+    width: 67%;
+    padding-left: 15px;
+}
+
+.subscribe-msg .subscribe-form button {
+    width: 30%;
+    height: 40px;
+    margin-left: 10px;
+}
+
+.subscribe-form ul.errorlist {
+    list-style-type: none;
+    color: red;
+    margin: 0 0 0 15px;
+    font-size: 16px;
+    text-align: left;
+    padding: 0;
+}
+
+.subscribe-msg h2 {
+    margin-top: 80px;
+    margin-bottom: 40px;
+}
+
+.subscribe-msg a {
+    color: #74b336;
+    text-align: center;
+}
+
+.subscribe-msg form {
+    margin-bottom: 80px;
+}
+
 /*-------- partners page -----------*/
 .partners-list .breadcrumbs {
     margin-right: -5px;
@@ -1038,11 +1106,12 @@ div.carousel {
 
 /*------todo: debug only, get rid in production -------*/
 /*.row, .container {*/
-/*border: solid black 1px;*/
+    /*border: solid black 1px;*/
 /*}*/
+/**/
 
 /**[class*=' col-'], *[class^='col-'] {*/
-/*border: solid red 1px;*/
+    /*border: solid red 1px;*/
 /*}*/
 
 /*--------- adjust for smaller screen sizes ---------*/

@@ -3,6 +3,10 @@
 
 {% block title %}{{ block.super }} | статьи{% endblock %}
 
+{% block lang %}
+    <link rel="alternate" hreflang="ru" href="http://vivariy.com/articles/" />
+{% endblock %}
+
 {% block content %}
     <div class="container article-list">
 
@@ -20,9 +24,9 @@
 
                 {% if current_tag %}
                     <h2>СТАТЬИ ПО ТЕГУ "{{ current_tag }}"</h2>
-                    <a class="filter-msg" href="/articles/">[очистить фильтр]</a>
-                    {#<a href="/articles/"><span class="glyphicon glyphicon-remove"></span></a>#}
-                    {#                    </div>#}
+                        <a class="filter-msg" href="/articles/">[очистить фильтр]</a>
+                        {#<a href="/articles/"><span class="glyphicon glyphicon-remove"></span></a>#}
+{#                    </div>#}
                 {% else %}
                     <h2>СТАТЬИ</h2>
                 {% endif %}
@@ -96,10 +100,10 @@
             </section>
 
             <aside class="col-lg-2 col-md-2 col-sm-12 col-xs-12 article-tags-panel">
-                <form class="subscribe-form" action="/subscribe" method="post">{% csrf_token %}
-                    <h5>ПОЛУЧАТЬ ОБНОВЛЕНИЯ</h5>
-                    <input id="subscribe-email-input" type="email" class="form-control" placeholder="Ваш e-mail">
-                    <button type="submit" class="btn">ПОДПИСАТЬСЯ</button>
+                <form action="/subscribe/" method="post" class="subscribe-form">{% csrf_token %}
+                    <h5>ПОЛУЧАТЬ<br> НОВЫЕ СТАТЬИ</h5>
+                    <input type="text" name="email" placeholder="Ваш e-mail">
+                    <button type="submit">ПОДПИСАТЬСЯ</button>
                 </form>
                 <div>
                     <h5>КЛЮЧЕВЫЕ СЛОВА</h5>

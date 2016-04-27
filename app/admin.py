@@ -59,20 +59,24 @@ class ArticleAdmin(admin.ModelAdmin):
 class CategoryAdmin(admin.ModelAdmin):
     fields = ('title_ru', 'parent_category', 'products', 'is_hidden')
     # list_display = ('title_ru', 'parent_category')
-    list_display = ('title_ru', )
+    list_display = ('title_ru',)
     save_on_top = True
     change_list_template = 'smuggler/change_list.html'
 
 
 class PartnerAdmin(admin.ModelAdmin):
-    fields = ('title', 'desc', 'image', 'is_hidden')
+    fields = (('title', 'title_en',), 'desc', 'desc_en', 'image', 'is_hidden')
     list_display = ('title',)
+    prepopulated_fields = {
+        'title_en': ('title',)
+    }
     save_on_top = True
     change_list_template = 'smuggler/change_list.html'
 
 
 class ProductAdmin(admin.ModelAdmin):
-    fields = ('title_ru', 'slug', 'manufacturer', 'categories', 'desc_short_ru', 'desc_full_ru', 'specifications_ru', 'options_ru', 'mentions_ru', 'faq_ru', 'is_hidden')
+    fields = ('title_ru', 'slug', 'manufacturer', 'categories', 'desc_short_ru', 'desc_full_ru', 'specifications_ru',
+              'options_ru', 'mentions_ru', 'faq_ru', 'is_hidden')
     list_display = ('title_ru', 'manufacturer')
     prepopulated_fields = {
         'slug': ('title_ru',)
@@ -130,10 +134,10 @@ class CarouselItemAdmin(admin.ModelAdmin):
 
 
 class SubscriberAdmin(admin.ModelAdmin):
-    fields = ('email', 'is_active', 'timestamp', )
-    readonly_fields = ('timestamp', )
-    list_display = ('email', 'is_active', 'timestamp',)
+    fields = ('email', 'is_active', 'timestamp')
+    readonly_fields = ('email', 'timestamp')
     save_on_top = True
+    list_display = ('email', 'is_active', 'timestamp')
     change_list_template = 'smuggler/change_list.html'
 
 

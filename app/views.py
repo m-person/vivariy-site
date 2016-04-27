@@ -2,12 +2,13 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import TemplateView, RedirectView, FormView
 from django.core.exceptions import ObjectDoesNotExist
-from app.models import (Category, Product, TopCategory, Partner, Article, Employee, CarouselItem, )
+from app.models import (Category, Product, TopCategory, Partner, Article, Employee, CarouselItem, UserRequest,
+                        Subscriber, )
 from django.core.urlresolvers import reverse
 from django.core.paginator import PageNotAnInteger, Paginator, EmptyPage
 from tagging.models import Tag, TaggedItem
 from django.http import JsonResponse
-from app.forms import UserRequestForm, SubscribeForm
+from app.forms import UserRequestForm, SubscriberForm
 import json
 from django.http import HttpResponse, HttpResponseNotAllowed
 from django.core.mail import send_mail
@@ -19,6 +20,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.conf import settings
 from datetime import datetime
 import tarfile
+import csv
 
 
 class MyPaginator(Paginator):
@@ -202,11 +204,18 @@ class ArticleDetailView(TemplateView):
 class RequestSuccess(TemplateView):
     template_name = 'request_success.html'
 
+    # def get_context_data(self, **kwargs):
+    #     ctx = super(RequestSuccess, self).get_context_data(**kwargs)
+
+
+#
+
 
 class ContactsView(FormView):
     template_name = 'contacts.html'
     form_class = UserRequestForm
-    success_url = '/request_success/'
+
+    # success_url = '/request_success/'
 
     def get_context_data(self, **kwargs):
         ctx = super(ContactsView, self).get_context_data(**kwargs)
@@ -226,16 +235,24 @@ class ContactsView(FormView):
         data = form.cleaned_data
         data.pop('captcha')
         data['cart'] = self.hrefs_from_cart()
+        email_is_sent = False
         recipients = [empl.user.email for empl in Employee.objects.filter(is_mail_recipient=True)]
         try:
-            if send_mail(subject='User request', message=self.email_as_text(data), recipient_list=recipients,
-                         from_email=None, html_message=self.email_as_html(data)
-                         ):
+            if send_mail(subject='Vivariy.com: user request', message=self.email_as_text(data),
+                         recipient_list=recipients, from_email=settings.EMAIL_HOST_USER,
+                         html_message=self.email_as_html(data)):
                 self.request.session.pop('cart')
-        except SMTPException:
+                data['email_is_sent'] = True
+                email_is_sent = True
+                send_mail(subject='Vivariy.com: подтверждение запроса',
+                          message='Уважаемый {},\nВаш запрос был получен.\n\nВ скором времени с вами свяжется наш сотрудник.\n\n\n\n-------------\nгруппа компаний "Виварий"'.format(
+                              data['name']),
+                          recipient_list=[data['email']],
+                          from_email=settings.EMAIL_HOST_USER)
+        except Exception:
             pass
-        # UserRequest.objects.create(**data)
-        return super(ContactsView, self).form_valid(form)
+        UserRequest.objects.create(**data)
+        return render(self.request, 'request_success.html', {'success': email_is_sent})
 
     def hrefs_from_cart(self):
         # extracts list of products from cart, and return them as list of http links (in json format)
@@ -286,5 +303,41 @@ def media_backup_request(request):
     return resp
 
 
+class LangRedirect(RedirectView):
+    permanent = False
+
+    def get_redirect_url(self, *args, **kwargs):
+        # for english language - redirect to /partners page, for others - return current page
+        if self.request.LANGUAGE_CODE == 'en':
+            return reverse('partners')
+        else:
+            curr_path = self.request.GET.get('curr_path')
+            if curr_path:
+                if curr_path == '/en/partners/':
+                    curr_path = '/ru/partners/'
+                return curr_path
+            else:
+                return reverse('main')
+
+
 class SubscribeView(FormView):
-    success_url = '/'
+    template_name = 'subscribe_msg.html'
+    form_class = SubscriberForm
+
+    def form_valid(self, form):
+        if form.is_valid():
+            Subscriber.objects.create(email=form.cleaned_data['email'])
+            return render(self.request, 'subscribe_msg.html', {'success': True})
+
+
+@staff_member_required
+def get_subscribers(request):
+    # returns list of subscribers in csv format
+    resp = HttpResponse(content_type='text/csv')
+    resp['Content-Disposition'] = 'attachment; filename="subscribers_{}.csv"'.format(
+        (datetime.now().isoformat()).split('.')[0], )
+    writer = csv.writer(resp)
+    writer.writerow(['email'])
+    for item in Subscriber.objects.filter(is_active=True):
+        writer.writerow([item.email])
+    return resp

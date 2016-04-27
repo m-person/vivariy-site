@@ -1,0 +1,43 @@
+/*-------- admin interface customization --------*/
+#header {
+    overflow: visible;
+}
+
+#file-downloads {
+    position: relative;
+    display: inline-block;
+    float: right;
+}
+
+.file-dowlnoads-btn {
+    background-color: #417690;
+    font-size: larger;
+    color: yellow;
+    border: 0;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.file-dowlnoads-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 220px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+#file-downloads .file-dowlnoads-content a {
+    color: black;
+    padding: 0 16px;
+    text-decoration: none;
+    display: block;
+}
+
+#file-downloads .file-dowlnoads-content a:hover {
+    background-color: #e5e5e5;
+}
+
+#file-downloads:hover .file-dowlnoads-content {
+    display: block;
+}

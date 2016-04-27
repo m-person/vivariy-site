@@ -3,6 +3,10 @@
 
 {% block title %}{{ block.super }} | каталог | {{ category.title_ru }} {% endblock %}
 
+{% block lang %}
+    <link rel="alternate" hreflang="ru" href="http://vivariy.com{{ request.path }}/" />
+{% endblock %}
+
 {% block content %}
     <div class="catalog-container">
         <div class="aside-bkg"></div>

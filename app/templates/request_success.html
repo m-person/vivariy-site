@@ -5,9 +5,13 @@
 
 
 {% block content %}
-    <div>
-        <h1>Ваш запрос был отправлен</h1>
-
+    <div class="text-center" style="margin-top: 80px;">
+        {% if success == True %}
+            <h2>Ваш запрос был отправлен</h2>
+        {% else %}
+            <h2 style="color: red">Не удалось отправить Ваш запрос.</h2>
+            <p>повторите запрос позже или используйте другой способ для связи.</p>
+        {% endif %}
         <a href="/contacts/">вернуться</a>
     </div>
 {% endblock %}
