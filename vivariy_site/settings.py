@@ -138,6 +138,8 @@ LANGUAGES = [
     ('en', _('English')),
 ]
 
+LOCALE_PATHS = [os.path.join(BASE_DIR, 'app', 'locale')]
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
@@ -145,22 +147,20 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-SITE_ID = 1  # note: it's an id of current site in django_site table
-
-#
 MEDIA_ROOT = os.path.join(BASE_DIR, 'app', 'media')
 
 MEDIA_URL = '/media/'
+
+SITE_ID = 1  # note: it's an id of current site in django_site table
+
+SESSION_SAVE_EVERY_REQUEST = True
 
 # ckeditor file uploader
 CKEDITOR_UPLOAD_PATH = 'ck_uploads/'
 CKEDITOR_IMAGE_BACKEND = 'pillow'
 
-LOCALE_PATHS = [os.path.join(BASE_DIR, 'app', 'locale')]
-
 # django-smuggler setup (db backups)
 SMUGGLER_FIXTURE_DIR = os.path.join(BASE_DIR, 'backups')
-# SMUGGLER_EXCLUDE_LIST = ['contenttypes', 'admin', 'tagging']
 
 # email settings:
 EMAIL_HOST = 'localhost'
@@ -168,22 +168,6 @@ EMAIL_HOST_USER = 'request@vivariy.com'
 EMAIL_PORT = 2525
 EMAIL_TIMEOUT = 15
 EMAIL_SUBJECT_PREFIX = 'vivariy.com: '
-
-# django-resized defaults:
-# DJANGORESIZED_DEFAULT_QUALITY = 99
-# DJANGORESIZED_DEFAULT_KEEP_META = False
-
-# enable caching in database. The sorl-thumbnail requires it (or similar key-value storage: memcached, redis).
-# CACHES = {
-#     'default': {
-#         'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
-#         'LOCATION': 'app_cache_table',
-#         'TIMEOUT': 0,
-#     }
-# }
-
-
-SESSION_SAVE_EVERY_REQUEST = True
 
 # versatile image section
 VERSATILEIMAGEFIELD_SETTINGS = {
@@ -213,46 +197,18 @@ VERSATILEIMAGEFIELD_SETTINGS = {
     'create_images_on_demand': True
 }
 
-# VERSATILEIMAGEFIELD_RENDITION_KEY_SETS = {
-#     'image_gallery': [
-#         ('gallery_large', 'crop__800x450'),
-#         ('gallery_square_small', 'crop__50x50')
-#     ],
-#     'primary_image_detail': [
-#         ('hero', 'crop__600x283'),
-#         ('social', 'thumbnail__800x800')
-#     ],
-#     'primary_image_list': [
-#         ('list', 'crop__400x225'),
-#     ],
-#     'headshot': [
-#         ('headshot_small', 'crop__150x175'),
-#     ]
-# }
-
 # django-tagging settings:
 FORCE_LOWERCASE_TAGS = True
 
 # django-tagging-autocomplete settings:
 TAGGING_AUTOCOMPLETE_SEARCH_CONTAINS = True
 
-# django-dbbackup settings:
-# DBBACKUP_STORAGE = 'dbbackup.storage.filesystem_storage'
-# DBBACKUP_STORAGE_OPTIONS = {'location': './backups'}
-
 # params, recommended by manage.py check --deploy:
 SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_BROWSER_XSS_FILTER = True
-
 
 # Deployment: import local_settings file to override
 try:
     from .prod_settings import *
 except ImportError:
     pass
-
-    # try:
-    #     INSTALLED_APPS += LOCAL_INSTALLED_APPS
-    #     ALLOWED_HOSTS += LOCAL_ALLOWED_HOSTS
-    # except:
-    #     pass

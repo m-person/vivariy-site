@@ -10,9 +10,8 @@ from tagging.models import Tag, TaggedItem
 from django.http import JsonResponse
 from app.forms import UserRequestForm, SubscriberForm
 import json
-from django.http import HttpResponse, HttpResponseNotAllowed
+from django.http import HttpResponse
 from django.core.mail import send_mail
-from smtplib import SMTPException
 from django.template.loader import render_to_string
 from copy import copy
 from random import randint
@@ -204,18 +203,10 @@ class ArticleDetailView(TemplateView):
 class RequestSuccess(TemplateView):
     template_name = 'request_success.html'
 
-    # def get_context_data(self, **kwargs):
-    #     ctx = super(RequestSuccess, self).get_context_data(**kwargs)
-
-
-#
-
 
 class ContactsView(FormView):
     template_name = 'contacts.html'
     form_class = UserRequestForm
-
-    # success_url = '/request_success/'
 
     def get_context_data(self, **kwargs):
         ctx = super(ContactsView, self).get_context_data(**kwargs)

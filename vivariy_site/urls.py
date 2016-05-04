@@ -39,11 +39,6 @@ urlpatterns = [
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
     url(r'^robots\.txt$', include('robots.urls')),
     url(r'^subscribe/', SubscribeView.as_view(), name='subscribe'),
-    # url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap')
-    # url(r'^404/$', 'django.views.defaults.page_not_found', {'exception': 'ERR'}),
-    # url(r'^500/$', 'django.views.defaults.server_error', ),
-    # url(r'^400/$', 'django.views.defaults.bad_request', {'exception': 'ERR'}),
-    # url(r'^403/$', 'django.views.defaults.permission_denied', {'exception': 'ERR'}),
 ]
 
 # access to uploaded files
