@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'tagging_autocomplete',
     'watson',
     'smuggler',
-    'robots'
+    'robots',
 ]
 
 MIDDLEWARE_CLASSES = [

@@ -1,6 +1,4 @@
-{% load staticfiles %}
-{% load i18n %}
-{% load watson %}
+{% load staticfiles i18n watson %}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -25,10 +23,12 @@
     {% block css %}
         <link rel="icon" type="image/png" href="{% static 'img/favicon-32x32.png' %}" sizes="32x32"/>
         <link rel="icon" type="image/png" href="{% static 'img/favicon-16x16.png' %}" sizes="16x16"/>
-        <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
-        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-        <link rel="stylesheet" href="{% static 'css/bootstrap-theme.min.css' %}">
-        <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.min.css">
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static 'css/custom.min.css' %}">
     {% endblock %}
 </head>
 
@@ -107,7 +107,6 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-5 col-xs-12">
-                    {#                    <img src="{% static 'img/logo_footer.png' %}" alt="company logo">#}
                     <img src="{% static 'img/logo_footer2.png' %}" alt="company logo">
                     <p>{% trans "© 2010-2016 Vivaium group.<br>All rights reserved." %}</p>
                 </div>
@@ -123,13 +122,11 @@
                             <td><a href="tel://+74722372938" class="tel">37-29-38</a></td>
                         </tr>
                     </table>
-                    {#                    <div>Тел.: <span class="tel">+7(4722)40-21-42</span></div>#}
-                    {#                    <div><span class="tel">37-29-38</span></div>#}
                     <div>E-mail: <a href="mailto:info@vivariy.com">info@vivariy.com</a></div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 studio-logo">
                     <img src="{% static 'img/studio_logo2.png' %}" alt="design studio logo">
-                    <!-- programming: Vasyliev Andrey <andrey_at_micro-man.com> -->
+                    <div style="display: none" data-info="programming: Vasyliev Andrey [andrey_at_micro-man.com]"></div>
                 </div>
             </div>
         </div>
@@ -140,10 +137,10 @@
 </footer>
 
 {% block js %}
-    <script src="{% static 'js/jquery.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/js.cookie.js' %}"></script>
-    <script src="{% static 'js/app.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.1/js.cookie.min.js"></script>
+    <script src="{% static 'js/app.min.js' %}"></script>
 {% endblock %}
 </body>
 </html>

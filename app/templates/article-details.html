@@ -1,6 +1,5 @@
 {% extends "base.html" %}
-{% load staticfiles %}
-{% load my_tags %}
+{% load staticfiles my_tags %}
 
 {% block title %}{{ block.super }} | статьи | {{ article.title_ru | truncatechars:20 }}{% endblock %}
 

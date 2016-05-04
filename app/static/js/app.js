@@ -259,9 +259,7 @@ function expandCurrentCategory() {
     }
     var current_category = Cookies.get('current_category'),
         panel = $('#' + current_category);
-    console.log(current_category, panel);
     if (panel) {
-        console.log(panel.find('a.collapse'));
         panel.find('.collapse').collapse('show');
     }
 }

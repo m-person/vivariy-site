@@ -17,7 +17,7 @@
 
 {% block js %}
     {{ block.super }}
-    <script src="{% static 'js/lightslider.min.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.5/js/lightslider.min.js"></script>
 {% endblock %}
 
 
@@ -41,7 +41,6 @@
             <div class="product-images col-lg-4 col-md-4 col-sm-5 col-xs-12">
                 <div>
                     <ul id="product-gallery">
-                        {#                        {% for image in product.images.all %}#}
                         {% for image in images %}
                             <li data-thumb="{{ image.image.crop.59x59 }}">
                                 <img src="{{ image.image.crop.300x300 }}" alt="product image">
@@ -95,16 +94,11 @@
                         &nbspДОБАВИТЬ В ЗАПРОС
                     </button>
                 </form>
-{#                <a href="#" class="btn product-ask-btn">#}
-{#                    <span class="glyphicon glyphicon-shopping-cart"></span>#}
-{#                    &nbspДОБАВИТЬ В ЗАПРОС#}
-{#                </a>#}
             </div>
         </div>
 
         <!-- tabs with with additional product info -->
         <div class="row tabs-container">
-            {#        <div>#}
             <!-- Nav tabs -->
             <ul class="nav nav-tabs nav-justified" role="tablist">
                 {% if product.desc_full_ru %}

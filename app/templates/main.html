@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% load staticfiles %}
-{#{% load thumbnail %}#}
 
 {% block title %}{{ block.super }} | главная{% endblock %}
 
@@ -52,8 +51,6 @@
                                  style="background: url({{ category.image.image.crop.300x150 }});
                                          background-repeat: no-repeat;
                                          background-size:100% 100%"
-                                    {# Note: style rule "background: url(...)" is necessary for inner shadows. #}
-                                    {# But I dunno easy way to combine template tags and css, so I'm using inline styles #}
                             >
                             </div>
                             <div class="h-wrapper">
