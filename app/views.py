@@ -292,6 +292,13 @@ def cart_count_request(request):
         return HttpResponse(len(request.session['cart']))
 
 
+def media_backup_filter(filename):
+    # filter for media dir archiving function
+    if '__sized__' in filename.path:
+        return None
+    return filename
+
+
 @staff_member_required
 def media_backup_request(request):
     # returns gzipped content of /media directory
@@ -299,7 +306,7 @@ def media_backup_request(request):
     resp['Content-Disposition'] = 'attachment; filename=media_{}.tar.gz'.format(
         (datetime.now().isoformat()).split('.')[0], )
     with tarfile.open(fileobj=resp, mode='w:gz') as tar:
-        tar.add(settings.MEDIA_ROOT)
+        tar.add(settings.MEDIA_ROOT, filter=media_backup_filter)
     return resp
 
 
