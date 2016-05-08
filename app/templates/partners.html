@@ -5,8 +5,8 @@
 {% block title %}{{ block.super }} | {% trans 'partners' %}{% endblock %}
 
 {% block lang %}
-    <link rel="alternate" hreflang="ru" href="http://vivariy.com/ru/partners/" />
-    <link rel="alternate" hreflang="en" href="http://vivariy.com/en/partners/" />
+    <link rel="alternate" hreflang="ru" href="http://vivariy.com/ru/partners/"/>
+    <link rel="alternate" hreflang="en" href="http://vivariy.com/en/partners/"/>
 {% endblock %}
 
 {% block content %}
@@ -21,37 +21,43 @@
 
         <!-- list of partners -->
         <div class="row">
-            <h2>{% trans 'OUR PARTNERS' %}</h2>
+            {% if partner_list %}
+                <h2>{% trans 'OUR PARTNERS' %}</h2>
 
-            {% get_current_language as LANGUAGE_CODE %}
+                {% get_current_language as LANGUAGE_CODE %}
 
-            {% if LANGUAGE_CODE == 'en' %}
-                <p class="hype-paragraph">
-                <h3> There should be a long bla-bla-bla paragraph, that describing us. </h3><br><br><br><br><br><br>
-                </p>
+                {% if LANGUAGE_CODE == 'en' %}
+                    <p class="hype-paragraph">
+                    <h3> There should be a long bla-bla-bla paragraph, that describing us. </h3><br><br><br><br><br><br>
+                    </p>
+                {% endif %}
+
+                {% for partner in partner_list %}
+                    <div class="media col-lg-12 col-md-12 partner-item" id="pt_{{ partner.id }}">
+                        <div class="media-left media-middle">
+                            {% if partner.image %}
+                                <div class="logo-wrapper">
+                                    <img class="media-object" src="{{ partner.image.thumbnail.200x100 }}"
+                                         alt="partner image">
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="media-body">
+                            {% if LANGUAGE_CODE == 'ru' %}
+                                <h4 class="media-heading">{{ partner.title | upper }}</h4>
+                                <p>{{ partner.desc }}</p>
+                            {% else %}
+                                <h4 class="media-heading">{{ partner.title_en | upper }}</h4>
+                                <p>{{ partner.desc_en }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <h2 style="color: red">партнеров не найдено</h2>
+                <p style="text-align: center">(задаются через админку)</p>
             {% endif %}
 
-            {% for partner in partner_list %}
-                <div class="media col-lg-12 col-md-12 partner-item" id="pt_{{ partner.id }}">
-                    <div class="media-left media-middle">
-                        {% if partner.image %}
-                            <div class="logo-wrapper">
-                                <img class="media-object" src="{{ partner.image.thumbnail.200x100 }}"
-                                     alt="partner image">
-                            </div>
-                        {% endif %}
-                    </div>
-                    <div class="media-body">
-                        {% if LANGUAGE_CODE == 'ru' %}
-                            <h4 class="media-heading">{{ partner.title | upper }}</h4>
-                            <p>{{ partner.desc }}</p>
-                        {% else %}
-                            <h4 class="media-heading">{{ partner.title_en | upper }}</h4>
-                            <p>{{ partner.desc_en }}</p>
-                        {% endif %}
-                    </div>
-                </div>
-            {% endfor %}
         </div>
 
     </div>

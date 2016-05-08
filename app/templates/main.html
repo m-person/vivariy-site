@@ -10,57 +10,68 @@
 {% block content %}
     <div class="carousel-bkg">
         <div class="container">
-            <div id="carousel-main" class="carousel slide" data-ride="carousel">
-                <!-- Indicators -->
-                <ol class="carousel-indicators">
-                    {% for slide in slides %}
-                        <li data-target="#carousel-main" data-slide-to="{{ forloop.counter0 }}"
-                            {% if forloop.counter0 == slide_initial %}class="active" {% endif %}></li>
-                    {% endfor %}
-                </ol>
+            {% if slides %}
+                <div id="carousel-main" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        {% for slide in slides %}
+                            <li data-target="#carousel-main" data-slide-to="{{ forloop.counter0 }}"
+                                {% if forloop.counter0 == slide_initial %}class="active" {% endif %}></li>
+                        {% endfor %}
+                    </ol>
 
-                <!-- Wrapper for slides -->
-                <div class="carousel-inner" role="listbox">
-                    {% for slide in slides %}
-                        <div class="item {% if forloop.counter0 == slide_initial %} active{% endif %}">
-                            <div class="media">
-                                <div class="media-left media-middle">
-                                    <img src="{{ slide.image.crop.220x220 }}" alt="slide image">
-                                    <a href="{{ slide.url }}" class="btn">ПОДРОБНЕЕ</a>
-                                </div>
-                                <div class="media-body">
-                                    <h2 class="media-heading slide-title">{{ slide.title | upper }}</h2>
-                                    <div class="slide-desc">{{ slide.desc }}</div>
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        {% for slide in slides %}
+                            <div class="item {% if forloop.counter0 == slide_initial %} active{% endif %}">
+                                <div class="media">
+                                    <div class="media-left media-middle">
+                                        <img src="{{ slide.image.crop.220x220 }}" alt="slide image">
+                                        <a href="{{ slide.url }}" class="btn">ПОДРОБНЕЕ</a>
+                                    </div>
+                                    <div class="media-body">
+                                        <h2 class="media-heading slide-title">{{ slide.title | upper }}</h2>
+                                        <div class="slide-desc">{{ slide.desc }}</div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    {% endfor %}
+                        {% endfor %}
+                    </div>
                 </div>
-            </div>
+            {% else %}
+                <h2 style="color: red">слайдов не найдено</h2>
+                <p style="text-align: center">(задаются через админку)</p>
+            {% endif %}
         </div>
     </div>
 
     <div class="container main-catalog">
-        <h2>КАТАЛОГ ПРОДУКЦИИ</h2>
-        <div class="row">
-            {% for category in top_categories %}
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 main-catalog-item">
-                    <a href="{% url 'category' category.slug %}">
-                        <div class="main-catalog-item-container">
-                            <div class="main-catalog-item-img"
-                                 style="background: url({{ category.image.image.crop.300x150 }});
-                                         background-repeat: no-repeat;
-                                         background-size:100% 100%"
-                            >
+        {% if top_categories %}
+            <h2>КАТАЛОГ ПРОДУКЦИИ</h2>
+            <div class="row">
+                {% for category in top_categories %}
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 main-catalog-item">
+                        <a href="{% url 'category' category.slug %}">
+                            <div class="main-catalog-item-container">
+                                <div class="main-catalog-item-img"
+                                     style="background: url({{ category.image.image.crop.300x150 }});
+                                             background-repeat: no-repeat;
+                                             background-size:100% 100%"
+                                >
+                                </div>
+                                <div class="h-wrapper">
+                                    <h4>{{ category.title_ru | upper }}</h4>
+                                </div>
                             </div>
-                            <div class="h-wrapper">
-                                <h4>{{ category.title_ru | upper }}</h4>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            {% endfor %}
-        </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <h2 style="color: red">не найдено топ-категорий каталога</h2>
+            <p style="text-align: center">(задаются через админку)</p>
+        {% endif %}
+
     </div>
 
     <div class="about-us">
@@ -87,27 +98,33 @@
     </div>
 
     <div class="container main-article">
-        <h2>СТАТЬИ</h2>
-        <div class="row">
-            {% for article in articles %}
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <div class="main-article-item">
-                        <img src="{{ article.image.image.crop.300x150 }}" alt="article image">
-                        <div class="main-article-item-wrapper">
-                            <div class="main-article-item-content">
-                                <h3>{{ article.title_ru | upper }}</h3>
-                                <p>{{ article.cut_ru | truncatewords:15 }}...</p>
-                            </div>
-                            <a href="{% url 'article_details' article.slug %}" class="btn">ПОДРОБНЕЕ</a>
-                            <div>
-                                <time class="article-date"
-                                      datetime="{{ article.date | date:'c' }}">{{ article.date | date:"j E Y" | upper }}</time>
+        {% if articles %}
+            <h2>СТАТЬИ</h2>
+            <div class="row">
+                {% for article in articles %}
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        <div class="main-article-item">
+                            <img src="{{ article.image.image.crop.300x150 }}" alt="article image">
+                            <div class="main-article-item-wrapper">
+                                <div class="main-article-item-content">
+                                    <h3>{{ article.title_ru | upper }}</h3>
+                                    <p>{{ article.cut_ru | truncatewords:15 }}...</p>
+                                </div>
+                                <a href="{% url 'article_details' article.slug %}" class="btn">ПОДРОБНЕЕ</a>
+                                <div>
+                                    <time class="article-date"
+                                          datetime="{{ article.date | date:'c' }}">{{ article.date | date:"j E Y" | upper }}</time>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            {% endfor %}
-        </div>
-        <a href="/articles" class="btn center-block">СМОТРЕТЬ ВСЕ СТАТЬИ</a>
+                {% endfor %}
+            </div>
+            <a href="/articles" class="btn center-block">СМОТРЕТЬ ВСЕ СТАТЬИ</a>
+        {% else %}
+            <h2 style="color: red">статей не найдено</h2>
+            <p style="text-align: center">(задаются через админку)</p>
+        {% endif %}
+
     </div>
 {% endblock %}

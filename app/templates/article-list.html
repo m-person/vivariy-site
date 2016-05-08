@@ -4,7 +4,7 @@
 {% block title %}{{ block.super }} | статьи{% endblock %}
 
 {% block lang %}
-    <link rel="alternate" hreflang="ru" href="http://vivariy.com/articles/" />
+    <link rel="alternate" hreflang="ru" href="http://vivariy.com/articles/"/>
 {% endblock %}
 
 {% block content %}
@@ -22,31 +22,37 @@
                     </div>
                 </div><!-- end breadcrumbs -->
 
-                {% if current_tag %}
-                    <h2>СТАТЬИ ПО ТЕГУ "{{ current_tag }}"</h2>
+                {% if articles %}
+                    {% if current_tag %}
+                        <h2>СТАТЬИ ПО ТЕГУ "{{ current_tag }}"</h2>
                         <a class="filter-msg" href="/articles/">[очистить фильтр]</a>
+                    {% else %}
+                        <h2>СТАТЬИ</h2>
+                    {% endif %}
+
+                    {% for article in articles %}
+                        <div class="media">
+                            <time class="article-date"
+                                  datetime="{{ article.date | date:'c' }}">
+                                <span class="h4">{{ article.date | date:"j E Y" | upper }}</span></time>
+                            <a href="{% url 'article_details' article.slug %}">
+                                <div class="media-left media-top">
+                                    <img src="{{ article.image.image.crop.300x150 }}" alt="article image"
+                                         class="media-object">
+                                </div>
+                                <div class="media-body">
+                                    <h3 class="media-heading">{{ article.title_ru | upper }}</h3>
+                                    <p class="article-cut">{{ article.cut_ru | truncatewords:23 }}</p>
+
+                                </div>
+                            </a>
+                        </div>
+                    {% endfor %}
                 {% else %}
-                    <h2>СТАТЬИ</h2>
+                    <h2 style="color: red">статей не найдено</h2>
+                    <p style="text-align: center">(задаются через админку)</p>
                 {% endif %}
 
-                {% for article in articles %}
-                    <div class="media">
-                        <time class="article-date"
-                              datetime="{{ article.date | date:'c' }}">
-                            <span class="h4">{{ article.date | date:"j E Y" | upper }}</span></time>
-                        <a href="{% url 'article_details' article.slug %}">
-                            <div class="media-left media-top">
-                                <img src="{{ article.image.image.crop.300x150 }}" alt="article image"
-                                     class="media-object">
-                            </div>
-                            <div class="media-body">
-                                <h3 class="media-heading">{{ article.title_ru | upper }}</h3>
-                                <p class="article-cut">{{ article.cut_ru | truncatewords:23 }}</p>
-
-                            </div>
-                        </a>
-                    </div>
-                {% endfor %}
 
                 {% if articles.paginator.num_pages > 1 %}
                     <nav class="pagination-container"><!-- paginagion -->

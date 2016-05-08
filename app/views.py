@@ -48,7 +48,10 @@ class MainView(TemplateView):
         ctx['top_categories'] = TopCategory.objects.filter(is_hidden=False)
         ctx['articles'] = Article.objects.filter(is_hidden=False).order_by('-date')[:3]
         ctx['slides'] = CarouselItem.objects.filter(is_hidden=False).order_by('order_position')
-        ctx['slide_initial'] = randint(0, ctx['slides'].count() - 1)
+        if ctx['slides'].count() > 0:
+            ctx['slide_initial'] = randint(0, ctx['slides'].count() - 1)
+        else:
+            ctx['slide_initial'] = 0
         return ctx
 
 

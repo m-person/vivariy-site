@@ -19,25 +19,31 @@
             </div>
         </div>
 
-        <h2>КАТАЛОГ ПРОДУКЦИИ</h2>
-        <div class="row">
-            {% for category in top_categories %}
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 main-catalog-item">
-                    <a href="{% url 'category' category.slug %}">
-                        <div class="main-catalog-item-container">
-                            <div class="main-catalog-item-img"
-                                 style="background: url({{ category.image.image.crop.300x150 }});
-                                         background-repeat: no-repeat;
-                                         background-size:100% 100%"
-                            >
+        {% if top_categories %}
+            <h2>КАТАЛОГ ПРОДУКЦИИ</h2>
+            <div class="row">
+                {% for category in top_categories %}
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 main-catalog-item">
+                        <a href="{% url 'category' category.slug %}">
+                            <div class="main-catalog-item-container">
+                                <div class="main-catalog-item-img"
+                                     style="background: url({{ category.image.image.crop.300x150 }});
+                                             background-repeat: no-repeat;
+                                             background-size:100% 100%"
+                                >
+                                </div>
+                                <div class="h-wrapper">
+                                    <h4>{{ category.title_ru | upper }}</h4>
+                                </div>
                             </div>
-                            <div class="h-wrapper">
-                                <h4>{{ category.title_ru | upper }}</h4>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            {% endfor %}
-        </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <h2 style="color: red">топ-категорий не найдено</h2>
+            <p style="text-align: center">(задаются через админку)</p>
+        {% endif %}
+
     </div>
 {% endblock %}
