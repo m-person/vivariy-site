@@ -1,0 +1,80 @@
+deploying on aws using docker-machine
+=====================================
+
+Prerequisites:
+1. create account on aws
+2. setup two-factor authentication using Authy android app
+3. create security group for project
+4. create user with admin privileges for project (include him to previously created group)
+5. generate access keys for user
+6. install amazon CLI (command line interface):
+   > sudo pip install awscli
+7. setup CLI (it'll create config files in ~/.aws, docker-machine will use credentials from them as defaults):
+   > aws configure
+
+Setup process
+============================
+Execute on developer local machine:
+1. Create docker-machine "vivariy.aws":
+    > docker-machine create --driver amazonec2 --amazonec2-region eu-central-1 --amazonec2-root-size 8 vivariy.aws
+    Note: Despite ubuntu occupy just 1.7GB of disk space, 8GB is minimum size for root volume in this image,
+          so we get 5.7GB of free space on root filesystem (there will left 4.6GB, when all project dependencies will be installed).
+          Ubuntu 15.10 is default image for docker-machine for now (10-may-16)
+
+2. Set "vivariy.aws" as current docker-machine:
+   > eval $(/usr/local/bin/docker-machine env vivariy.aws)
+
+3. Temporarily disable hostname checking for django and nginx (until DNS will be properly set up):
+   - set ALLOWED_HOSTS = ["*"] in deploy/prod_settings.py
+   - comment "server_name" string in deploy/nginx-app.conf
+
+4. Build and run docker containers (execute in project root):
+   > docker-compose build && docker-compose up -d
+   Note: it'll create and run containers vivariysite_web_1 and vivariysite_db_1
+
+5. Create project database:
+   > docker exec vivariysite_db_1 createdb -Upostgres vivariy_site
+
+6. Connect to web container:
+   > docker exec -it vivariysite_web_1 /bin/bash
+   and do some initialization tasks:
+     > python3 manage.py migrate
+     > python3 manage.py createsuperuser
+     > python3 manage.py installwatson
+
+7. setup automatic start for docker containers after reboot:
+  connect to ec2 instance:
+  > docker-machine ssh vivariy.aws
+  create systemd service file "/etc/systemd/system/vivariy-autostart.service" with following content:
+    [Unit]
+    Description=Vivariy site
+    Requires=docker.service
+    After=docker.service
+
+    [Service]
+    Restart=always
+    ExecStart=/usr/bin/docker start -a vivariysite_db_1 && /usr/bin/docker start -a vivariysite_web_1
+    ExecStop=/usr/bin/docker stop -t 10 vivariysite_web_1 ; /usr/bin/docker stop -t 5 vivariysite_db_1
+
+    [Install]
+    WantedBy=local.target
+
+
+
+Login to aws.amazon.com and do following tasks:
+1. Go to EC2 dashboard.
+2. Create network security group (firewall rules): "NETWORK & SECURIY" > "Security Groups": allow incoming 80\tcp and 443\tcp
+3. Assign the newly created security group to instance: "INSTANCES" > "Instances" > "Actions" > "Networking" > "Change Security Group"
+4. Allocate static IP address for instance: "NETWORK & SECURIY" > "Elastic IPs" > "Actions" > "Allocate New Address"
+5. Bind new IP with instance: "NETWORK & SECURIY" > "Elastic IPs" > "Actions" > "Associate Address"
+   Note: now instance IP & DNS name is changed, so you have to update docker-machine settings on the local developer host:
+         > docker-machine regenerate-certs vivariy.aws
+         > eval $(/usr/local/bin/docker-machine env vivariy.aws)
+
+
+=============
+Note: don't use "docker-machine restart ..." command. It's always failed in my case (lost ssh connection).
+      Use separate stop and start commands instead.
+
+Note2: don't forget to set allowed hostnames in django settings.py and nginx site conf, when DNS is properly set up.
+

@@ -114,3 +114,7 @@ howto.txt
 assets/
 .venv/
 backups
+db_dump*
+bower_components/
+.git/
+

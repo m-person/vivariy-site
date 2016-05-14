@@ -2,13 +2,18 @@
 web:
   build: .
   volumes:
-    - /mnt/hlam/__www__/vivariy_site/app/media:/www/app/media
-    - /mnt/hlam/__www__/vivariy_site/backups:/backups
+#    - /mnt/hlam/__www__/vivariy_site/app/media:/www/app/media
+#    - /mnt/hlam/__www__/vivariy_site/backups:/backups
+    - /www/app/media
+    - /www/backups
   ports:
-    - "8003:80"
+#    - "8003:80"
+     - "80:80"
   links:
     - db
-  restart: unless-stopped
+#  restart: unless-stopped
+#  restart: "on-failure:20"
+  restart: always
 
 
 db:
@@ -17,3 +22,4 @@ db:
 #    - "5432:5432"
   environment:
     POSTGRES_PASSWORD: postgres
+  restart: always
