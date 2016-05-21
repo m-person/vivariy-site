@@ -117,4 +117,4 @@ backups
 db_dump*
 bower_components/
 .git/
-
+app/media/*

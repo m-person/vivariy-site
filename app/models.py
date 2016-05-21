@@ -151,19 +151,19 @@ class Product(models.Model):
     categories = models.ManyToManyField('Category', help_text=_('Subcategories containing this product'))
     desc_short_ru = RichTextField(_('Short description (ru)'), max_length=4096, default='', blank=True, null=True,
                                   help_text=_('Short device description in russian (4096 symbols max)'))
-    desc_full_ru = RichTextUploadingField(_('Full description (ru)'), max_length=10240, default='', blank=True,
+    desc_full_ru = RichTextUploadingField(_('Full description (ru)'), max_length=20000, default='', blank=True,
                                           null=True,
-                                          help_text=_('Full device description in russian (10240 symbols max)'))
-    specifications_ru = RichTextUploadingField(_('Specifications (ru)'), max_length=10240, default='', blank=True,
+                                          help_text=_('Full device description in russian (20000 symbols max)'))
+    specifications_ru = RichTextUploadingField(_('Specifications (ru)'), max_length=20000, default='', blank=True,
                                                null=True,
-                                               help_text=_('Technical characteristics in russian (10240 symbols max)'))
-    options_ru = RichTextUploadingField(_('Options (ru)'), max_length=4096, default='', blank=True, null=True,
-                                        help_text=_('Delivery options in russian (4096 symbols max)'))
-    mentions_ru = RichTextUploadingField(_('Mentions (ru)'), max_length=4096, default='', blank=True, null=True,
+                                               help_text=_('Technical characteristics in russian (20000 symbols max)'))
+    options_ru = RichTextUploadingField(_('Options (ru)'), max_length=20000, default='', blank=True, null=True,
+                                        help_text=_('Delivery options in russian (20000 symbols max)'))
+    mentions_ru = RichTextUploadingField(_('Mentions (ru)'), max_length=20000, default='', blank=True, null=True,
                                          help_text=_(
-                                             'Links to researches using this device in russian (4096 symbols max)'))
-    faq_ru = RichTextUploadingField(_('FAQ (ru)'), max_length=4096, default='', blank=True, null=True,
-                                    help_text=_('Frequently asked questions (4096 symbols max)'))
+                                             'Links to researches using this device in russian (20000 symbols max)'))
+    faq_ru = RichTextUploadingField(_('FAQ (ru)'), max_length=20000, default='', blank=True, null=True,
+                                    help_text=_('Frequently asked questions (20000 symbols max)'))
 
     def __str__(self):
         return self.title_ru
