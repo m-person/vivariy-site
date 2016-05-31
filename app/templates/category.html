@@ -4,7 +4,7 @@
 {% block title %}{{ block.super }} | каталог | {{ category.title_ru }} {% endblock %}
 
 {% block lang %}
-    <link rel="alternate" hreflang="ru" href="http://vivariy.com{{ request.path }}/" />
+    <link rel="alternate" hreflang="ru" href="http://vivariy.com{{ request.path }}/"/>
 {% endblock %}
 
 {% block content %}
@@ -19,7 +19,8 @@
                     <ul>
                         {% for top_category in top_categories %}
                             <li>
-                                <a href="{% url 'category' top_category.slug %}" {% if current_top_category.title_ru == top_category.title_ru %}class="active" {% endif %}>
+                                <a href="{% url 'category' top_category.slug %}"
+                                   {% if current_top_category.title_ru == top_category.title_ru %}class="active" {% endif %}>
                                     <h4>{{ top_category.title_ru }}</h4>
                                 </a>
                             </li>
@@ -60,7 +61,8 @@
 
                                     <ul class="list-group">
                                         {% for product in category.product_set.all %}
-                                            <li class="list-group-item">
+                                            {% if not product.is_hidden %}
+                                                <li class="list-group-item">
                                                 {% default_image product as product_image %}
                                                 <div class="media">
                                                     <div class="media-left">
@@ -75,7 +77,8 @@
                                                            role="button">ПОДРОБНЕЕ</a>
                                                     </div>
                                                 </div>
-                                            </li>
+                                            {% endif %}
+                                        </li>
                                         {% endfor %}
                                     </ul>
 
