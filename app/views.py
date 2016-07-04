@@ -243,8 +243,9 @@ class ContactsView(FormView):
                               data['name']),
                           recipient_list=[data['email']],
                           from_email=settings.EMAIL_HOST_USER)
-        except Exception:
-            pass
+        except Exception as e:
+            # print(e)
+            data['error_message'] = str(e)
         UserRequest.objects.create(**data)
         return render(self.request, 'request_success.html', {'success': email_is_sent})
 

@@ -18,7 +18,7 @@ class UserRequestForm(ModelForm):
     class Meta:
         model = UserRequest
         fields = '__all__'
-        exclude = ('timestamp', 'cart', 'email_is_sent',)
+        exclude = ('timestamp', 'cart', 'email_is_sent', 'error_message', )
 
 
 class SubscriberForm(ModelForm):

@@ -115,8 +115,9 @@ class YoutubeVideoAdmin(admin.ModelAdmin):
 
 
 class UserRequestAdmin(admin.ModelAdmin):
-    readonly_fields = ('org_title', 'name', 'email', 'phone', 'cart', 'message', 'timestamp')
-    list_display = ('timestamp', 'name', 'email',)
+    readonly_fields = (
+    'org_title', 'name', 'email', 'phone', 'cart', 'message', 'timestamp', 'email_is_sent', 'error_message',)
+    list_display = ('timestamp', 'name', 'email', 'email_is_sent',)
     save_on_top = True
     change_list_template = 'smuggler/change_list.html'
 

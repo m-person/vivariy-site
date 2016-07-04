@@ -162,12 +162,13 @@ CKEDITOR_IMAGE_BACKEND = 'pillow'
 # django-smuggler setup (db backups)
 SMUGGLER_FIXTURE_DIR = os.path.join(BASE_DIR, 'backups')
 
-# email settings:
+#email settings:
 EMAIL_HOST = 'localhost'
 EMAIL_HOST_USER = 'request@vivariy.com'
 EMAIL_PORT = 2525
 EMAIL_TIMEOUT = 15
 EMAIL_SUBJECT_PREFIX = 'vivariy.com: '
+
 
 # versatile image section
 VERSATILEIMAGEFIELD_SETTINGS = {

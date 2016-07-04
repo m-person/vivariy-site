@@ -87,7 +87,6 @@ class TopCategory(models.Model):
     image = models.ForeignKey('CategoryImage', related_name='categories')
     is_hidden = models.BooleanField(_('Don`t show this entry on site'), default=False)
 
-
     def __str__(self):
         return self.title_ru
 
@@ -247,6 +246,8 @@ class UserRequest(models.Model):
     cart = models.CharField(_('List of products to ask'), max_length=4096, default='')
     email_is_sent = models.BooleanField(_('Was sent'), default=False,
                                         help_text=_('Thist request was sent without errors'))
+    error_message = models.CharField(_('Sending error'), max_length=4096, default='',
+                                     help_text=_('Error description (if message wasn`t sent)'))
 
     def __str__(self):
         return "{} ({})".format(self.name, self.email, )
