@@ -303,3 +303,22 @@ class Subscriber(models.Model):
     class Meta:
         verbose_name = _('Subscriber')
         verbose_name_plural = _('Subscribers')
+
+
+class AnalyticsCounter(models.Model):
+    """
+    analytics code (js code to embed on page for google analytics, yandex metrics so on)
+    """
+    name = models.CharField(_('Name'), max_length=128, help_text=_('Name of counter'))
+    code = models.TextField(_('Code'), max_length=20000, default='',
+                            help_text=_(
+                                'Counter code. Copy there code, provided by service (google, yandex).\
+                                 Code should be js string like "&ltscript&gt...&lt/script&gt"'))
+    is_enabled = models.BooleanField(_('Counter is enabled'), default=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _('Analytics Counter')
+        verbose_name_plural = _('Analytics Counters')

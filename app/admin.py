@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import User
 from app.models import (Category, TopCategory, Product, Partner, ProductImage, CategoryImage, DocFile, YoutubeVideo,
-                        Article, ArticleImage, UserRequest, Employee, CarouselItem, Subscriber, )
+                        Article, ArticleImage, UserRequest, Employee, CarouselItem, Subscriber, AnalyticsCounter, )
 
 
 class ProductImageAdmin(admin.ModelAdmin):
@@ -116,7 +116,7 @@ class YoutubeVideoAdmin(admin.ModelAdmin):
 
 class UserRequestAdmin(admin.ModelAdmin):
     readonly_fields = (
-    'org_title', 'name', 'email', 'phone', 'cart', 'message', 'timestamp', 'email_is_sent', 'error_message',)
+        'org_title', 'name', 'email', 'phone', 'cart', 'message', 'timestamp', 'email_is_sent', 'error_message',)
     list_display = ('timestamp', 'name', 'email', 'email_is_sent',)
     save_on_top = True
     change_list_template = 'smuggler/change_list.html'
@@ -142,6 +142,12 @@ class SubscriberAdmin(admin.ModelAdmin):
     change_list_template = 'smuggler/change_list.html'
 
 
+class AnalyticsCounterAdmin(admin.ModelAdmin):
+    fields = ('name', 'is_enabled', 'code')
+    save_on_top = True
+    list_display = ('name', 'is_enabled')
+
+
 admin.site.register(CarouselItem, CarouselItemAdmin)
 admin.site.register(CategoryImage, CategoryImageAdmin)
 admin.site.register(TopCategory, TopCategoryAdmin)
@@ -155,6 +161,7 @@ admin.site.register(Article, ArticleAdmin)
 admin.site.register(ArticleImage, ArticleImageAdmin)
 admin.site.register(UserRequest, UserRequestAdmin)
 admin.site.register(Subscriber, SubscriberAdmin)
+admin.site.register(AnalyticsCounter, AnalyticsCounterAdmin)
 
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)

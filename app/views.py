@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import TemplateView, RedirectView, FormView
 from django.core.exceptions import ObjectDoesNotExist
 from app.models import (Category, Product, TopCategory, Partner, Article, Employee, CarouselItem, UserRequest,
-                        Subscriber, )
+                        Subscriber, AnalyticsCounter, )
 from django.core.urlresolvers import reverse
 from django.core.paginator import PageNotAnInteger, Paginator, EmptyPage
 from tagging.models import Tag, TaggedItem
@@ -48,6 +48,7 @@ class MainView(TemplateView):
         ctx['top_categories'] = TopCategory.objects.filter(is_hidden=False)
         ctx['articles'] = Article.objects.filter(is_hidden=False).order_by('-date')[:3]
         ctx['slides'] = CarouselItem.objects.filter(is_hidden=False).order_by('order_position')
+        ctx['analytics_js'] = get_analytics_codes()
         if ctx['slides'].count() > 0:
             ctx['slide_initial'] = randint(0, ctx['slides'].count() - 1)
         else:
@@ -71,6 +72,7 @@ class CatalogView(TemplateView):
         ctx = super(CatalogView, self).get_context_data(**kwargs)
         ctx['menuitem'] = 'catalog'
         ctx['top_categories'] = TopCategory.objects.filter(is_hidden=False)
+        ctx['analytics_js'] = get_analytics_codes()
         return ctx
 
 
@@ -84,6 +86,7 @@ class CategoryView(TemplateView):
         ctx['current_top_category'] = parent
         ctx['top_categories'] = TopCategory.objects.filter(is_hidden=False)
         ctx['categories'] = Category.objects.filter(is_hidden=False, parent_category=parent)
+        ctx['analytics_js'] = get_analytics_codes()
         return ctx
 
 
@@ -99,6 +102,7 @@ class ProductView(TemplateView):
         ctx['videos'] = product.videos.filter(is_hidden=False)
         ctx['product'] = product
         ctx['images'] = self.get_ordered_images(product)
+        ctx['analytics_js'] = get_analytics_codes()
         return ctx
 
     def post(self, request, *args, **kwargs):
@@ -148,6 +152,7 @@ class PartnersView(TemplateView):
         ctx = super(PartnersView, self).get_context_data(**kwargs)
         ctx['menuitem'] = 'partners'
         ctx['partner_list'] = Partner.objects.filter(is_hidden=False)
+        ctx['analytics_js'] = get_analytics_codes()
         return ctx
 
 
@@ -159,6 +164,7 @@ class ArticleListView(TemplateView):
         ctx = super(ArticleListView, self).get_context_data(**kwargs)
         ctx['menuitem'] = 'articles'
         ctx['tags'] = Tag.objects.all()
+        ctx['analytics_js'] = get_analytics_codes()
 
         page = self.request.GET.get('page')
         tag = self.request.GET.get('filter')
@@ -200,6 +206,7 @@ class ArticleDetailView(TemplateView):
         ctx['article'] = article
         ctx['tags'] = Tag.objects.all()
         ctx['article_tags'] = Tag.objects.get_for_object(article)
+        ctx['analytics_js'] = get_analytics_codes()
         return ctx
 
 
@@ -214,6 +221,7 @@ class ContactsView(FormView):
     def get_context_data(self, **kwargs):
         ctx = super(ContactsView, self).get_context_data(**kwargs)
         ctx['menuitem'] = 'contacts'
+        ctx['analytics_js'] = get_analytics_codes()
 
         # get the product items for request from session
         if 'cart' in self.request.session:
@@ -343,3 +351,8 @@ def get_subscribers(request):
     for item in Subscriber.objects.filter(is_active=True):
         writer.writerow([item.email])
     return resp
+
+
+def get_analytics_codes():
+    # returns list of counters for web analytics
+    return AnalyticsCounter.objects.filter(is_enabled=True)
