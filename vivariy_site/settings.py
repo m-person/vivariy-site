@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'watson',
     'smuggler',
     'robots',
+    'admin_honeypot',
 ]
 
 MIDDLEWARE_CLASSES = [

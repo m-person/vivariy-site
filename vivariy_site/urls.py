@@ -18,10 +18,11 @@ sitemaps = {
 }
 
 urlpatterns = [
-    url(r'^admin/', include('smuggler.urls')),
-    url(r'^admin/mediabackup/', media_backup_request, ),
-    url(r'^admin/get_subscribers/', get_subscribers),
-    url(r'^admin/', admin.site.urls),
+    url(r'^admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
+    url(r'^dima-admin/', include('smuggler.urls')),
+    url(r'^dima-admin/mediabackup/', media_backup_request, ),
+    url(r'^dima-admin/get_subscribers/', get_subscribers),
+    url(r'^dima-admin/', admin.site.urls),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^$', MainView.as_view(), name='main'),
     url(r'^catalog/$', CatalogView.as_view(), name='catalog'),
