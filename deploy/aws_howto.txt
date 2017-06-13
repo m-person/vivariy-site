@@ -78,3 +78,12 @@ Note: don't use "docker-machine restart ..." command. It's always failed in my c
 
 Note2: don't forget to set allowed hostnames in django settings.py and nginx site conf, when DNS is properly set up.
 
+
+========= UPD 020617 for vivariy.aws.2 (ubuntu 16.04 LTS on t2.nano) ========
+1. create machine:
+docker-machine create --driver amazonec2 --amazonec2-region eu-central-1 --amazonec2-instance-type t2.nano --amazonec2-iam-instance-profile vivariy.com-ec2-role --amazonec2-root-size 8 vivariy.aws.2
+
+2. add your ssh key on the remote host if you want to connect to it directly (not via docker-machine ssh command):
+  - ssh to remote machine:
+    docker-machine ssh vivariy.aws.2
+  - add content of your local ~/.ssh/id_rsa.pub to /home/ubuntu/.ssh/authorized_keys file
