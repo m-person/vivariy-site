@@ -1,3 +1,4 @@
+botocore==1.5.66
 Django==1.9.6
 django-admin-honeypot==1.0.0
 django-appconf==1.0.2
@@ -10,8 +11,12 @@ django-tagging==0.4.3
 django-tagging-autocomplete==0.5.0
 django-versatileimagefield==1.4
 django-watson==1.2.1
+docutils==0.13.1
+jmespath==0.9.3
 Pillow==3.2.0
 psycopg2==2.6.1
+python-dateutil==2.6.0
 rcssmin==1.0.6
 rjsmin==1.0.12
+six==1.10.0
 sqlparse==0.1.19

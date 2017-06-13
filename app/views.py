@@ -239,23 +239,49 @@ class ContactsView(FormView):
         data['cart'] = self.hrefs_from_cart()
         email_is_sent = False
         recipients = [empl.user.email for empl in Employee.objects.filter(is_mail_recipient=True)]
+
+        if not self.send_ordinary_mail(recipients, data):
+            self.send_sns_message(data)
+
+        self.request.session.pop('cart')
+        data['email_is_sent'] = True
+        email_is_sent = True
+
         try:
-            if send_mail(subject='Vivariy.com: user request', message=self.email_as_text(data),
-                         recipient_list=recipients, from_email=settings.EMAIL_HOST_USER,
-                         html_message=self.email_as_html(data)):
-                self.request.session.pop('cart')
-                data['email_is_sent'] = True
-                email_is_sent = True
-                send_mail(subject='Vivariy.com: подтверждение запроса',
-                          message='Уважаемый {},\nВаш запрос был получен.\n\nВ скором времени с вами свяжется наш сотрудник.\n\n\n\n-------------\nгруппа компаний "Виварий"'.format(
-                              data['name']),
-                          recipient_list=[data['email']],
-                          from_email=settings.EMAIL_HOST_USER)
-        except Exception as e:
-            # print(e)
-            data['error_message'] = str(e)
+            send_mail(subject='Vivariy.com: подтверждение запроса',
+                      message='Уважаемый {},\nВаш запрос был получен.\n\nВ скором времени с вами свяжется наш сотрудник.\n\n\n\n-------------\nгруппа компаний "Виварий"'.format(
+                          data['name']),
+                      recipient_list=[data['email']],
+                      from_email=settings.EMAIL_HOST_USER)
+        except Exception:
+            pass
+
         UserRequest.objects.create(**data)
         return render(self.request, 'request_success.html', {'success': email_is_sent})
+
+    def send_ordinary_mail(self, recipients, msg_data):
+        # send message via email
+        try:
+            res = send_mail(subject='Vivariy.com: user request', message=self.email_as_text(msg_data),
+                            recipient_list=recipients, from_email=settings.EMAIL_HOST_USER,
+                            html_message=self.email_as_html(msg_data))
+            return res
+        except Exception as e:
+            return False
+
+    def send_sns_message(self, msg_data):
+        # send message via amazon sns
+        # IMPORTANT: you have to provide AWS IAM credentials for this service in some way (via env, conf, hardcode...).
+        #            If the site runs on AWS EC2 instance, the easiest way to provide that credentials is to assign role
+        #            to the instance with AmazonSNSFullAccess policy.
+        import botocore.session
+        client = botocore.session.get_session().create_client('sns')
+        res = client.publish(
+            TopicArn=settings.USER_REQUEST_TOPIC_ARN,
+            Message=self.email_as_text(msg_data),
+            Subject='Vivariy.com: user request',
+            MessageStructure='string',
+        )
 
     def hrefs_from_cart(self):
         # extracts list of products from cart, and return them as list of http links (in json format)

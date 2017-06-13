@@ -9,6 +9,7 @@
         {% if success == True %}
             <h2>Ваш запрос был отправлен</h2>
         {% else %}
+            {# NOTE: this branch is disabled, success is always == True #}
             <h2 style="color: red">Не удалось отправить Ваш запрос.</h2>
             <p>повторите запрос позже или используйте другой способ для связи.</p>
         {% endif %}

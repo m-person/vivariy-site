@@ -163,13 +163,12 @@ CKEDITOR_IMAGE_BACKEND = 'pillow'
 # django-smuggler setup (db backups)
 SMUGGLER_FIXTURE_DIR = os.path.join(BASE_DIR, 'backups')
 
-#email settings:
+# email settings:
 EMAIL_HOST = 'localhost'
 EMAIL_HOST_USER = 'request@vivariy.com'
 EMAIL_PORT = 2525
 EMAIL_TIMEOUT = 15
 EMAIL_SUBJECT_PREFIX = 'vivariy.com: '
-
 
 # versatile image section
 VERSATILEIMAGEFIELD_SETTINGS = {
@@ -208,6 +207,9 @@ TAGGING_AUTOCOMPLETE_SEARCH_CONTAINS = True
 # params, recommended by manage.py check --deploy:
 SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_BROWSER_XSS_FILTER = True
+
+# AWS related settings
+USER_REQUEST_TOPIC_ARN = None  # SNS topic for user requests (Note: the real value is imported from the .prod_settings)
 
 # Deployment: import local_settings file to override
 try:
