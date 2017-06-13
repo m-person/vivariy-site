@@ -331,10 +331,10 @@ def media_backup_filter(filename):
 @staff_member_required
 def media_backup_request(request):
     # returns gzipped content of /media directory
-    resp = HttpResponse(content_type='application/x-gzip')
-    resp['Content-Disposition'] = 'attachment; filename=media_{}.tar.gz'.format(
+    resp = HttpResponse(content_type='application/x-tar')
+    resp['Content-Disposition'] = 'attachment; filename=media_{}.tar'.format(
         (datetime.now().isoformat()).split('.')[0], )
-    with tarfile.open(fileobj=resp, mode='w:gz') as tar:
+    with tarfile.open(fileobj=resp, mode='w') as tar:
         tar.add(settings.MEDIA_ROOT, filter=media_backup_filter)
     return resp
 
