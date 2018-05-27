@@ -38,12 +38,13 @@ urlpatterns = [
     url(r'^xhr/cart_count/', cart_count_request),
     url(r"^search/", include("watson.urls", namespace="watson")),
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
-    url(r'^robots\.txt$', include('robots.urls')),
+    # url(r'^robots\.txt', include('robots.urls')),
     url(r'^subscribe/', SubscribeView.as_view(), name='subscribe'),
 ]
 
 # access to uploaded files
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 # internationalization some pages
 urlpatterns += i18n_patterns(

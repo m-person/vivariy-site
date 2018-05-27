@@ -63,7 +63,7 @@ class ProductImage(models.Model):
     width = models.PositiveIntegerField(_('Image widht'), blank=True, null=True)
     height = models.PositiveIntegerField(_('Image height'), blank=True, null=True)
     ppoi = PPOIField(_('Image point of interest'), help_text=_('Select center point for cropped (resized) image'))
-    product = models.ForeignKey('Product', related_name='images')
+    product = models.ForeignKey('Product', related_name='images', on_delete=models.CASCADE)
     is_default = models.BooleanField(_('Is default product image'), default=False,
                                      help_text=_('If checked, this image will be set as default in product description.'
                                                  ' You can chose only one image as default for product.'))
@@ -84,7 +84,7 @@ class TopCategory(models.Model):
     title_ru = models.CharField(_('Title (ru)'), max_length=254, help_text=_('Top category title (in russian).'))
     slug = models.SlugField(_('Slug'), max_length=254, unique=True, db_index=True,
                             help_text=_('URL representation (a..z, 0..9 and "-" symbols only)'))
-    image = models.ForeignKey('CategoryImage', related_name='categories')
+    image = models.ForeignKey('CategoryImage', related_name='categories', on_delete=models.SET_NULL, blank=True, null=True)
     is_hidden = models.BooleanField(_('Don`t show this entry on site'), default=False)
 
     def __str__(self):
@@ -145,7 +145,7 @@ class Product(models.Model):
     title_ru = models.CharField(_('Title (ru)'), max_length=1024, default='', help_text=_('Product title (in russian)'))
     slug = models.SlugField(_('Slug'), max_length=1024, unique=True, default='', db_index=True,
                             help_text=_('URL representation (a..z, 0..9 and "-" symbols only)'))
-    manufacturer = models.ForeignKey('Partner', related_name='products', blank=True, null=True)
+    manufacturer = models.ForeignKey('Partner', related_name='products', blank=True, null=True, on_delete=models.SET_NULL)
     is_hidden = models.BooleanField(_('Don`t show in catalog'), default=False)
     categories = models.ManyToManyField('Category', help_text=_('Subcategories containing this product'))
     desc_short_ru = RichTextField(_('Short description (ru)'), max_length=4096, default='', blank=True, null=True,
@@ -177,7 +177,7 @@ class DocFile(models.Model):
     File with additional information for product. For downloads.
     """
     title_ru = models.CharField(_('Title (ru)'), max_length=128, help_text=_('File title (in russian)'))
-    product = models.ForeignKey(Product, related_name='doc_files')
+    product = models.ForeignKey(Product, related_name='doc_files', on_delete=models.CASCADE)
     is_hidden = models.BooleanField(_('Don`t show it on site'), default=False)
     file = models.FileField(_('File'), upload_to='doc_files/')
 
@@ -194,7 +194,7 @@ class YoutubeVideo(models.Model):
     Embedded youtube video for product
     """
     title_ru = models.CharField(_('Title (ru)'), max_length=128, help_text=_('Video title (in russian)'))
-    product = models.ForeignKey(Product, related_name='videos')
+    product = models.ForeignKey(Product, related_name='videos', on_delete=models.CASCADE)
     is_hidden = models.BooleanField(_('Don`t show it on site'), default=False)
     video = models.CharField(_('Embedding code'), max_length=1024,
                              help_text=_('Video embedding code from youtube.com. To obtain it, choose "share" > "embed"'
@@ -222,7 +222,7 @@ class Article(models.Model):
     date = models.DateTimeField(_('Date'), default=timezone.now, help_text=_('Article creation date'))
     is_hidden = models.BooleanField(_('Don`t show it on site'), default=False)
     source_url = models.URLField(_('Link to source'), max_length=1024, help_text=_('Source url'), blank=True, null=True)
-    image = models.ForeignKey('ArticleImage', related_name='articles')
+    image = models.ForeignKey('ArticleImage', related_name='articles', on_delete=models.CASCADE)
     tags = TagAutocompleteField(_('Artilcle tags'), help_text=_('Add list of article tags separated by commas'))
 
     def __str__(self):

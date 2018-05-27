@@ -1,7 +1,12 @@
 {% extends "base.html" %}
-{% load staticfiles my_tags %}
+{% load staticfiles my_tags recaptcha2 %}
 
 {% block title %}{{ block.super }} | контакты {% endblock %}
+
+{% block header %}
+    {{ block.super }}
+    {% recaptcha_init %}
+{% endblock %}
 
 {% block lang %}
     <link rel="alternate" hreflang="ru" href="http://vivariy.com/contacts/"/>
