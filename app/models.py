@@ -23,7 +23,7 @@ class ArticleImage(models.Model):
     ppoi = PPOIField(_('Image point of interest'), help_text=_('Select center point for cropped (resized) image'))
 
     def __str__(self):
-        return self.desc
+        return self.desc or ''
 
     class Meta:
         verbose_name = _('Image for articles')
@@ -44,7 +44,7 @@ class CategoryImage(models.Model):
     ppoi = PPOIField(_('Image point of interest'), help_text=_('Select center point for cropped (resized) image'))
 
     def __str__(self):
-        return self.desc
+        return self.desc or ''
 
     class Meta:
         verbose_name = _('Image for categories')
@@ -69,7 +69,7 @@ class ProductImage(models.Model):
                                                  ' You can chose only one image as default for product.'))
 
     def __str__(self):
-        return self.desc
+        return self.desc or ''
 
     class Meta:
         verbose_name = _('Image for product')
@@ -88,7 +88,7 @@ class TopCategory(models.Model):
     is_hidden = models.BooleanField(_('Don`t show this entry on site'), default=False)
 
     def __str__(self):
-        return self.title_ru
+        return self.title_ru or ''
 
     class Meta:
         verbose_name = _('Top-level product category')
@@ -106,7 +106,7 @@ class Category(models.Model):
     products = models.ManyToManyField('Product', blank=True, help_text=_('Products from this category'))
 
     def __str__(self):
-        return self.title_ru
+        return self.title_ru or ''
 
     class Meta:
         verbose_name = _('Product category')
@@ -131,7 +131,7 @@ class Partner(models.Model):
     ppoi = PPOIField(_('Image point of interest'), help_text=_('Select center point for cropped (resized) image'))
 
     def __str__(self):
-        return self.title
+        return self.title or ''
 
     class Meta:
         verbose_name = _('Partner')
@@ -165,7 +165,7 @@ class Product(models.Model):
                                     help_text=_('Frequently asked questions (20000 symbols max)'))
 
     def __str__(self):
-        return self.title_ru
+        return self.title_ru or ''
 
     class Meta:
         verbose_name = _('Product')
@@ -182,7 +182,7 @@ class DocFile(models.Model):
     file = models.FileField(_('File'), upload_to='doc_files/')
 
     def __str__(self):
-        return self.title_ru
+        return self.title_ru or ''
 
     class Meta:
         verbose_name = _('Doc file')
@@ -201,7 +201,7 @@ class YoutubeVideo(models.Model):
                                          ' on youtube page with video.'))
 
     def __str__(self):
-        return self.title_ru
+        return self.title_ru or ''
 
     class Meta:
         verbose_name = _('Youtube video')
@@ -226,7 +226,7 @@ class Article(models.Model):
     tags = TagAutocompleteField(_('Artilcle tags'), help_text=_('Add list of article tags separated by commas'))
 
     def __str__(self):
-        return self.title_ru
+        return self.title_ru or ''
 
     class Meta:
         verbose_name = _('Article')
@@ -262,7 +262,7 @@ class Employee(models.Model):
         'Check it if this user will receive emails with customer requests.'))
 
     def __str__(self):
-        return self.user.username
+        return self.user.username or ''
 
 
 class CarouselItem(models.Model):
@@ -282,7 +282,7 @@ class CarouselItem(models.Model):
                                               help_text=_('Serial number in list of slides'))
 
     def __str__(self):
-        return self.title
+        return self.title or ''
 
     class Meta:
         verbose_name = _('Slide')
@@ -298,7 +298,7 @@ class Subscriber(models.Model):
     timestamp = models.DateTimeField(_('Subscribe time'), auto_now_add=True)
 
     def __str__(self):
-        return self.email
+        return self.email or ''
 
     class Meta:
         verbose_name = _('Subscriber')
@@ -317,7 +317,7 @@ class AnalyticsCounter(models.Model):
     is_enabled = models.BooleanField(_('Counter is enabled'), default=True)
 
     def __str__(self):
-        return self.name
+        return self.name or ''
 
     class Meta:
         verbose_name = _('Analytics Counter')

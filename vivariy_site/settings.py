@@ -65,6 +65,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'watson.middleware.SearchContextMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 # MIDDLEWARE_CLASSES = [
@@ -160,11 +161,10 @@ LOCALE_PATHS = [os.path.join(BASE_DIR, 'app', 'locale')]
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'app', 'media')
-
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 SITE_ID = 1  # note: it's an id of current site in django_site table

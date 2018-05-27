@@ -118,3 +118,5 @@ howto.txt
 questions.txt
 deploy/prod_settings.py
 .venv/
+staticfiles/*
+media/*
