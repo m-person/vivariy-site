@@ -2,6 +2,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import TemplateView, RedirectView, FormView
 from django.core.exceptions import ObjectDoesNotExist
+from django.views.generic.base import View
+
 from app.models import (Category, Product, TopCategory, Partner, Article, Employee, CarouselItem, UserRequest,
                         Subscriber, AnalyticsCounter, )
 from django.urls import reverse
@@ -380,3 +382,8 @@ def get_subscribers(request):
 def get_analytics_codes():
     # returns list of counters for web analytics
     return AnalyticsCounter.objects.filter(is_enabled=True)
+
+
+class RobotsView(View):
+    def get(self, request, *args, **kwargs):
+        return HttpResponse("""User-agent: *\nAllow: /\n\nHost: vivariy.com\nSitemap: http://vivariy.com/sitemap.xml\n""")
