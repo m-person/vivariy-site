@@ -237,14 +237,14 @@ class ContactsView(FormView):
 
     def form_valid(self, form):
         data = form.cleaned_data
-        data.pop('captcha')
+        # data.pop('captcha')
         data['cart'] = self.hrefs_from_cart()
         recipients = [empl.user.email for empl in Employee.objects.filter(is_mail_recipient=True)]
 
         # if not self.send_ordinary_mail(recipients, data):
         #     self.send_sns_message(data)
         email_is_sent = self.send_ordinary_mail(recipients, data)
-        self.request.session.pop('cart')
+        self.request.session.pop('cart', None)
         data['email_is_sent'] = email_is_sent
 
         try:
@@ -267,6 +267,7 @@ class ContactsView(FormView):
                             html_message=self.email_as_html(msg_data))
             return res
         except Exception as e:
+            print('mail error: ', e)
             return False
 
     # def send_sns_message(self, msg_data):
