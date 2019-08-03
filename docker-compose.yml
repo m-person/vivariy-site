@@ -1,25 +1,26 @@
-# vivariy-site project
-web:
-  build: .
-  volumes:
-#    - /mnt/hlam/__www__/vivariy_site/app/media:/www/app/media
-#    - /mnt/hlam/__www__/vivariy_site/backups:/backups
-    - /www/app/media
-    - /www/backups
-  ports:
-#    - "8003:80"
-     - "80:80"
-  links:
-    - db
-#  restart: unless-stopped
-#  restart: "on-failure:20"
-  restart: always
+version: '2'
+services:
+  web:
+    build:
+      context: .
+    restart: always
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./media:/www/media
+      - ./backups:/www/backups
+    depends_on:
+      - db
+
+  db:
+    image: postgres:9.6
+    environment:
+      POSTGRES_PASSWORD: postgres
+    restart: always
+    volumes:
+      - ./docker_share:/tmp/docker_share
+      - db_data:/var/lib/postgresql/data
 
 
-db:
-  image: postgres:9.4
-#  ports:
-#    - "5432:5432"
-  environment:
-    POSTGRES_PASSWORD: postgres
-  restart: always
+volumes:
+  db_data:
