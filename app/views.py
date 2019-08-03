@@ -2,9 +2,11 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import TemplateView, RedirectView, FormView
 from django.core.exceptions import ObjectDoesNotExist
+from django.views.generic.base import View
+
 from app.models import (Category, Product, TopCategory, Partner, Article, Employee, CarouselItem, UserRequest,
                         Subscriber, AnalyticsCounter, )
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.core.paginator import PageNotAnInteger, Paginator, EmptyPage
 from tagging.models import Tag, TaggedItem
 from django.http import JsonResponse
@@ -235,17 +237,15 @@ class ContactsView(FormView):
 
     def form_valid(self, form):
         data = form.cleaned_data
-        data.pop('captcha')
+        # data.pop('captcha')
         data['cart'] = self.hrefs_from_cart()
-        email_is_sent = False
         recipients = [empl.user.email for empl in Employee.objects.filter(is_mail_recipient=True)]
 
-        if not self.send_ordinary_mail(recipients, data):
-            self.send_sns_message(data)
-
-        self.request.session.pop('cart')
-        data['email_is_sent'] = True
-        email_is_sent = True
+        # if not self.send_ordinary_mail(recipients, data):
+        #     self.send_sns_message(data)
+        email_is_sent = self.send_ordinary_mail(recipients, data)
+        self.request.session.pop('cart', None)
+        data['email_is_sent'] = email_is_sent
 
         try:
             send_mail(subject='Vivariy.com: подтверждение запроса',
@@ -267,21 +267,22 @@ class ContactsView(FormView):
                             html_message=self.email_as_html(msg_data))
             return res
         except Exception as e:
+            print('mail error: ', e)
             return False
 
-    def send_sns_message(self, msg_data):
-        # send message via amazon sns
-        # IMPORTANT: you have to provide AWS IAM credentials for this service in some way (via env, conf, hardcode...).
-        #            If the site runs on AWS EC2 instance, the easiest way to provide that credentials is to assign role
-        #            to the instance with AmazonSNSFullAccess policy.
-        import botocore.session
-        client = botocore.session.get_session().create_client('sns')
-        res = client.publish(
-            TopicArn=settings.USER_REQUEST_TOPIC_ARN,
-            Message=self.email_as_text(msg_data),
-            Subject='Vivariy.com: user request',
-            MessageStructure='string',
-        )
+    # def send_sns_message(self, msg_data):
+    #     # send message via amazon sns
+    #     # IMPORTANT: you have to provide AWS IAM credentials for this service in some way (via env, conf, hardcode...).
+    #     #            If the site runs on AWS EC2 instance, the easiest way to provide that credentials is to assign role
+    #     #            to the instance with AmazonSNSFullAccess policy.
+    #     import botocore.session
+    #     client = botocore.session.get_session().create_client('sns')
+    #     res = client.publish(
+    #         TopicArn=settings.USER_REQUEST_TOPIC_ARN,
+    #         Message=self.email_as_text(msg_data),
+    #         Subject='Vivariy.com: user request',
+    #         MessageStructure='string',
+    #     )
 
     def hrefs_from_cart(self):
         # extracts list of products from cart, and return them as list of http links (in json format)
@@ -382,3 +383,8 @@ def get_subscribers(request):
 def get_analytics_codes():
     # returns list of counters for web analytics
     return AnalyticsCounter.objects.filter(is_enabled=True)
+
+
+class RobotsView(View):
+    def get(self, request, *args, **kwargs):
+        return HttpResponse("""User-agent: *\nAllow: /\n\nHost: vivariy.com\nSitemap: http://vivariy.com/sitemap.xml\n""")

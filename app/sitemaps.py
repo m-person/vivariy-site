@@ -1,6 +1,6 @@
 from django.contrib.sitemaps import Sitemap
 from app import models
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.contrib.sites.models import Site
 
 

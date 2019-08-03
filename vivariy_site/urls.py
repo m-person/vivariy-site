@@ -8,7 +8,7 @@ from django.contrib.sitemaps.views import sitemap
 from app import sitemaps
 from app.views import (MainView, CatalogView, CategoryView, ProductView, PartnersView, ArticleListView,
                        ArticleDetailView, ContactsView, RequestSuccess, cart_count_request, media_backup_request,
-                       LangRedirect, SubscribeView, get_subscribers, )
+                       LangRedirect, SubscribeView, get_subscribers, RobotsView)
 
 sitemaps = {
     'staticpages': sitemaps.StaticViewsMap,
@@ -38,12 +38,16 @@ urlpatterns = [
     url(r'^xhr/cart_count/', cart_count_request),
     url(r"^search/", include("watson.urls", namespace="watson")),
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
-    url(r'^robots\.txt$', include('robots.urls')),
+    # url(r'^robots\.txt', include('robots.urls')),
+    url(r'^robots\.txt', RobotsView.as_view(), name='robots'),
     url(r'^subscribe/', SubscribeView.as_view(), name='subscribe'),
 ]
 
 # access to uploaded files
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 # internationalization some pages
 urlpatterns += i18n_patterns(

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
+
 from django.utils.translation import ugettext_lazy as _
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -49,20 +50,19 @@ INSTALLED_APPS = [
     'tagging_autocomplete',
     'watson',
     'smuggler',
-    'robots',
     'admin_honeypot',
+    'snowpenguin.django.recaptcha2',
 ]
 
-MIDDLEWARE_CLASSES = [
+MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
-    # 'django.middleware.cache.UpdateCacheMiddleware',
     'django.middleware.common.CommonMiddleware',
-    # 'django.middleware.cache.FetchFromCacheMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'watson.middleware.SearchContextMiddleware',
@@ -95,7 +95,8 @@ WSGI_APPLICATION = 'vivariy_site.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'vivariy_site',
+        'NAME': 'vivariy_prod_test',
+        # 'NAME': 'vivariy_site',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
         'HOST': '192.168.99.100',
@@ -145,11 +146,10 @@ LOCALE_PATHS = [os.path.join(BASE_DIR, 'app', 'locale')]
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'app', 'media')
-
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 SITE_ID = 1  # note: it's an id of current site in django_site table
@@ -210,6 +210,10 @@ SECURE_BROWSER_XSS_FILTER = True
 
 # AWS related settings
 USER_REQUEST_TOPIC_ARN = None  # SNS topic for user requests (Note: the real value is imported from the .prod_settings)
+
+# recaptcha keys
+RECAPTCHA_PUBLIC_KEY = None
+RECAPTCHA_PRIVATE_KEY = None
 
 # Deployment: import local_settings file to override
 try:
