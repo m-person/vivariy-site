@@ -11,6 +11,6 @@ docker exec -t vivariy_db_1 pg_dump -Upostgres --file=/tmp/docker_share/db_dump.
 echo "create an archive..."
 DEST=/home/www/vivariy/backups
 rm $DEST/*
-tar -czf $DEST/vivariy_`date +%F`.tar.gz --exclude "$DEST/" .
+tar -czf $DEST/vivariy_`date +%F`.tar.gz --exclude "$DEST/" /home/www/vivariy/
 
 echo "done. The backup was created in $DEST"
