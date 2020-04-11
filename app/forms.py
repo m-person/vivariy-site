@@ -7,7 +7,7 @@ from app.models import Subscriber, UserRequest
 
 
 class UserRequestForm(ModelForm):
-    # captcha = ReCaptchaField(widget=ReCaptchaWidget())
+    captcha = ReCaptchaField(widget=ReCaptchaWidget())
 
     class Meta:
         model = UserRequest

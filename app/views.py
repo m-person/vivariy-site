@@ -237,7 +237,7 @@ class ContactsView(FormView):
 
     def form_valid(self, form):
         data = form.cleaned_data
-        # data.pop('captcha')
+        data.pop('captcha')
         data['cart'] = self.hrefs_from_cart()
         recipients = [empl.user.email for empl in Employee.objects.filter(is_mail_recipient=True)]
 
